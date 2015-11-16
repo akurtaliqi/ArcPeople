@@ -1,5 +1,9 @@
+<%@page import="Model.Commentaire"%>
+<%@page import="java.util.Vector"%>
+<%@page import="Model.Users"%>
+<%@page import="DAO.UsersDAO"%>
+<%@page import="DAO.CommentaireDAO"%>
 <%@page import="Model.Personne"%>
-<%@page import="DAO.PersonneDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
     "http://www.w3.org/TR/html4/loose.dtd">
@@ -28,31 +32,54 @@
                             </a>
                         </div>
                     </div>
-                    <p>Bonjour</p>
-
                     <div class="panel-body">
                         <ul class="chat">
+                            <%
+                                CommentaireDAO cdao = new CommentaireDAO();
+                                UsersDAO udao = new UsersDAO();
+                                Users u = new Users();
+                                Vector<Commentaire> vcomm = new Vector();
+                                vcomm = cdao.selectAll();
+
+                                for (int i = 0; i < vcomm.size(); i++) {
+                            %>
                             <li class="left clearfix"><span class="chat-img pull-left">
                                     <img src="http://placehold.it/50/55C1E7/fff&text=U" alt="User Avatar" class="img-circle" />
                                 </span>
                                 <div class="chat-body clearfix">
                                     <div class="header">
-                                        <strong class="primary-font">Ajtene Kurtaliqi</strong> <small class="pull-right text-muted">
+                                        <strong class="primary-font" style="color:black">
+                                            <%
+                                                Long usernumber;
+
+                                                usernumber = cdao.selectAll().get(i).getComm_users();
+                                                u = udao.selectById(usernumber);
+
+                                                out.println(u.getUsername().toUpperCase());
+                                            %>
+                                        </strong> <small class="pull-right text-muted">
+
                                             <span class="glyphicon glyphicon-time"></span>12 mins ago</small>
                                     </div>
                                     <p>
-                                        Nous sommes encore en train de travailler en ce moment... Apéro plus tard ?
+                                        <%
+                                            out.println(vcomm.get(i).getCommentaire());
+                                        %>
                                     </p>
                                 </div>
                             </li>
-
+                            <%
+                                }
+                            %>
                         </ul>
                     </div>
+
+
                     <div class="panel-footer">
                         <div class="input-group">
-                            <form action="ServletCommentaire">
+                            <form action="ServletAddCommentaire">
                                 <input name ="commentaire" id="btn-input" type="text" class="form-control input-sm" placeholder="Type your message here..." />
-                                
+
                                 <span class="input-group-btn">
 
                                     <button class="btn btn-warning btn-sm" id="btn-chat">
@@ -65,7 +92,6 @@
             </div>
         </div>
     </div>
-</div>
 
 
 </body>

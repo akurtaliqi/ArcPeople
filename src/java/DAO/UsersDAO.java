@@ -15,10 +15,6 @@ import java.sql.Statement;
 import oracle.jdbc.OraclePreparedStatement;
 import oracle.jdbc.OracleTypes;
 
-/**
- *
- * @author Maxime Stierli <maxime.stierli@he-arc.ch>
- */
 public class UsersDAO {
     public UsersDAO(){};
 
@@ -28,19 +24,18 @@ public class UsersDAO {
         ResultSet rs = null;
         Users u = new Users();
         try {
-            String query = "SELECT * FROM Users WHERE Username = ?";
+            String query = "SELECT NUMERO, USERNAME FROM Users WHERE Username = ?";
             
             stmt = conn.prepareStatement(query);        
             stmt.setString(1, username);
             rs = stmt.executeQuery();
            
-            // On ajoute les restaurants à la liste
             while(rs.next()){
                 u.setId(rs.getLong("Numero"));
                 u.setUsername(rs.getString("Username"));
-                u.setPwd(rs.getString("pwd"));
-                u.setPhoto(rs.getBlob("Photo"));
             }
+            
+            return u;
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -55,6 +50,41 @@ public class UsersDAO {
             }
         } 
     }
+    
+    public Users selectById(Long id) {
+        Connection conn = DBDataSource.getJDBCConnection();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        Users u = new Users();
+        try {
+            String query = "SELECT NUMERO, USERNAME FROM Users WHERE Numero = ?";
+            
+            stmt = conn.prepareStatement(query);        
+            stmt.setLong(1, id);
+            rs = stmt.executeQuery();
+           
+            while(rs.next()){
+                u.setId(rs.getLong("Numero"));
+                u.setUsername(rs.getString("Username"));
+            }
+            
+            return u;
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                rs.close();
+                stmt.close();
+                conn.close();
+                 return u;
+            } catch (SQLException e) {
+                e.printStackTrace();
+                return null;
+            }
+        } 
+    }
+    
+    
 
     public Long create(Long id, String username, String pwd, Blob photo) {
         Connection conn = DBDataSource.getJDBCConnection();

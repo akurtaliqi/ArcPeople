@@ -32,6 +32,10 @@
         <servlet-name>ServletLogout</servlet-name>
         <servlet-class>servlets.ServletLogout</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ServletAddCommentaire</servlet-name>
+        <servlet-class>servlets.ServletAddCommentaire</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ServletCreationPersonne</servlet-name>
         <url-pattern>/ServletCreationPersonne</url-pattern>
@@ -64,6 +68,10 @@
         <servlet-name>ServletLogin</servlet-name>
         <url-pattern>/ServletLogin</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletAddCommentaire</servlet-name>
+        <url-pattern>/ServletAddCommentaire</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
@@ -71,5 +79,5 @@
     </session-config>
     <welcome-file-list>
         <welcome-file>login.jsp</welcome-file>
-        </welcome-file-list>
-    </web-app>
+    </welcome-file-list>
+</web-app>

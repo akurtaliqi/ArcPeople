@@ -5,6 +5,7 @@
 package DAO;
 
 import Model.Personne;
+import Model.Users;
 import java.sql.Statement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,6 +13,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import oracle.jdbc.OraclePreparedStatement;
 import oracle.jdbc.OracleTypes;
 
@@ -163,6 +166,8 @@ public class PersonneDAO {
         }
 
     }
+    
+    
 
     public Long create(Personne p) {
 

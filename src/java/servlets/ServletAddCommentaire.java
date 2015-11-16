@@ -23,7 +23,7 @@ import javax.xml.registry.infomodel.User;
  *
  * @author yasmine.mabrouk
  */
-public class ServletAjoutCommentaire extends HttpServlet {
+public class ServletAddCommentaire extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -48,6 +48,8 @@ public class ServletAjoutCommentaire extends HttpServlet {
             
             CommentaireDAO commentaireDAO = new CommentaireDAO();
             commentaireDAO.create(utilusateur.getId(),request.getParameter("commentaire"));
+            
+            response.sendRedirect("accueil.jsp");
             
         } finally {
             out.close();

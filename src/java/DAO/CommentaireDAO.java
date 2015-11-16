@@ -23,69 +23,37 @@ import oracle.jdbc.OracleTypes;
  * @author Maxime Stierli <maxime.stierli@he-arc.ch>
  */
 public class CommentaireDAO {
-    public CommentaireDAO(){};
 
-    public Vector<Commentaire>  selectAll() {
+    public CommentaireDAO() {
+    }
+
+    ;
+
+    public Vector<Commentaire> selectAll() {
         Connection conn = DBDataSource.getJDBCConnection();
         Statement stmt = null;
         ResultSet rs = null;
-        Vector<Commentaire> resultList=new Vector();
+        Vector<Commentaire> resultList = new Vector();
         try {
-            String query=null,sn=null,scomm=null,susers=null;
-            boolean onedone=false;
-            query= "select * from Commentaire";
+            String query = null, sn = null, scomm = null, susers = null;
+            boolean onedone = false;
+            query = "select * from Commentaire";
 
-           System.out.println(query);
-           stmt = conn.createStatement(); //create a statement
-           rs = stmt.executeQuery(query);
+            System.out.println(query);
+            stmt = conn.createStatement(); //create a statement
+            rs = stmt.executeQuery(query);
 
             while (rs.next()) {
-                Long n = rs.getLong("NUMERO");
-                String commentaire = rs.getString("COMMENTAIRE_USERS");
-                Long users_id = rs.getLong("COMMENTAIRE");
-                Date dateAjout = rs.getDate("DateAjout");
                 Commentaire c = new Commentaire();
-                c.setId(n);
-                c.setCommentaire(commentaire);
-                c.setComm_user(users_id);
-                c.setDateAjout(dateAjout);
-                resultList.add(c);
-                System.out.println(n + "\t" + commentaire + "\t" + users_id + "\t" + dateAjout);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                rs.close();
-                stmt.close();
-                conn.close();
-                 return resultList;
-            } catch (SQLException e) {
-                e.printStackTrace();
-                return null;
-            }
-        } 
-    }
-    
-    public Commentaire select(Long id) {
-        Connection conn = DBDataSource.getJDBCConnection();
-        PreparedStatement stmt = null;
-        ResultSet rs = null;
-        Commentaire c = new Commentaire();
-        try {
-            String query = "SELECT * FROM Commentaire WHERE numero = ?";
-            
-            stmt = conn.prepareStatement(query);        
-            stmt.setLong(1, id);
-            rs = stmt.executeQuery();
-           
-            // On ajoute les restaurants à la liste
-            while(rs.next()){
-                c.setId(rs.getLong("Numero"));
-                c.setCommentaire(rs.getString("Commentaire"));
-                c.setComm_user(rs.getLong("commentaire_users"));
+                c.setId(rs.getLong("NUMERO"));
+                c.setCommentaire(rs.getString("COMMENTAIRE"));
+                c.setComm_user(rs.getLong("USERS_NUMERO"));
                 c.setDateAjout(rs.getDate("DateAjout"));
+                resultList.add(c);
             }
+
+            return resultList;
+
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -93,13 +61,56 @@ public class CommentaireDAO {
                 rs.close();
                 stmt.close();
                 conn.close();
-                 return c;
             } catch (SQLException e) {
                 e.printStackTrace();
-                return null;
+               
             }
-        } 
+        }
+        
+        return null;
     }
+
+    /*public Vector<Commentaire>  selectAll() {
+     Connection conn = DBDataSource.getJDBCConnection();
+     Statement stmt = null;
+     ResultSet rs = null;
+     Vector<Commentaire> resultList=new Vector();
+     try {
+     String query=null,sn=null,scomm=null,susers=null;
+     boolean onedone=false;
+     query= "select * from Commentaire";
+
+     System.out.println(query);
+     stmt = conn.createStatement(); //create a statement
+     rs = stmt.executeQuery(query);
+
+     while (rs.next()) {
+     Long n = rs.getLong("NUMERO");
+     String commentaire = rs.getString("COMMENTAIRE_USERS");
+     Long users_id = rs.getLong("COMMENTAIRE");
+     Date dateAjout = rs.getDate("DateAjout");
+     Commentaire c = new Commentaire();
+     c.setId(n);
+     c.setCommentaire(commentaire);
+     c.setComm_user(users_id);
+     c.setDateAjout(dateAjout);
+     resultList.add(c);
+     System.out.println(n + "\t" + commentaire + "\t" + users_id + "\t" + dateAjout);
+     }
+     } catch (Exception e) {
+     e.printStackTrace();
+     } finally {
+     try {
+     rs.close();
+     stmt.close();
+     conn.close();
+     return resultList;
+     } catch (SQLException e) {
+     e.printStackTrace();
+     return null;
+     }
+     } 
+     }*/
 
     public Long create(Long id, String commentaire) {
 
@@ -109,19 +120,19 @@ public class CommentaireDAO {
         Long returnNumero = null;
         try {
 
-            String query = "insert into Commentaire(USER_NUMERO,commentaire) values (?,?) returning numero into ?";
+            String query = "insert into Commentaire(USERS_NUMERO,commentaire) values (?,?) returning numero into ?";
             System.out.println("insertquery ->" + query);
 
             pstmt = (OraclePreparedStatement) conn.prepareStatement(query); //create a statement
             pstmt.setLong(1, id);
-            pstmt.setString(2,commentaire);
+            pstmt.setString(2, commentaire);
             pstmt.registerReturnParameter(3, OracleTypes.NUMBER);
 
             int count = pstmt.executeUpdate();
             conn.commit();
 
             if (count > 0) {
-               rs = pstmt.getReturnResultSet(); //rest is not null and not empty
+                rs = pstmt.getReturnResultSet(); //rest is not null and not empty
                 while (rs.next()) {
                     returnNumero = rs.getLong(1);
                     System.out.println(returnNumero);
@@ -145,23 +156,22 @@ public class CommentaireDAO {
 
     public Long delete(Long id) {
 
-       int executeUpdate=0;
+        int executeUpdate = 0;
 
         Connection conn = DBDataSource.getJDBCConnection();
         PreparedStatement pstmt = null;
 
         try {
-            String q="delete from COMMENTAIRE where numero=?";
-     
+            String q = "delete from COMMENTAIRE where numero=?";
+
             System.out.println("deletequery ->" + q);
 
             pstmt = conn.prepareStatement(q); //create a statement
-                //create a statement
-            pstmt.setLong(1,id);
+            //create a statement
+            pstmt.setLong(1, id);
             executeUpdate = pstmt.executeUpdate();
             conn.commit();
-            System.out.println( executeUpdate + " Rows modified" ) ;
-
+            System.out.println(executeUpdate + " Rows modified");
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -172,7 +182,7 @@ public class CommentaireDAO {
                 return new Long(executeUpdate);
             } catch (SQLException e) {
                 e.printStackTrace();
-                return new Long (executeUpdate);
+                return new Long(executeUpdate);
             }
         }
     }
