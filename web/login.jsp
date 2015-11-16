@@ -62,7 +62,7 @@
 
                                             <h1></h1><br /><br /><br />
                                             <h1>Connexion</h1>
-                                            <h2>Gest'People : Fast, Powerful and Simple</h2>
+                                            <h2>Gest'People : Enjoy your work </h2>
 
                                             <form action="ServletLogin" name="login" role="form" class="form-horizontal" method="post" accept-charset="utf-8">
                                                 <div class="form-group">
@@ -72,7 +72,7 @@
                                                            <img src="bootstrap/img/iconPassword.png" width="30px">
                                                        </span>
                                                         --%>
-                                                        <input name="username" placeholder="Idenfiant" class="form-control" type="text" id="UserUsername"/>
+                                                        <input name="username" placeholder="Idenfiant" class="form-control" type="text" id="UserUsername" required="required"/>
                                                     </div>
                                                 </div> 
 
@@ -83,7 +83,7 @@
                                                             <img src="bootstrap/img/iconPassword.png" width="30px">
                                                         </span>
                                                         --%>
-                                                        <input name="password" placeholder="Mot de passe" class="form-control" type="password" id="UserPassword"/>
+                                                        <input name="password" placeholder="Mot de passe" class="form-control" type="password" id="UserPassword" required="required"/>
                                                     </div>
                                                 </div> 
 
@@ -100,7 +100,7 @@
                                                 %>
 
                                                 <div class="form-group">
-                                                    <div class="col-md-offset-0 col-md-12"><input  class="btn btn-success btn btn-success" type="submit" value="Connexion"/></div>
+                                                    <div class="col-md-offset-0 col-md-12"><input  class="btn btn-default btn btn-default" type="submit" value="Connexion"/></div>
                                                 </div>
                                             </form>
                                         </div>

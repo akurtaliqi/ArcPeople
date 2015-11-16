@@ -1,3 +1,4 @@
+<%@page import="java.sql.Connection"%>
 <%@page import="Model.Commentaire"%>
 <%@page import="java.util.Vector"%>
 <%@page import="Model.Users"%>
@@ -58,6 +59,9 @@
                             <%
                                 CommentaireDAO cdao = new CommentaireDAO();
                                 UsersDAO udao = new UsersDAO();
+                                
+                                Connection con = udao.newConnection();
+                                
                                 Users u = new Users();
                                 Vector<Commentaire> vcomm = new Vector();
                                 vcomm = cdao.selectAll();
@@ -70,15 +74,8 @@
                                 <div class="chat-body clearfix">
                                     <div class="header">
                                         <strong class="primary-font" style="color:black">
-                                            <%
-                                                Long usernumber;
-                                                String username;
-                                                
-                                                usernumber = vcomm.get(i).getUsers_numero();
-                                
-                                                
-                                                u = udao.selectById(usernumber);
-
+                                            <%                                                
+                                                u = udao.selectById(con, vcomm.get(i).getUsers_numero());
                                                 out.println(u.getUsername().toUpperCase());
                                             %>
                                         </strong> <small class="pull-right text-muted">
@@ -93,7 +90,7 @@
                                 </div>
                             </li>
                             <%
-                                }
+                                } udao.closeConnection(con);
                             %>
                         </ul>
                     </div>
