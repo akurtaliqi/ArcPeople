@@ -67,40 +67,6 @@
         <script src="/js/jquery-2.1.1.min.js"></script>
         <script src="bootstrap/js/nprogress.js"></script>
         <script>
-            jQuery(document).ready(function () {
-                $('#lstPersonnes').DataTable({
-                    "pageLength": 10,
-                    "language": {
-                        "sProcessing": "Traitement en cours...",
-                        "sSearch": "Rechercher&nbsp;:",
-                        "sLengthMenu": "Afficher _MENU_ &eacute;l&eacute;ments",
-                        "sInfo": "Affichage de l'&eacute;lement _START_ &agrave; _END_ sur _TOTAL_ &eacute;l&eacute;ments",
-                        "sInfoEmpty": "Affichage de l'&eacute;lement 0 &agrave; 0 sur 0 &eacute;l&eacute;ments",
-                        "sInfoFiltered": "(filtr&eacute; de _MAX_ &eacute;l&eacute;ments au total)",
-                        "sInfoPostFix": "",
-                        "sLoadingRecords": "Chargement en cours...",
-                        "sZeroRecords": "Aucun &eacute;l&eacute;ment &agrave; afficher",
-                        "sEmptyTable": "Aucune donnée disponible dans le tableau",
-                        "oPaginate": {
-                            "sFirst": "Premier",
-                            "sPrevious": "Pr&eacute;c&eacute;dent",
-                            "sNext": "Suivant",
-                            "sLast": "Dernier"
-                        },
-                        "oAria": {
-                            "sSortAscending": ": activer pour trier la colonne par ordre croissant",
-                            "sSortDescending": ": activer pour trier la colonne par ordre décroissant"
-                        }
-                    }
-
-                });
-
-            });
-        </script>
-    </head>
-
-    <body style="background-color:white;">
-        <script>
             $('body').show();
             $('.version').text(NProgress.version);
             NProgress.start();
@@ -117,7 +83,44 @@
             $("#b-inc").click(function () {
                 NProgress.inc();
             });
+            $("#b-100").click(function () {
+                NProgress.done();
+            });
         </script>
+        <script>
+                     jQuery(document).ready(function () {
+                         $('#lstPersonnes').DataTable({
+                             "pageLength": 10,
+                             "language": {
+                                 "sProcessing": "Traitement en cours...",
+                                 "sSearch": "Rechercher&nbsp;:",
+                                 "sLengthMenu": "Afficher _MENU_ &eacute;l&eacute;ments",
+                                 "sInfo": "Affichage de l'&eacute;lement _START_ &agrave; _END_ sur _TOTAL_ &eacute;l&eacute;ments",
+                                 "sInfoEmpty": "Affichage de l'&eacute;lement 0 &agrave; 0 sur 0 &eacute;l&eacute;ments",
+                                 "sInfoFiltered": "(filtr&eacute; de _MAX_ &eacute;l&eacute;ments au total)",
+                                 "sInfoPostFix": "",
+                                 "sLoadingRecords": "Chargement en cours...",
+                                 "sZeroRecords": "Aucun &eacute;l&eacute;ment &agrave; afficher",
+                                 "sEmptyTable": "Aucune donnée disponible dans le tableau",
+                                 "oPaginate": {
+                                     "sFirst": "Premier",
+                                     "sPrevious": "Pr&eacute;c&eacute;dent",
+                                     "sNext": "Suivant",
+                                     "sLast": "Dernier"
+                                 },
+                                 "oAria": {
+                                     "sSortAscending": ": activer pour trier la colonne par ordre croissant",
+                                     "sSortDescending": ": activer pour trier la colonne par ordre décroissant"
+                                 }
+                             }
+
+                         });
+
+                     });
+        </script>
+    </head>
+
+    <body style="background-color:white;">
         <div id="wrap">
             <div class="container">
                 <table id="lstPersonnes" cellpadding="0" cellspacing="0" border="0" class="datatable table table-striped table-bordered">

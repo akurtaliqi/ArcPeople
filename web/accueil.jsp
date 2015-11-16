@@ -103,8 +103,7 @@
 
                                 <span class="input-group-btn">
 
-                                    <button class="btn btn-warning btn-sm" id="btn-chat">
-                                        Send</button>
+                                    <button class="btn btn-warning btn-sm" id="btn-chat">Send</button>
                                 </span>
                             </form>
                         </div>
