@@ -53,7 +53,11 @@
         <script src="bootstrap/js/libs/jquery-validate-1.10.0/jquery.validate.min.js"></script>
         <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
         <script src="bootstrap/js/include/tpl-header-login-inc.js"></script>
+        <script src='nprogress.js'></script>
+        <link rel='stylesheet' href='bootstrap/css/nprogress.css'/>
+        <script src="/js/jquery-2.1.1.min.js"></script>
+        <script src="bootstrap/js/nprogress.js"></script>
 
     </head>
-     <body style="background-color:white">
+    <body style="background-color:white">
         <% }%>

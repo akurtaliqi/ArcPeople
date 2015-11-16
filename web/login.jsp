@@ -23,9 +23,9 @@
         <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
         <script type="text/javascript" src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
         <script src='nprogress.js'></script>
-        <link rel='stylesheet' href='nprogress.css'/>
+        <link rel='stylesheet' href='bootstrap/css/nprogress.css'/>
         <script src="/js/jquery-2.1.1.min.js"></script>
-        <script src="/js/nprogress.js"></script>
+        <script src="bootstrap/js/nprogress.js"></script>
     </head>
     <body>
         <script>

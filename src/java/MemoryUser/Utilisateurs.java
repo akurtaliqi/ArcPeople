@@ -20,6 +20,7 @@ public class Utilisateurs {
             users.put("daucourt","pdaucourt");
             users.put("francillon","pfrancillon");
             users.put("dupont","pdupont");
+            users.put("baudet","pbaudet");
             users.put("t","t");
         }     
         System.out.println(user + " " + pw +" " +users.get(user));
