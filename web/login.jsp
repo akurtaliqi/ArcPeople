@@ -22,8 +22,33 @@
         <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Lato:400,700,300" />
         <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
         <script type="text/javascript" src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+        <script src='nprogress.js'></script>
+        <link rel='stylesheet' href='nprogress.css'/>
+        <script src="/js/jquery-2.1.1.min.js"></script>
+        <script src="/js/nprogress.js"></script>
     </head>
     <body>
+        <script>
+            $('body').show();
+            $('.version').text(NProgress.version);
+            NProgress.start();
+            setTimeout(function () {
+                NProgress.done();
+                $('.fade').removeClass('out');
+            }, 1000);
+            $("#b-0").click(function () {
+                NProgress.start();
+            });
+            $("#b-40").click(function () {
+                NProgress.set(0.4);
+            });
+            $("#b-inc").click(function () {
+                NProgress.inc();
+            });
+            $("#b-100").click(function () {
+                NProgress.done();
+            });
+        </script>
         <table id="page-table"><tr><td id="page-td">
                     <div id="global">
 
@@ -42,10 +67,10 @@
                                             <form action="ServletLogin" name="login" role="form" class="form-horizontal" method="post" accept-charset="utf-8">
                                                 <div class="form-group">
                                                     <div class="col-md-12">
-                                                         <%--
-                                                        <span class="input-group-addon">
-                                                            <img src="bootstrap/img/iconPassword.png" width="30px">
-                                                        </span>
+                                                        <%--
+                                                       <span class="input-group-addon">
+                                                           <img src="bootstrap/img/iconPassword.png" width="30px">
+                                                       </span>
                                                         --%>
                                                         <input name="username" placeholder="Idenfiant" class="form-control" type="text" id="UserUsername"/>
                                                     </div>
@@ -77,7 +102,6 @@
                                                 <div class="form-group">
                                                     <div class="col-md-offset-0 col-md-12"><input  class="btn btn-success btn btn-success" type="submit" value="Connexion"/></div>
                                                 </div>
-
                                             </form>
                                         </div>
                                     </div>
@@ -86,6 +110,13 @@
                             </div>
                         </div>
                     </div>
-                </td></tr></table>
+                </td>
+            </tr>
+        </table>
     </body>
+    <script>
+        $("#b-100").click(function () {
+            NProgress.done();
+        });
+    </script>
 </html>

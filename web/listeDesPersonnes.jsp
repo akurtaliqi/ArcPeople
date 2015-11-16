@@ -50,11 +50,11 @@
         <meta charset="utf-8">
         <title>Liste des personnes</title>
 
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-        
+
         <!-- DATATABLE-->
         <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.6/css/jquery.dataTables.css">
         <script type="text/javascript" charset="utf8" src="//code.jquery.com/jquery-1.10.2.min.js"></script>
@@ -62,6 +62,10 @@
         <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/plug-ins/1.10.10/i18n/French.json"></script>
         <!-- DATATABLE-->
 
+        <script src='nprogress.js'></script>
+        <link rel='stylesheet' href='nprogress.css'/>
+        <script src="/js/jquery-2.1.1.min.js"></script>
+        <script src="/js/nprogress.js"></script>
         <script>
             jQuery(document).ready(function () {
                 $('#lstPersonnes').DataTable({
@@ -96,6 +100,24 @@
     </head>
 
     <body style="background-color:white;">
+        <script>
+            $('body').show();
+            $('.version').text(NProgress.version);
+            NProgress.start();
+            setTimeout(function () {
+                NProgress.done();
+                $('.fade').removeClass('out');
+            }, 1000);
+            $("#b-0").click(function () {
+                NProgress.start();
+            });
+            $("#b-40").click(function () {
+                NProgress.set(0.4);
+            });
+            $("#b-inc").click(function () {
+                NProgress.inc();
+            });
+        </script>
         <div id="wrap">
             <div class="container">
                 <table id="lstPersonnes" cellpadding="0" cellspacing="0" border="0" class="datatable table table-striped table-bordered">
@@ -111,7 +133,7 @@
                     <tbody>
                         <% for (Personne pers : listePers) { %> 
                         <tr class="lignePersonne" id="<% out.print(pers.getId()); %>">
-                            
+
                             <td>  <% out.print(pers.getNom()); %> </td>
                             <td>  <% out.print(pers.getPrenom()); %> </td>  
                             <td>  <% out.print(pers.getVille()); %> </td>
@@ -128,5 +150,10 @@
                 </table>
             </div>
         </div>
+        <script>
+            $("#b-100").click(function () {
+                NProgress.done();
+            });
+        </script>
     </body>
 </html>
