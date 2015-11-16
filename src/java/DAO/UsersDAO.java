@@ -12,6 +12,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
 import java.sql.Statement;
+import java.util.Vector;
 import oracle.jdbc.OraclePreparedStatement;
 import oracle.jdbc.OracleTypes;
 
@@ -49,6 +50,43 @@ public class UsersDAO {
                 return null;
             }
         } 
+    }
+    
+    public Vector<Users> selectAll() {
+        Connection conn = DBDataSource.getJDBCConnection();
+        Statement stmt = null;
+        ResultSet rs = null;
+        Vector<Users> resultList = new Vector();
+        try {
+            
+            String query = "select NUMERO, USERNAME from USERS";
+
+            System.out.println(query);
+            stmt = conn.createStatement(); //create a statement
+            rs = stmt.executeQuery(query);
+
+            while (rs.next()) {
+                Users u = new Users();
+                u.setId(rs.getLong("NUMERO"));
+                u.setUsername(rs.getString("USERNAME"));
+            }
+
+            return resultList;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                rs.close();
+                stmt.close();
+                conn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+               
+            }
+        }
+        
+        return null;
     }
     
     public Users selectById(Long id) {

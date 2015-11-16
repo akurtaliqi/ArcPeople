@@ -35,9 +35,10 @@ public class CommentaireDAO {
         ResultSet rs = null;
         Vector<Commentaire> resultList = new Vector();
         try {
-            String query = null, sn = null, scomm = null, susers = null;
+            
             boolean onedone = false;
-            query = "select * from Commentaire";
+            
+            String query = "select NUMERO, COMMENTAIRE, USERS_NUMERO, DATEAJOUT from Commentaire";
 
             System.out.println(query);
             stmt = conn.createStatement(); //create a statement
@@ -47,7 +48,7 @@ public class CommentaireDAO {
                 Commentaire c = new Commentaire();
                 c.setId(rs.getLong("NUMERO"));
                 c.setCommentaire(rs.getString("COMMENTAIRE"));
-                c.setComm_user(rs.getLong("USERS_NUMERO"));
+                c.setUsers_numero(rs.getLong("USERS_NUMERO"));
                 c.setDateAjout(rs.getDate("DateAjout"));
                 resultList.add(c);
             }
