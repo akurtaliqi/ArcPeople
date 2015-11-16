@@ -25,7 +25,7 @@
             <div class="col-md-5">
                 <div class="panel panel-primary">
                     <div class="panel-heading" id="accordion">
-                        <span class="glyphicon glyphicon-comment"></span> Chat (1)
+                        <span class="glyphicon glyphicon-comment"></span> Remarques
                         <div class="btn-group pull-right">
                             <a type="button" class="btn btn-default btn-xs" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
                                 <span class="glyphicon glyphicon-chevron-down"></span>
@@ -51,8 +51,11 @@
                                         <strong class="primary-font" style="color:black">
                                             <%
                                                 Long usernumber;
-
-                                                usernumber = cdao.selectAll().get(i).getComm_users();
+                                                String username;
+                                                
+                                                usernumber = vcomm.get(i).getUsers_numero();
+                                
+                                                
                                                 u = udao.selectById(usernumber);
 
                                                 out.println(u.getUsername().toUpperCase());

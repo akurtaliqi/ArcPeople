@@ -76,7 +76,7 @@ public class PersonneDAO {
         try {
             String query = null, sn = null, snom = null, sprenom = null, sadr = null, sville = null;
             boolean onedone = false;
-            query = "select * from Personne";
+            query = "select NUMERO, NOM, PRENOM, ADRESSE, VILLE from Personne";
 
             //tester si on a des critères
             if (p.getId() != null) {
