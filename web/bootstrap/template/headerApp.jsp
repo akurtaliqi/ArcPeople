@@ -55,5 +55,4 @@
         <script src="bootstrap/js/include/tpl-header-login-inc.js"></script>
 
     </head>
-    <body style="background-color:white">
-        <% }%>
+    <% }%>

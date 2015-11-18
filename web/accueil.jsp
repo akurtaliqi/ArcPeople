@@ -47,7 +47,7 @@
             <div class="col-md-5">
                 <div class="panel panel-primary">
                     <div class="panel-heading" id="accordion">
-                        <span class="glyphicon glyphicon-comment"></span> Remarques
+                        <span class="glyphicon glyphicon-comment"></span> Commentaires
                         <div class="btn-group pull-right">
                             <a type="button" class="btn btn-default btn-xs" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
                                 <span class="glyphicon glyphicon-chevron-down"></span>
@@ -59,9 +59,9 @@
                             <%
                                 CommentaireDAO cdao = new CommentaireDAO();
                                 UsersDAO udao = new UsersDAO();
-                                
+
                                 Connection con = udao.newConnection();
-                                
+
                                 Users u = new Users();
                                 Vector<Commentaire> vcomm = new Vector();
                                 vcomm = cdao.selectAll();
@@ -74,7 +74,7 @@
                                 <div class="chat-body clearfix">
                                     <div class="header">
                                         <strong class="primary-font" style="color:black">
-                                            <%                                                
+                                            <%
                                                 u = udao.selectById(con, vcomm.get(i).getUsers_numero());
                                                 out.println(u.getUsername().toUpperCase());
                                             %>
@@ -90,7 +90,8 @@
                                 </div>
                             </li>
                             <%
-                                } udao.closeConnection(con);
+                                }
+                                udao.closeConnection(con);
                             %>
                         </ul>
                     </div>
@@ -112,10 +113,11 @@
             </div>
         </div>
     </div>
-    <script>
-        $("#b-100").click(function () {
-            NProgress.done();
-        });
-    </script>
+
 </body>
 </html>
+<script>
+    $("#b-100").click(function () {
+        NProgress.done();
+    });
+</script>

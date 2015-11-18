@@ -4,14 +4,18 @@ package servlets;
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
+import DAO.AjoutDAO;
 import DAO.PersonneDAO;
+import DAO.UsersDAO;
 import Model.Personne;
+import Model.Users;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -26,8 +30,7 @@ public class ServletCreationPersonne extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         String nom = null, prenom = null, adresse = null, ville = null;
@@ -49,15 +52,22 @@ public class ServletCreationPersonne extends HttpServlet {
                         out.println("<p>nom et prenom ne doivent pas etre null !!</p>");
                     }
                 }
-                /* TODO output your page here
-                out.println("<h1>Servlet ServletCreationPersonne at " + request.getContextPath () + "</h1>");
-                 */
+                /* syteme des points */
+                HttpSession s = request.getSession(true);
+                String username = (String) s.getAttribute("username");
+
+                UsersDAO usersDAO = new UsersDAO();
+                Users userEnCour = usersDAO.select(username);
+                
+                AjoutDAO ajoutDAO = new AjoutDAO();
+                ajoutDAO.create(userEnCour.getId());
             }
             HtmlHttpUtils.doFooter(out);
         } finally {
             out.close();
         }
     }
+
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /** 

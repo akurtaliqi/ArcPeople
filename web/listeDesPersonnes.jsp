@@ -28,7 +28,7 @@
     listePers = new ArrayList<Personne>();
 
     // Initialiser la liste de client ou la récupérer de la session
-    if (session.getAttribute("clients") == null) {
+    if (session.getAttribute("personnes") == null) {
         listePers.addAll(PersonneDAO.findAll());
     } else {
         listePers.addAll((ArrayList) session.getAttribute("personnes"));
@@ -88,39 +88,38 @@
             });
         </script>
         <script>
-                     jQuery(document).ready(function () {
-                         $('#lstPersonnes').DataTable({
-                             "pageLength": 10,
-                             "language": {
-                                 "sProcessing": "Traitement en cours...",
-                                 "sSearch": "Rechercher&nbsp;:",
-                                 "sLengthMenu": "Afficher _MENU_ &eacute;l&eacute;ments",
-                                 "sInfo": "Affichage de l'&eacute;lement _START_ &agrave; _END_ sur _TOTAL_ &eacute;l&eacute;ments",
-                                 "sInfoEmpty": "Affichage de l'&eacute;lement 0 &agrave; 0 sur 0 &eacute;l&eacute;ments",
-                                 "sInfoFiltered": "(filtr&eacute; de _MAX_ &eacute;l&eacute;ments au total)",
-                                 "sInfoPostFix": "",
-                                 "sLoadingRecords": "Chargement en cours...",
-                                 "sZeroRecords": "Aucun &eacute;l&eacute;ment &agrave; afficher",
-                                 "sEmptyTable": "Aucune donnée disponible dans le tableau",
-                                 "oPaginate": {
-                                     "sFirst": "Premier",
-                                     "sPrevious": "Pr&eacute;c&eacute;dent",
-                                     "sNext": "Suivant",
-                                     "sLast": "Dernier"
-                                 },
-                                 "oAria": {
-                                     "sSortAscending": ": activer pour trier la colonne par ordre croissant",
-                                     "sSortDescending": ": activer pour trier la colonne par ordre décroissant"
-                                 }
-                             }
+            jQuery(document).ready(function () {
+                $('#lstPersonnes').DataTable({
+                    "pageLength": 10,
+                    "language": {
+                        "sProcessing": "Traitement en cours...",
+                        "sSearch": "Rechercher&nbsp;:",
+                        "sLengthMenu": "Afficher _MENU_ &eacute;l&eacute;ments",
+                        "sInfo": "Affichage de l'&eacute;lement _START_ &agrave; _END_ sur _TOTAL_ &eacute;l&eacute;ments",
+                        "sInfoEmpty": "Affichage de l'&eacute;lement 0 &agrave; 0 sur 0 &eacute;l&eacute;ments",
+                        "sInfoFiltered": "(filtr&eacute; de _MAX_ &eacute;l&eacute;ments au total)",
+                        "sInfoPostFix": "",
+                        "sLoadingRecords": "Chargement en cours...",
+                        "sZeroRecords": "Aucun &eacute;l&eacute;ment &agrave; afficher",
+                        "sEmptyTable": "Aucune donnée disponible dans le tableau",
+                        "oPaginate": {
+                            "sFirst": "Premier",
+                            "sPrevious": "Pr&eacute;c&eacute;dent",
+                            "sNext": "Suivant",
+                            "sLast": "Dernier"
+                        },
+                        "oAria": {
+                            "sSortAscending": ": activer pour trier la colonne par ordre croissant",
+                            "sSortDescending": ": activer pour trier la colonne par ordre décroissant"
+                        }
+                    }
 
-                         });
-
-                     });
+                });
+            });
         </script>
     </head>
 
-    <body style="background-color:white;">
+    <body>
         <div id="wrap">
             <div class="container">
                 <table id="lstPersonnes" cellpadding="0" cellspacing="0" border="0" class="datatable table table-striped table-bordered">
@@ -135,28 +134,28 @@
                     </thead>
                     <tbody>
                         <% for (Personne pers : listePers) { %> 
-                        <tr class="lignePersonne" id="<% out.print(pers.getId()); %>">
 
+                        <tr class="lignePersonne" id="<% out.print(pers.getId()); %>">
                             <td>  <% out.print(pers.getNom()); %> </td>
                             <td>  <% out.print(pers.getPrenom()); %> </td>  
                             <td>  <% out.print(pers.getVille()); %> </td>
                             <td>  <% out.print(pers.getAdresse()); %> </td>
-
                             <td class=" dt-body-center"><a class="btn btn-default btn-sm glyphicon glyphicon-pencil" title="Modifier" href="ServletMAJPersonne"></a>
-                                <a class="btn btn-default btn-sm glyphicon glyphicon-remove" title="Supprimer" href="ServletFaireEffacementPersonne?suppr=<% pers.getId(); %>&n=<% pers.getNom(); %>&p=<% pers.getPrenom(); %>" onclick="return(confirm('Etes-vous sûr de vouloir supprimer cette personne ?'))"></a>
+                                <a class="btn btn-default btn-sm glyphicon glyphicon-remove" title="Supprimer" href="ServletFaireEffacementPersonne?id=<% out.print(pers.getId()); %>" onclick="return(confirm('Etes-vous sûr de vouloir supprimer cette personne ?'))"></a>
 
                             </td>
-
+                            
                         </tr>
                         <% }%>
                     </tbody>
                 </table>
             </div>
         </div>
-        <script>
-            $("#b-100").click(function () {
-                NProgress.done();
-            });
-        </script>
+
     </body>
 </html>
+<script>
+    $("#b-100").click(function () {
+        NProgress.done();
+    });
+</script>

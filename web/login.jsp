@@ -87,7 +87,6 @@
                                                     </div>
                                                 </div> 
 
-
                                                 <%
                                                     String loginError = (String) session.getAttribute("loginError");
                                                     if (loginError != null) {
@@ -114,9 +113,9 @@
             </tr>
         </table>
     </body>
-    <script>
-        $("#b-100").click(function () {
-            NProgress.done();
-        });
-    </script>
 </html>
+<script>
+    $("#b-100").click(function () {
+        NProgress.done();
+    });
+</script>
