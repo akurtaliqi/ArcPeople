@@ -23,26 +23,27 @@ import javax.servlet.http.HttpSession;
  */
 public class ServletCreationPersonne extends HttpServlet {
 
-    /** 
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
      * @param request servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         String nom = null, prenom = null, adresse = null, ville = null;
         try {
 
-            HtmlHttpUtils.doHeader("creation personne", out);
             if (HtmlHttpUtils.isAuthenticate(request)) {
                 nom = request.getParameter("nom");
                 prenom = request.getParameter("prenom");
                 adresse = request.getParameter("adresse");
                 ville = request.getParameter("ville");
-
+                
                 if (nom != null && prenom != null) {
                     if (!nom.equals("") && !prenom.equals("")) {
                         PersonneDAO p = new PersonneDAO();
@@ -58,20 +59,21 @@ protected void processRequest(HttpServletRequest request, HttpServletResponse re
 
                 UsersDAO usersDAO = new UsersDAO();
                 Users userEnCour = usersDAO.select(username);
-                
+
                 AjoutDAO ajoutDAO = new AjoutDAO();
                 ajoutDAO.create(userEnCour.getId());
             }
-            HtmlHttpUtils.doFooter(out);
+            request.getRequestDispatcher("/listeDesPersonnes.jsp").forward(request, response);
+
         } finally {
             out.close();
         }
     }
 
-
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /** 
+    /**
      * Handles the HTTP <code>GET</code> method.
+     *
      * @param request servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
@@ -83,8 +85,9 @@ protected void processRequest(HttpServletRequest request, HttpServletResponse re
         processRequest(request, response);
     }
 
-    /** 
+    /**
      * Handles the HTTP <code>POST</code> method.
+     *
      * @param request servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
@@ -96,8 +99,9 @@ protected void processRequest(HttpServletRequest request, HttpServletResponse re
         processRequest(request, response);
     }
 
-    /** 
+    /**
      * Returns a short description of the servlet.
+     *
      * @return a String containing servlet description
      */
     @Override

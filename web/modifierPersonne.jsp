@@ -53,7 +53,7 @@
                 <legend style="text-align: left;">Modifier une personne</legend>
 
                 <div class="form-group">
-                    <label class="col-md-4 control-label" for="nom" style="color:black; display:none;">Id</label>  
+                    <label class="col-md-4 control-label" for="nom" style="display: none;">Id</label>  
                     <div class="col-md-4">
                         <input id="nom" name="id" type="text" class="form-control input-md" value="<%= request.getParameter("id")%>" style="display:none">
 
@@ -61,7 +61,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="col-md-4 control-label" for="nom" style="color:black;">Nom</label>  
+                    <label class="col-md-4 control-label" for="nom">Nom</label>  
                     <div class="col-md-6">
                         <input id="nom" name="nom" type="text" class="form-control input-md" value="<%= request.getParameter("nom")%>">
 
@@ -70,7 +70,7 @@
 
 
                 <div class="form-group">
-                    <label class="col-md-4 control-label" for="prenom" style="color:black;">Prénom</label>  
+                    <label class="col-md-4 control-label" for="prenom">Prénom</label>  
                     <div class="col-md-6">
                         <input id="prenom" name="prenom" type="text" class="form-control input-md" value="<%= request.getParameter("prenom")%>">
 
@@ -79,7 +79,7 @@
 
 
                 <div class="form-group">
-                    <label class="col-md-4 control-label" for="adresse" style="color:black;">Adresse</label>  
+                    <label class="col-md-4 control-label" for="adresse">Adresse</label>  
                     <div class="col-md-6">
                         <input id="adresse" name="adresse" type="text" class="form-control input-md" value="<%= request.getParameter("adresse")%>">
 
@@ -88,7 +88,7 @@
 
 
                 <div class="form-group">
-                    <label class="col-md-4 control-label" for="Ville" style="color:black;">Ville</label>  
+                    <label class="col-md-4 control-label" for="Ville">Ville</label>  
                     <div class="col-md-6">
                         <input id="Ville" name="ville" type="text" class="form-control input-md" value="<%= request.getParameter("ville")%>">
 

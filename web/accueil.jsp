@@ -1,3 +1,4 @@
+<%@page import="servlets.HtmlHttpUtils"%>
 <%@page import="java.sql.Connection"%>
 <%@page import="Model.Commentaire"%>
 <%@page import="java.util.Vector"%>
@@ -10,6 +11,14 @@
     "http://www.w3.org/TR/html4/loose.dtd">
 
 
+<%
+    /* Vérification que l'utilisateur est passé par le login et n'accède pas
+     * directement à la page "index.jsp" par l'URL.
+     */
+    if (!HtmlHttpUtils.isAuthenticate(request)) {
+        response.sendRedirect("ServletLogout");
+    }
+%>
 <jsp:include page="bootstrap/template/headerApp.jsp">
     <jsp:param name="typePage" value="standard" />
 </jsp:include>
