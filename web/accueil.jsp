@@ -51,11 +51,11 @@
                 <div class="panel panel-primary">
                     <div class="panel-heading" id="accordion">
                         <span class="glyphicon glyphicon-comment"></span> Commentaires
-                        <div class="btn-group pull-right">
+                        <!--div class="btn-group pull-right">
                             <a type="button" class="btn btn-default btn-xs" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
                                 <span class="glyphicon glyphicon-chevron-down"></span>
                             </a>
-                        </div>
+                        </div-->
                     </div>
                     <div class="panel-body">
                         <ul class="chat">
