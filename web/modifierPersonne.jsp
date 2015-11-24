@@ -22,16 +22,14 @@
         <%
             out.print(request.getParameter("id"));
         %>
-
-        
+    <center>
         <form action="ServletFaireMAJPersonne" name="modifierPersonne" role="form" class="form-horizontal" method="get" accept-charset="utf-8" 
-                style="background-color:white; padding-top:20px;padding-right:20px;padding-left:20px;">
+              style="background-color:white; padding-top:20px;padding-right:20px;padding-left:20px;padding-bottom:20px; width:700px;">
             <fieldset>
-
                 <!-- Form Name -->
-                <legend>Modifier une personne</legend>
-                
-                 <div class="form-group">
+                <legend style="text-align: left;">Modifier une personne</legend>
+
+                <div class="form-group">
                     <label class="col-md-4 control-label" for="nom" style="color:black; display:none;">Id</label>  
                     <div class="col-md-4">
                         <input id="nom" name="id" type="text" class="form-control input-md" value="<%= request.getParameter("id")%>" style="display:none">
@@ -41,7 +39,7 @@
 
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="nom" style="color:black;">Nom</label>  
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                         <input id="nom" name="nom" type="text" class="form-control input-md" value="<%= request.getParameter("nom")%>">
 
                     </div>
@@ -50,7 +48,7 @@
 
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="prenom" style="color:black;">Prénom</label>  
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                         <input id="prenom" name="prenom" type="text" class="form-control input-md" value="<%= request.getParameter("prenom")%>">
 
                     </div>
@@ -59,7 +57,7 @@
 
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="adresse" style="color:black;">Adresse</label>  
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                         <input id="adresse" name="adresse" type="text" class="form-control input-md" value="<%= request.getParameter("adresse")%>">
 
                     </div>
@@ -68,7 +66,7 @@
 
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="Ville" style="color:black;">Ville</label>  
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                         <input id="Ville" name="ville" type="text" class="form-control input-md" value="<%= request.getParameter("ville")%>">
 
                     </div>
@@ -76,12 +74,12 @@
 
                 <!-- Button -->
 
-                <div class="form-group">
-                    <div class="col-md-offset-0 col-md-12"><input  class="btn btn-default btn btn-default" type="submit" value="Enregistrer" style="alignment-baseline:right"/></div>
+                <div class="form-group" style="">
+                    <div class="col-md-offset-0 col-md-10"><input  class="btn btn-primary" type="submit" value="Enregistrer" style="float:right;"/></div>
                 </div>
 
             </fieldset>
         </form>
-
-    </body>
+    </center>
+</body>
 </html>

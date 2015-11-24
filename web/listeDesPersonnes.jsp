@@ -127,8 +127,8 @@
                         <tr>
                             <th>Nom</th>
                             <th>Prénom</th>
-                            <th>Ville</th>
                             <th>Adresse</th>
+                            <th>Ville</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -138,8 +138,8 @@
                         <tr class="lignePersonne" id="<% out.print(pers.getId()); %>">
                             <td>  <% out.print(pers.getNom()); %> </td>
                             <td>  <% out.print(pers.getPrenom()); %> </td>  
-                            <td>  <% out.print(pers.getVille()); %> </td>
                             <td>  <% out.print(pers.getAdresse()); %> </td>
+                            <td>  <% out.print(pers.getVille()); %> </td>
                             <td class=" dt-body-center"><a class="btn btn-default btn-sm glyphicon glyphicon-pencil" title="Modifier" href="modifierPersonne.jsp?id=<%= pers.getId() %>&nom=<%= pers.getNom() %>&prenom=<%= pers.getPrenom() %>&adresse=<%= pers.getAdresse() %>&ville=<%= pers.getVille() %>"></a>
                                 <a class="btn btn-default btn-sm glyphicon glyphicon-remove" title="Supprimer" href="ServletFaireEffacementPersonne?id=<%= pers.getId() %>" onclick="return(confirm('Etes-vous sûr de vouloir supprimer cette personne ?'))"></a>
 
