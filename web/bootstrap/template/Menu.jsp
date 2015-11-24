@@ -16,12 +16,14 @@
     String active = request.getParameter("url");
     //int nbEnregistrement = PersonneDAO.nbEnregistrements();
 
-    String activeIndex = "", activeListePersonnes = "", actSrc = "", actHlp = "", actProf = "";
+    String activeIndex = "", activeListePersonnes = "", activeAjouterPersonne = "", actSrc = "", actHlp = "", actProf = "";
 
-    if (active.equals("/index.jsp")) {
+    if (active.equals("/accueil.jsp")) {
         activeIndex = "class=\"active\"";
     } else if (active.equals("/listeDesPersonnes.jsp")) {
         activeListePersonnes = "class=\"active\"";
+    } else if (active.equals("/ajouterPersonne.jsp")) {
+        activeAjouterPersonne = "class=\"active\"";
     } /*else if (active.equals("/rechercherPersonne.jsp")) {
      actSrc = "class=\"active\"";
      } else if (active.equals("/aide.jsp")) {
@@ -51,7 +53,7 @@
             <ul class="nav navbar-nav">
                 <li <% out.println(activeIndex);%>><a href="accueil.jsp">Accueil <span class="sr-only">(current)</span></a></li>
                 <li <% out.println(activeListePersonnes);%>><a href="listeDesPersonnes.jsp">Liste des personnes</a></li>
-                <li><a href="#">Ajouter des personnes</a></li>
+                <li <% out.println(activeAjouterPersonne);%>><a href="ajouterPersonne.jsp">Ajouter des personnes</a></li>
             </ul>
 
             <ul class="nav navbar-nav navbar-right">

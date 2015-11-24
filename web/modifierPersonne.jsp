@@ -16,12 +16,12 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Modifier une personne</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
     </head>
     <body>
-        <%
-            out.print(request.getParameter("id"));
-        %>
     <center>
         <form action="ServletFaireMAJPersonne" name="modifierPersonne" role="form" class="form-horizontal" method="get" accept-charset="utf-8" 
               style="background-color:white; padding-top:20px;padding-right:20px;padding-left:20px;padding-bottom:20px; width:700px;">
@@ -73,9 +73,10 @@
                 </div>
 
                 <!-- Button -->
-
+                </br>
                 <div class="form-group" style="">
-                    <div class="col-md-offset-0 col-md-10"><input  class="btn btn-primary" type="submit" value="Enregistrer" style="float:right;"/></div>
+                    <div class="col-md-offset-0 col-md-10">
+                        <input  class="btn btn-primary" type="submit" value="Enregistrer" style="float:right;"/></div>
                 </div>
 
             </fieldset>
