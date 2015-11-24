@@ -19,7 +19,7 @@
 </jsp:include>
 
 <html>
-
+    <body>
 
 
     </body>

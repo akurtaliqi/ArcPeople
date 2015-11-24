@@ -140,8 +140,8 @@
                             <td>  <% out.print(pers.getPrenom()); %> </td>  
                             <td>  <% out.print(pers.getVille()); %> </td>
                             <td>  <% out.print(pers.getAdresse()); %> </td>
-                            <td class=" dt-body-center"><a class="btn btn-default btn-sm glyphicon glyphicon-pencil" title="Modifier" href="ServletMAJPersonne"></a>
-                                <a class="btn btn-default btn-sm glyphicon glyphicon-remove" title="Supprimer" href="ServletFaireEffacementPersonne?id=<% out.print(pers.getId()); %>" onclick="return(confirm('Etes-vous sûr de vouloir supprimer cette personne ?'))"></a>
+                            <td class=" dt-body-center"><a class="btn btn-default btn-sm glyphicon glyphicon-pencil" title="Modifier" href="modifierPersonne.jsp?id=<%= pers.getId() %>&nom=<%= pers.getNom() %>&prenom=<%= pers.getPrenom() %>&adresse=<%= pers.getAdresse() %>&ville=<%= pers.getVille() %>"></a>
+                                <a class="btn btn-default btn-sm glyphicon glyphicon-remove" title="Supprimer" href="ServletFaireEffacementPersonne?id=<%= pers.getId() %>" onclick="return(confirm('Etes-vous sûr de vouloir supprimer cette personne ?'))"></a>
 
                             </td>
                             

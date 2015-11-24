@@ -45,7 +45,7 @@ public class ServletFaireMAJPersonne extends HttpServlet {
 
                 pdao.update(p);
 
-                request.getRequestDispatcher("/index.jsp").forward(request, response);
+                request.getRequestDispatcher("/listeDesPersonnes.jsp").forward(request, response);
             }
         } finally {
             out.close();
