@@ -54,5 +54,10 @@
         <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
         <script src="bootstrap/js/include/tpl-header-login-inc.js"></script>
 
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+        <link href="bootstrap/css/chat.css" rel="stylesheet" />
+
     </head>
     <% }%>
