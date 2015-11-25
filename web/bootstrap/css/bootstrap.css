@@ -1608,6 +1608,7 @@ pre code {
   padding-left: 15px;
   margin-right: auto;
   margin-left: auto;
+  //ici pour les couleurs de la navbar
 }
 .row {
   margin-right: -15px;
@@ -4322,7 +4323,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .navbar-brand {
   float: left;
   height: 50px;
-  padding: 15px 15px;
+  padding: 60px 60px;
   font-size: 18px;
   line-height: 20px;
 }
@@ -4520,12 +4521,14 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .navbar-text {
   margin-top: 15px;
   margin-bottom: 15px;
+ 
 }
 @media (min-width: 768px) {
   .navbar-text {
     float: left;
     margin-right: 15px;
     margin-left: 15px;
+    
   }
 }
 @media (min-width: 768px) {

@@ -16,7 +16,7 @@
     String active = request.getParameter("url");
     //int nbEnregistrement = PersonneDAO.nbEnregistrements();
 
-    String activeIndex = "", activeListePersonnes = "", activeAjouterPersonne = "", actSrc = "", actHlp = "", actProf = "";
+    String activeIndex = "", activeListePersonnes = "", activeAjouterPersonne = "", activeProfil = "", actSrc = "", actHlp = "", actProf = "";
 
     if (active.equals("/accueil.jsp")) {
         activeIndex = "class=\"active\"";
@@ -24,6 +24,8 @@
         activeListePersonnes = "class=\"active\"";
     } else if (active.equals("/ajouterPersonne.jsp")) {
         activeAjouterPersonne = "class=\"active\"";
+    } else if (active.equals("/profil.jsp")) {
+        activeProfil = "class=\"active\"";
     } /*else if (active.equals("/rechercherPersonne.jsp")) {
      actSrc = "class=\"active\"";
      } else if (active.equals("/aide.jsp")) {
@@ -35,7 +37,7 @@
 
 
 <nav class="navbar navbar-default" style="border-radius:0 0 0 0;">
-    <div class="container-fluid">
+    <div class="container-fluid" >
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
@@ -57,7 +59,7 @@
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#">Profil</a></li>
+                <li <% out.println(activeProfil);%>><a href="profil.jsp">Profil</a></li>
                 <li><a href="ServletLogout">Déconnexion</a></li>
             </ul>
 

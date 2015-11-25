@@ -4,6 +4,7 @@ body {
     font-family: 'Open Sans';
     font-weight: 300;
     color:white;
+    
 }
 .main {
     position:fixed;
@@ -34,6 +35,9 @@ body {
         border-radius:300px;
         vertical-align: middle;
 
+    }
+    .body {
+      
     }
 }
 h1 {
