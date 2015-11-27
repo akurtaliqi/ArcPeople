@@ -1,3 +1,4 @@
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -6,25 +7,27 @@
 package DAO;
 
 import Model.Users;
+import java.awt.Image;
 import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
 import java.sql.Statement;
-import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import oracle.jdbc.OraclePreparedStatement;
 import oracle.jdbc.OracleTypes;
 
+/**
+ *
+ * @author Maxime Stierli <maxime.stierli@he-arc.ch>
+ */
 public class UsersDAO {
 
     public UsersDAO() {
     }
 
-    ;
-    
     public Connection newConnection() {
         Connection conn = DBDataSource.getJDBCConnection();
         return conn;
@@ -38,140 +41,32 @@ public class UsersDAO {
         }
     }
 
-    public Users select(String username) {
-        Connection conn = DBDataSource.getJDBCConnection();
+    public Image getphotoById(Connection conn, long user_id) {
+        System.out.println("connexion base donnée sucsse");
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        Users u = new Users();
         try {
-            String query = "SELECT NUMERO, USERNAME FROM Users WHERE Username = ?";
+            String query = "SELECT BLOBTOIMAGE(?) as image FROM DUAL";
 
             stmt = conn.prepareStatement(query);
-            stmt.setString(1, username);
+            stmt.setLong(1, user_id);
             rs = stmt.executeQuery();
-
-            while (rs.next()) {
-                u.setId(rs.getLong("Numero"));
-                u.setUsername(rs.getString("Username"));
-            }
-
-            return u;
+            System.out.println("image avant finally");
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
             try {
                 rs.close();
                 stmt.close();
-                conn.close();
-                return u;
+                System.out.println("image finally");
+                System.out.println(((Image) rs.getObject("image")).toString());
+                return (Image) rs.getObject("image");
+
             } catch (SQLException e) {
                 e.printStackTrace();
                 return null;
             }
         }
-    }
-
-    public Users select(Connection conn, String username) {
-        PreparedStatement stmt = null;
-        ResultSet rs = null;
-        Users u = new Users();
-        try {
-            String query = "SELECT NUMERO, USERNAME FROM Users WHERE Username = ?";
-
-            stmt = conn.prepareStatement(query);
-            stmt.setString(1, username);
-            rs = stmt.executeQuery();
-
-            while (rs.next()) {
-                u.setId(rs.getLong("Numero"));
-                u.setUsername(rs.getString("Username"));
-            }
-
-            return u;
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                rs.close();
-                stmt.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-
-            }
-        }
-        return null;
-    }
-
-    public Vector<Users> selectAll() {
-        Connection conn = DBDataSource.getJDBCConnection();
-        Statement stmt = null;
-        ResultSet rs = null;
-        Vector<Users> resultList = new Vector();
-        try {
-
-            String query = "select NUMERO, USERNAME from USERS";
-
-            System.out.println(query);
-            stmt = conn.createStatement(); //create a statement
-            rs = stmt.executeQuery(query);
-
-            while (rs.next()) {
-                Users u = new Users();
-                u.setId(rs.getLong("NUMERO"));
-                u.setUsername(rs.getString("USERNAME"));
-            }
-
-            return resultList;
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                rs.close();
-                stmt.close();
-                conn.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-
-            }
-        }
-
-        return null;
-    }
-
-    public Vector<Users> selectAll(Connection conn) {
-        Statement stmt = null;
-        ResultSet rs = null;
-        Vector<Users> resultList = new Vector();
-        try {
-
-            String query = "select NUMERO, USERNAME from USERS";
-
-            System.out.println(query);
-            stmt = conn.createStatement(); //create a statement
-            rs = stmt.executeQuery(query);
-
-            while (rs.next()) {
-                Users u = new Users();
-                u.setId(rs.getLong("NUMERO"));
-                u.setUsername(rs.getString("USERNAME"));
-            }
-
-            return resultList;
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                rs.close();
-                stmt.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-
-            }
-        }
-
-        return null;
     }
 
     public Users selectById(Connection conn, Long id) {
@@ -205,21 +100,54 @@ public class UsersDAO {
         return null;
     }
 
-    public Long create(Long id, String username, String pwd, Blob photo) {
+    public Users select(String username) {
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        Users u = new Users();
         Connection conn = DBDataSource.getJDBCConnection();
+        try {
+            String query = "SELECT * FROM Users WHERE Username = ?";
+
+            stmt = conn.prepareStatement(query);
+            stmt.setString(1, username);
+            rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                u.setId(rs.getLong("Numero"));
+                u.setUsername(rs.getString("Username"));
+                u.setEmail(rs.getString("email"));
+                u.setPwd(rs.getString("pwd"));
+                u.setPhoto(rs.getBlob("Photo"));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                rs.close();
+                stmt.close();
+                return u;
+            } catch (SQLException e) {
+                e.printStackTrace();
+                return null;
+            }
+        }
+    }
+
+    public Long create(Connection conn, Long id, String username, String pwd, String email, Blob photo) {
         OraclePreparedStatement pstmt = null;
         ResultSet rs = null;
         Long returnNumero = null;
         try {
 
-            String query = "insert into Users(username,pwd,photo) values (?,?,?) returning numero into ?";
+            String query = "insert into Users(username,pwd,email,photo) values (?,?,?,?) returning numero into ?";
             System.out.println("insertquery ->" + query);
 
             pstmt = (OraclePreparedStatement) conn.prepareStatement(query); //create a statement
             pstmt.setString(1, username);
             pstmt.setString(2, pwd);
-            pstmt.setBlob(3, photo);
-            pstmt.setLong(4, OracleTypes.NUMBER);
+            pstmt.setString(3, email);
+            pstmt.setBlob(4, photo);
+            pstmt.setLong(5, OracleTypes.NUMBER);
 
             int count = pstmt.executeUpdate();
             conn.commit();
@@ -238,7 +166,6 @@ public class UsersDAO {
             try {
                 rs.close();
                 pstmt.close();
-                conn.close();
                 return returnNumero;
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -247,11 +174,11 @@ public class UsersDAO {
         }
     }
 
-    public Long updateProfil(Long id, String username, String pwd, Blob photo) {
+    public Long updateProfil(Long id, String username, String pwd, String email, Blob photo) {
         int executeUpdate = 0;
-        String query = null, endquery = null, susername = null, spwd = null, sphoto = null;
-        Connection conn = DBDataSource.getJDBCConnection();
+        String query = null, endquery = null, susername = null, spwd = null, semail = null, sphoto = null;
         Statement stmt = null;
+        Connection conn = DBDataSource.getJDBCConnection();
         try {
 
             boolean onedone = false;
@@ -263,6 +190,9 @@ public class UsersDAO {
             }
             if (pwd != null) {
                 spwd = " PWD='" + pwd + "'";
+            }
+            if (pwd != null) {
+                semail = " EMAIL='" + email + "'";
             }
             if (photo != null) {
                 sphoto = " PHOTO='" + photo + "'";
@@ -283,7 +213,6 @@ public class UsersDAO {
         } finally {
             try {
                 stmt.close();
-                conn.close();
                 return new Long(executeUpdate);
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -292,10 +221,8 @@ public class UsersDAO {
         }
     }
 
-    public Long delete(Long id) {
+    public Long delete(Connection conn, Long id) {
         int executeUpdate = 0;
-
-        Connection conn = DBDataSource.getJDBCConnection();
         PreparedStatement pstmt = null;
 
         try {
@@ -315,7 +242,6 @@ public class UsersDAO {
         } finally {
             try {
                 pstmt.close();
-                conn.close();
                 return new Long(executeUpdate);
             } catch (SQLException e) {
                 e.printStackTrace();
