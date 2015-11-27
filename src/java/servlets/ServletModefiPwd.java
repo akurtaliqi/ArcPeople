@@ -5,22 +5,18 @@
  */
 package servlets;
 
-import DAO.UsersDAO;
-import Model.Users;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Blob;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author yasmine.mabrouk
  */
-public class ServletEditerProfil extends HttpServlet {
+public class ServletModefiPwd extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,38 +32,17 @@ public class ServletEditerProfil extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
-            HttpSession session = request.getSession();
-            request.setAttribute("EditUserError" ,"sucess");
-            //recupere l'attribut username de la session
-            HttpSession s = request.getSession(true);
-            String username = (String)s.getAttribute("username");
-            
-            //recupere le user de la session
-            UsersDAO usersDAO = new UsersDAO();
-            Users userEnCour = usersDAO.select(username);
-            
-            
-            if (!request.getParameter("Ancien_mots_passe").equals((String)userEnCour.getPwd())){
-            session.setAttribute("editeProfilError1", "oui");}
-            
-            if (!request.getParameter("pwd").equals(request.getParameter("pwd2")) ){
-                session.setAttribute("editeProfilError2", "oui");}
-          if( request.getParameter("pwd").equals(request.getParameter("pwd2")) &&
-                  request.getParameter("Ancien_mots_passe").equals((String)userEnCour.getPwd())){
-            Long error = usersDAO.updateProfil(userEnCour.getId(),
-                                                null,
-                                                request.getParameter("pwd"),
-                                                null,
-                                                null);
-            if(error>0){
-                session.setAttribute("pwdModifier", "oui");
-           request.getRequestDispatcher("/profil.jsp").forward(request, response); 
-            }else{
-           request.getRequestDispatcher("/modifierPwd.jsp").forward(request, response);
-           }
-           }else{
-           request.getRequestDispatcher("/modifierPwd.jsp").forward(request, response);
-           }    
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet ServletModefiPwd</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>yasminnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnne</h1>");
+            out.println("<h1>Servlet ServletModefiPwd at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
         } finally {
             out.close();
         }

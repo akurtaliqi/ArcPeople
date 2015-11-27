@@ -59,61 +59,69 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
+        <script type="text/javascript">
+
+            $(document).ready(function () {
+
+                window.setTimeout(function () {
+                    $(".alert").fadeTo(500, 0).slideUp(500, function () {
+                        $(this).remove();
+                    });
+                }, 5000);
+
+            });
+        </script>
     </head>
 
     <body>
-        <center>
+    <center>
 
-            <form action="ModifierPwd" name="ajouterPersonne" role="form" class="form-horizontal" method="get" accept-charset="utf-8" 
-                  style="background-color:white; padding-top:20px;padding-right:20px;padding-left:20px;padding-bottom:20px; width:700px;">
-                <fieldset>
-                    <legend style="text-align: left;">Voir mon profil</legend>
-                    <%
-                        if (session.getAttribute("pwdModifier") != null) {
-                    %>
+        <form method="post" action="modifierPwd.jsp" name="profil" role="form" class="form-horizontal" accept-charset="utf-8" 
+              style="background-color:white; padding-top:20px;padding-right:20px;padding-left:20px;padding-bottom:20px; width:700px;">
+            <fieldset>
+                <legend style="text-align: left;">Voir mon profil</legend>
+                <%
+                    if (session.getAttribute("pwdModifier") != null) {
+                %>
 
-                    <div  class="alert alert-success" role="alert" style="margin-left: 500px; margin-right: 20px; " >
-                        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-                        <span class="sr-only">Error:</span>
-                        Votre mot de passe a été modifié avec succès
-                    </div>
-                    <% }
-                        session.setAttribute("pwdModifier", null);
-                    %>
-                    <div style="padding-left: 150px;">
-                        <img  class= "Imagee" src="<%=src%>" alt= "ImageProfil" class= "img-thumbnail" width="100px" height="100px" style="float:left;" />
-                        
-                     
+                <div  class="alert alert-success" role="alert" style="margin-left: 0px; margin-right: 20px; " >
+                    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                    <span class="sr-only">Error:</span>
+                    Votre mot de passe a été modifié avec succès  !
+                </div>
+                <% }
+                    session.setAttribute("pwdModifier", null);
+                %>
+                <div style="padding-left: 100px;">
+                    <img  class= "Imagee" src="<%=src%>" alt= "ImageProfil" class= "img-thumbnail" width="100px" height="100px" style="float:left; margin-bottom: 35px;" />
 
-                        <table style="width:90%; border-color:white;float: left; ">
-                            <tr>
-                                <td>Nom d'utilisateur</td>
-                                <td><%=name%></td> 
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>Adresse E-mail</td>
-                                <td><%=mail%></td> 
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>Mot de passe</td>
-                                <td>********</td> 
-                                <td><div class="col-md-4">
-                                        <input type="submit" value="Modifier MDP" class="btn btn-primary btn-xs" style="float:left;"></input>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Nombre de point</td>
-                                <td><%=nbPoint%></td> 
-                                <td></td>
-                            </tr>
-                        </table> 
-                    </div>
-                    </div> 
-            </form>
-        </center>
-    </body>
+                    <br/>
+
+                    <table style="width:90%; border-color:white;float: left; font-size: 16px; line-height: 45px; ">
+                        <tr>
+                            <td>Nom d'utilisateur :</td>
+                            <td><%=name%></td> 
+                        </tr>
+                        <tr>
+                            <td>Adresse e-mail :</td>
+                            <td><%=mail%></td> 
+                        </tr>
+                        <tr>
+                            <td>Mot de passe :</td>
+                            <td>********</td> 
+                            <td>
+                                <input type="submit" value="Modifier le mot de passe" class="btn btn-primary btn-group"></input>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Nombre de points :</td>
+                            <td><%=nbPoint%></td> 
+                        </tr>
+                    </table> 
+                </div>
+        </form>
+    </center>
+</body>
 
 </html>
