@@ -68,7 +68,7 @@
                     </div>
                     <div class="panel-body">
                         <ul class="chat">
-                            <%
+                            <%/*
                                 CommentaireDAO cdao = new CommentaireDAO();
                                 UsersDAO udao = new UsersDAO();
 
@@ -78,7 +78,7 @@
                                 Vector<Commentaire> vcomm = new Vector();
                                 vcomm = cdao.selectAll();
 
-                                for (int i = 0; i < vcomm.size(); i++) {
+                                for (int i = 0; i < vcomm.size(); i++) {*/
                             %>
                             <li class="left clearfix"><span class="chat-img pull-left">
                                     <img src="http://placehold.it/50/55C1E7/fff&text=U" alt="User Avatar" class="img-circle" />
@@ -86,9 +86,9 @@
                                 <div class="chat-body clearfix">
                                     <div class="header">
                                         <strong class="primary-font" style="color:black">
-                                            <%
+                                            <%/*
                                                 u = udao.selectById(con, vcomm.get(i).getUsers_numero());
-                                                out.println(u.getUsername().toUpperCase());
+                                                out.println(u.getUsername().toUpperCase());*/
                                             %>
                                         </strong> <small class="pull-right text-muted">
 
@@ -96,14 +96,14 @@
                                     </div>
                                     <p>
                                         <%
-                                            out.println(vcomm.get(i).getCommentaire());
+                                            /*out.println(vcomm.get(i).getCommentaire());*/
                                         %>
                                     </p>
                                 </div>
                             </li>
-                            <%
+                            <%/*
                                 }
-                                udao.closeConnection(con);
+                                udao.closeConnection(con);*/
                             %>
                         </ul>
                     </div>
