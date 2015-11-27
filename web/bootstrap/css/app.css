@@ -3,7 +3,6 @@ body {
     background-color: white;
     font-family: 'Open Sans';
     font-weight: 300;
-    color:white;
     
 }
 .main {
@@ -43,14 +42,12 @@ body {
 h1 {
     font-family: 'Lato', sans-serif;
     font-weight: bold;
-    color: white;
     margin-bottom: 0;
     text-align: center;
 }
 h2 {
     font-family: 'Lato', sans-serif;
     font-weight: 300;
-    color: white;
     font-size: 18px;
     margin-top: 5px;
     text-align: center;

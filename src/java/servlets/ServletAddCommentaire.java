@@ -6,9 +6,7 @@
 package servlets;
 
 import DAO.CommentaireDAO;
-import DAO.PersonneDAO;
 import DAO.UsersDAO;
-import Model.Personne;
 import Model.Users;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -17,7 +15,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.xml.registry.infomodel.User;
 
 /**
  *
@@ -49,7 +46,7 @@ public class ServletAddCommentaire extends HttpServlet {
             CommentaireDAO commentaireDAO = new CommentaireDAO();
             commentaireDAO.create(utilusateur.getId(),request.getParameter("commentaire"));
             
-            response.sendRedirect("accueil.jsp");
+            request.getRequestDispatcher("/indexAccueil.jsp").forward(request, response);
             
         } finally {
             out.close();

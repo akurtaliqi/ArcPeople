@@ -38,13 +38,13 @@ public class CommentaireDAO {
             
             boolean onedone = false;
             
-            String query = "select NUMERO, COMMENTAIRE, USERS_NUMERO, DATEAJOUT from Commentaire";
+            String query = "select NUMERO, COMMENTAIRE, USERS_NUMERO, DATEAJOUT from Commentaire order by dateajout desc";
 
             System.out.println(query);
             stmt = conn.createStatement(); //create a statement
             rs = stmt.executeQuery(query);
 
-            while (rs.next()) {
+            while (rs.next()) { 
                 Commentaire c = new Commentaire();
                 c.setId(rs.getLong("NUMERO"));
                 c.setCommentaire(rs.getString("COMMENTAIRE"));
