@@ -65,7 +65,7 @@
         <script src='nprogress.js'></script>
         <link rel='stylesheet' href='bootstrap/css/nprogress.css'/>
         <script src="/js/jquery-2.1.1.min.js"></script>
-        <script src="bootstrap/js/nprogress.js"></script-->
+        <script src="bootstrap/js/nprogress.js"></script>
 
         <script>
             $('body').show();
