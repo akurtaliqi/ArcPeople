@@ -61,9 +61,6 @@
 
 <!-- Fin Menu -->
 
-
-
-
 <body class="nav-md" style ="background-color: whitesmoke">
     <!-- page content -->
     <div class="right_col" role="main"  style=" margin-left: 100px; margin-right: 10%">
@@ -97,33 +94,40 @@
                     </div>
 
                     <ul class="list-unstyled top_profiles scroll-view">
+
                         <li class="media event">
+                            <%
+                                String username1 = udao.selectById(addings.get(0).getAjout_users()).getUsername();
+                            %>
                             <a class="pull-left border-aero profile_thumb">
 
                                 <i>
-                                    <img src="bootstrap/img/termine.png" 
+                                    <img src="bootstrap/img/<%=username1%>.png" 
                                          height="50px" width="50px" 
                                          style="border-radius: 50%; margin-left: -13px; margin-top: -10px;">
                                 </i>
-
-
                             </a>
                             <div class="media-body">
 
                                 <a class="title" href="#">
                                     <%
-                                        String username1 = udao.selectById(addings.get(0).getAjout_users()).getUsername();
                                         out.println(username1.toUpperCase());
                                     %>
                                 </a> 
-                                <p> <small>15 Average Additions</small>
+                                <p> <small>
+                                        <% out.println(addings.get(0).getNbTotalGroupes());%> Additions
+                                    </small>
                                 </p>
                             </div>
                         </li>
+
                         <li class="media event">
+                            <%
+                                String username2 = udao.selectById(addings.get(1).getAjout_users()).getUsername();
+                            %>
                             <a class="pull-left border-green profile_thumb">
                                 <i>
-                                    <img src="bootstrap/img/baudet.png" 
+                                    <img src="bootstrap/img/<%=username2%>.png" 
                                          height="50px" width="50px" 
                                          style="border-radius: 50%; margin-left: -13px; margin-top: -10px">
                                 </i>
@@ -131,18 +135,21 @@
                             <div class="media-body">
                                 <a class="title" href="#">
                                     <%
-                                        String username2 = udao.selectById(addings.get(1).getAjout_users()).getUsername();
                                         out.println(username2.toUpperCase());
                                     %>
                                 </a>
-                                <p> <small>13 Average Additions</small>
+                                <p> <small><% out.println(addings.get(1).getNbTotalGroupes()); %> Additions</small>
                                 </p>
                             </div>
                         </li>
+
                         <li class="media event">
+                            <%
+                                String username3 = udao.selectById(addings.get(2).getAjout_users()).getUsername();
+                            %>
                             <a class="pull-left border-blue profile_thumb">
                                 <i>
-                                    <img src="bootstrap/img/daucourt.png" 
+                                    <img src="bootstrap/img/<%=username3%>.png" 
                                          height="50px" width="50px" 
                                          style="border-radius: 50%; margin-left: -13px; margin-top: -10px;">
                                 </i>
@@ -150,18 +157,21 @@
                             <div class="media-body">
                                 <a class="title" href="#">
                                     <%
-                                        String username3 = udao.selectById(addings.get(2).getAjout_users()).getUsername();
                                         out.println(username3.toUpperCase());
                                     %>
                                 </a>
-                                <p> <small>12 Average Additions</small>
+                                <p> <small><% out.println(addings.get(2).getNbTotalGroupes()); %> Additions</small>
                                 </p>
                             </div>
                         </li>
+
                         <li class="media event">
+                            <%
+                                String username4 = udao.selectById(addings.get(3).getAjout_users()).getUsername();
+                            %>
                             <a class="pull-left border-blue profile_thumb">
                                 <i>
-                                    <img src="bootstrap/img/alessio.png" 
+                                    <img src="bootstrap/img/<%=username4%>.png" 
                                          height="50px" width="50px" 
                                          style="border-radius: 50%; margin-left: -13px; margin-top: -10px;">
                                 </i>
@@ -169,18 +179,21 @@
                             <div class="media-body">
                                 <a class="title" href="#">
                                     <%
-                                        String username4 = udao.selectById(addings.get(3).getAjout_users()).getUsername();
                                         out.println(username4.toUpperCase());
                                     %>
                                 </a>
-                                <p> <small>12 Average Additions</small>
+                                <p> <small><% out.println(addings.get(3).getNbTotalGroupes()); %> Additions</small>
                                 </p>
                             </div>
                         </li>
+
                         <li class="media event">
+                            <%
+                                String username5 = udao.selectById(addings.get(4).getAjout_users()).getUsername();
+                            %>
                             <a class="pull-left border-blue profile_thumb">
                                 <i>
-                                    <img src="bootstrap/img/julien.jpg" 
+                                    <img src="bootstrap/img/<%=username5%>.png" 
                                          height="50px" width="50px" 
                                          style="border-radius: 50%; margin-left: -13px; margin-top: -10px;">
                                 </i>
@@ -188,11 +201,10 @@
                             <div class="media-body">
                                 <a class="title" href="#">
                                     <%
-                                        String username5 = udao.selectById(addings.get(4).getAjout_users()).getUsername();
                                         out.println(username5.toUpperCase());
                                     %>
                                 </a>
-                                <p> <small>12 Average Additions</small>
+                                <p> <small><% out.println(addings.get(4).getNbTotalGroupes());%> Additions</small>
                                 </p>
                             </div>
                         </li>
