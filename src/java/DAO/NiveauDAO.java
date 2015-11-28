@@ -28,7 +28,7 @@ public class NiveauDAO {
            
             while(rs.next()){
                 n.setId(rs.getLong("NUMERO"));
-                n.setLibelle(rs.getString("LIBELLEe"));
+                n.setLibelle(rs.getString("LIBELLE"));
                 n.setCode(rs.getString("CODE"));
             }
         } catch (Exception e) {

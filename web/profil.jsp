@@ -4,6 +4,8 @@
     Author     : yasmine.mabrouk
 --%>
 
+<%@page import="Model.Niveau"%>
+<%@page import="DAO.NiveauDAO"%>
 <%@page import="DAO.AjoutDAO"%>
 <%@page import="servlets.HtmlHttpUtils"%>
 <%@page import="java.awt.Image"%>
@@ -23,21 +25,21 @@
 <%
     HttpSession s = request.getSession(true);
     String username = (String) s.getAttribute("username");
-    username = username;
-    String src = "bootstrap\\img\\" + username + ".png";
-%>
-
-<%
+    
     UsersDAO userDao = new UsersDAO();
     Users user = userDao.select(username);
-    //test user1
-    // car userDao.select(username) retourne tjrs  null 
+    
     String name = user.getUsername();
     String mail = user.getEmail();
-
+    String niveau;
+    
+    NiveauDAO nivDao = new NiveauDAO();
+    
+    niveau = nivDao.getNiveauById(user.getId()).getLibelle();
+    String src = "bootstrap\\img\\" + niveau + ".png";
     AjoutDAO ajoutDao = new AjoutDAO();
     int nbPoint = ajoutDao.countAjout(user.getId());
-    
+
     s.setAttribute("nbPoints", nbPoint);
 %> 
 
@@ -58,9 +60,6 @@
         <link rel='stylesheet' href='bootstrap/css/nprogress.css'/>
         <script src="/js/jquery-2.1.1.min.js"></script>
         <script src="bootstrap/js/nprogress.js"></script>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 
         <script type="text/javascript">
 
@@ -122,6 +121,10 @@
                         <tr>
                             <td>Nombre de points :</td>
                             <td><%=nbPoint%></td> 
+                        </tr>
+                        <tr>
+                            <td>Niveau</td>
+                            <td><%=niveau%></td> 
                         </tr>
                     </table> 
                 </div>
