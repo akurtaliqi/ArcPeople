@@ -1,3 +1,4 @@
+<%@page import="Model.Ajout"%>
 <%@page import="DAO.AjoutDAO"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="DAO.DBDataSource"%>
@@ -76,12 +77,15 @@
                 <div>
                     <div class="x_title" length="300">
                         <h2 >Top 5 des utilisateurs</h2>
-                        
+
                         <%
                             AjoutDAO adao = new AjoutDAO();
-                            ArrayList<Users> users = adao.top5Additions();
+                            UsersDAO udao = new UsersDAO();
+                            ArrayList<Ajout> addings = adao.top5Additions();
+
+                            out.println("" + "");
                         %>
-                        
+
                         <ul class="nav navbar-right panel_toolbox">
                             <li><a href="#"><i class="fa fa-chevron-up"></i></a>
                             </li>
@@ -106,7 +110,12 @@
                             </a>
                             <div class="media-body">
 
-                                <a class="title" href="#">Terminator</a> 
+                                <a class="title" href="#">
+                                    <%
+                                        String username1 = udao.selectById(addings.get(0).getAjout_users()).getUsername();
+                                        out.println(username1.toUpperCase());
+                                    %>
+                                </a> 
                                 <p> <small>15 Average Additions</small>
                                 </p>
                             </div>
@@ -120,7 +129,12 @@
                                 </i>
                             </a>
                             <div class="media-body">
-                                <a class="title" href="#">Baudet</a>
+                                <a class="title" href="#">
+                                    <%
+                                        String username2 = udao.selectById(addings.get(1).getAjout_users()).getUsername();
+                                        out.println(username2.toUpperCase());
+                                    %>
+                                </a>
                                 <p> <small>13 Average Additions</small>
                                 </p>
                             </div>
@@ -134,7 +148,12 @@
                                 </i>
                             </a>
                             <div class="media-body">
-                                <a class="title" href="#">Daucourt</a>
+                                <a class="title" href="#">
+                                    <%
+                                        String username3 = udao.selectById(addings.get(2).getAjout_users()).getUsername();
+                                        out.println(username3.toUpperCase());
+                                    %>
+                                </a>
                                 <p> <small>12 Average Additions</small>
                                 </p>
                             </div>
@@ -148,7 +167,12 @@
                                 </i>
                             </a>
                             <div class="media-body">
-                                <a class="title" href="#">Alessio</a>
+                                <a class="title" href="#">
+                                    <%
+                                        String username4 = udao.selectById(addings.get(3).getAjout_users()).getUsername();
+                                        out.println(username4.toUpperCase());
+                                    %>
+                                </a>
                                 <p> <small>12 Average Additions</small>
                                 </p>
                             </div>
@@ -162,7 +186,12 @@
                                 </i>
                             </a>
                             <div class="media-body">
-                                <a class="title" href="#">Julien</a>
+                                <a class="title" href="#">
+                                    <%
+                                        String username5 = udao.selectById(addings.get(4).getAjout_users()).getUsername();
+                                        out.println(username5.toUpperCase());
+                                    %>
+                                </a>
                                 <p> <small>12 Average Additions</small>
                                 </p>
                             </div>

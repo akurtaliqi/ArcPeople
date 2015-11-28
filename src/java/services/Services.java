@@ -4,6 +4,7 @@ import DAO.AjoutDAO;
 import DAO.CommentaireDAO;
 import DAO.DBDataSource;
 import DAO.UsersDAO;
+import Model.Ajout;
 import Model.Commentaire;
 import Model.Users;
 import java.sql.Connection;
@@ -24,11 +25,11 @@ public class Services {
         return vcomm;
     }
     
-    public ArrayList<Users> getTop5UsersAdditions() throws SQLException {
+    public ArrayList<Ajout> getTop5UsersAdditions() throws SQLException {
         
         AjoutDAO adao = new AjoutDAO();
         
-        ArrayList<Users> usersTop = adao.top5Additions();
+        ArrayList<Ajout> usersTop = adao.top5Additions();
         
         return usersTop;
         

@@ -5,6 +5,7 @@
  */
 package DAO;
 
+import Model.Ajout;
 import Model.Users;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -55,68 +56,35 @@ public class AjoutDAO {
         return userTrie;
     }
 
-    public ArrayList<Users> top5Additions() {
-        Connection con = DBDataSource.getJDBCConnection();
-
-        ArrayList<Users> usersTop = new ArrayList();
-        try {
-            Statement stmt = con.createStatement();
-
-            String requete = "SELECT U.USERNAME, COUNT(A.USERS_NUMERO) FROM AJOUT A "
-                    + " INNER JOIN USERS ON A.USERS_NUMERO = U.NUMER0 "
-                    + " GROUP BY U.USERNAME ORDER BY COUNT(A.USERS_NUMERO) DESC, U.USERNAME";
-
-            ResultSet rs = stmt.executeQuery(requete);
-
-            while (rs.next()) {
-                Users u = new Users();
-                u.setUsername(rs.getString("USERNAME"));
-                u.setNbPoints(rs.getInt("COUNT(USERS_NUMERO)"));
-                usersTop.add(u);
-            }
-            
-            rs.close();
-            stmt.close();
-            
-            return usersTop;
-            
-        } catch (Exception ex) {
-            ex.printStackTrace(System.out);
-        } finally {
-            try {
-                con.close();
-            } catch (SQLException ex) {
-                Logger.getLogger(AjoutDAO.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-        return usersTop;
-    }
-
     /*public ArrayList<Users> top5Additions() {
-     Statement stmt = null;
-     ResultSet rs = null;
-     ArrayList<Users> usersTop = new ArrayList();
      Connection con = DBDataSource.getJDBCConnection();
-     try {
-     stmt = con.createStatement();
 
-     String requete = "SELECT USERNAME, COUNT(USERS_NUMERO) "
-     + "FROM AJOUT GROUP";
-     rs = stmt.executeQuery(requete);
+     ArrayList<Users> usersTop = new ArrayList();
+     try {
+     Statement stmt = con.createStatement();
+
+     String requete = "SELECT U.USERNAME, COUNT(A.USERS_NUMERO) FROM AJOUT A "
+     + " INNER JOIN USERS ON A.USERS_NUMERO = U.NUMER0 "
+     + " GROUP BY U.USERNAME ORDER BY COUNT(A.USERS_NUMERO) DESC, U.USERNAME";
+
+     ResultSet rs = stmt.executeQuery(requete);
 
      while (rs.next()) {
      Users u = new Users();
-     u.setId(rs.getLong("NUMERO"));
      u.setUsername(rs.getString("USERNAME"));
+     u.setNbPoints(rs.getInt("COUNT(USERS_NUMERO)"));
      usersTop.add(u);
      }
+            
+     rs.close();
+     stmt.close();
+            
      return usersTop;
+            
      } catch (Exception ex) {
      ex.printStackTrace(System.out);
      } finally {
      try {
-     rs.close();
-     stmt.close();
      con.close();
      } catch (SQLException ex) {
      Logger.getLogger(AjoutDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -124,6 +92,38 @@ public class AjoutDAO {
      }
      return usersTop;
      }*/
+    public ArrayList<Ajout> top5Additions() {
+        Statement stmt = null;
+        ResultSet rs = null;
+        ArrayList<Ajout> ajoutsTop = new ArrayList();
+        Connection con = DBDataSource.getJDBCConnection();
+        try {
+            stmt = con.createStatement();
+
+            String requete = "SELECT USERS_NUMERO, COUNT(USERS_NUMERO) FROM AJOUT GROUP BY USERS_NUMERO ORDER BY COUNT(USERS_NUMERO) DESC";
+            rs = stmt.executeQuery(requete);
+
+            while (rs.next()) {
+                Ajout a = new Ajout();
+                a.setAjout_users(rs.getLong("USERS_NUMERO"));
+                a.setNbTotalGroupes(rs.getInt("COUNT(USERS_NUMERO)"));
+                ajoutsTop.add(a);
+            }
+            return ajoutsTop;
+        } catch (Exception ex) {
+            ex.printStackTrace(System.out);
+        } finally {
+            try {
+                rs.close();
+                stmt.close();
+                con.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(AjoutDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return ajoutsTop;
+    }
+
     public int countAjout(Long users_id) {
         Connection conn = DBDataSource.getJDBCConnection();
         PreparedStatement stmt = null;
