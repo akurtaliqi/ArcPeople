@@ -18,10 +18,14 @@
         response.sendRedirect("ServletLogout");
     }
 %>
+<jsp:include page="bootstrap/template/headerApp.jsp">
+    <jsp:param name="typePage" value="standard" />
+</jsp:include>
+
+<jsp:include page="bootstrap/template/Menu.jsp">
+    <jsp:param name="url" value="<%=request.getServletPath()%>" />
+</jsp:include>
 <html>
-    <jsp:include page="bootstrap/template/Menu.jsp">
-        <jsp:param name="url" value="<%=request.getServletPath()%>" />
-    </jsp:include>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" type="text/css" href="bootstrap/css/profil.css" />
@@ -46,13 +50,14 @@
     <body>
     <center>
         <form method="post" action="ServletEditerProfil" name="modifierPwd" role="form" class="form-horizontal" accept-charset="utf-8"              
-              style="background-color:white; padding-top:20px;padding-right:20px;padding-left:20px;padding-bottom:0px; width:650px;">
+              style="background-color:white; padding-top:20px;padding-right:20px;padding-left:20px;padding-bottom:20px; width:35%;">
             <fieldset>
 
                 <!-- Form Name -->
                 <legend style="text-align: left;">Modifier mon mot de passe</legend>
                 <br/>
                 <!-- Password input-->
+
                 <div class="form-group">
                     <label class="col-md-4 control-label" >Mot de passe actuel</label>
                     <div class="col-md-6">
@@ -65,7 +70,7 @@
                     if (session.getAttribute("editeProfilError1") != null) {
                 %>
 
-                <div class="alert alert-danger" role="alert" style="margin-left: 35px; margin-right: 75px;" >
+                <div class="alert alert-danger" role="alert" style="margin-left: 0px; margin-right: 0px;" >
                     <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
                     <span class="sr-only">Error:</span>
                     Le mot de passe est incorrecte. Réessayez.
@@ -94,7 +99,7 @@
                     if (session.getAttribute("editeProfilError2") != null) {
                 %>
 
-                <div class="alert alert-danger" role="alert" style="margin-left: 35px; margin-right: 75px;" >
+                <div class="alert alert-danger" role="alert" style="margin-left: 0px; margin-right: 0px;" >
                     <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
                     <span class="sr-only">Error:</span>
                     Les mots de passe ne sont pas identiques. Réessayez.
@@ -107,9 +112,8 @@
                 <div class="form-group">
 
                     <div class="col-md-10">
-                        <a href="profil.jsp" > <input type="button" class="btn btn-group" value="Annuler" style="float:left; margin-left: 40px;"/>
+                        <a href="profil.jsp" > <input type="button" class="btn btn-default" value="Annuler" style="float:left;margin-left: 30px;"/></a>
                     <input  class="btn btn-primary" type="submit" value="Modifier" style="float:right; margin-right: 0px;"/></div>
-                </div>
                 </div>
 
             </fieldset>

@@ -10,7 +10,6 @@
 
 <html lang="fr">
     <head>
-
         <meta charset="utf-8">
         <title>Arc'People - Connexion</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -26,7 +25,23 @@
         <link rel='stylesheet' href='bootstrap/css/nprogress.css'/>
         <script src="/js/jquery-2.1.1.min.js"></script>
         <script src="bootstrap/js/nprogress.js"></script>
+        
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
     </head>
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            window.setTimeout(function () {
+                $(".alert").fadeTo(1000, 0).slideUp(1000, function () {
+                    $(this).remove();
+                });
+            }, 5000);
+
+        });
+    </script>
     <body>
         <script>
             $('body').show();
@@ -49,69 +64,52 @@
                 NProgress.done();
             });
         </script>
-        <table id="page-table"><tr><td id="page-td">
-                    <div id="global">
 
-                        <div class="container" >
-                            <div class="row">
-                                <div class="col-xs-12">
-                                    <div class="form-form">
+        <div class="container" style="margin-top:250px">
+            <div class="row">
+                <div class="col-md-4 col-md-offset-4">
+                    <div class="login-panel panel panel-default">
+                        <div class="panel-heading" >
+                            <h3 class="panel-title">Connexion</h3>
+                        </div>
+                        <div class="panel-body">
 
-                                        <div class="main">
-
-
-                                            <h1></h1><br /><br /><br />
-                                            <h1>Connexion</h1>
-                                            <h2>Gest'People : Enjoy your work </h2>
-
-                                            <form action="ServletLogin" name="login" role="form" class="form-horizontal" method="post" accept-charset="utf-8">
-                                                <div class="form-group">
-                                                    <div class="col-md-12">
-                                                        <%--
-                                                       <span class="input-group-addon">
-                                                           <img src="bootstrap/img/iconPassword.png" width="30px">
-                                                       </span>
-                                                        --%>
-                                                        <input name="username" placeholder="Idenfiant" class="form-control" type="text" id="UserUsername" required="required"/>
-                                                    </div>
-                                                </div> 
-
-                                                <div class="form-group">
-                                                    <div class="col-md-12">
-                                                        <%--
-                                                        <span class="input-group-addon">
-                                                            <img src="bootstrap/img/iconPassword.png" width="30px">
-                                                        </span>
-                                                        --%>
-                                                        <input name="password" placeholder="Mot de passe" class="form-control" type="password" id="UserPassword" required="required"/>
-                                                    </div>
-                                                </div> 
-
-                                                <%
-                                                    String loginError = (String) session.getAttribute("loginError");
-                                                    if (loginError != null) {
-                                                %>
-                                                <label class="label-fontcolor-red">Nom d'utilisateur ou mot de passe incorrect !</label>
-                                                <%
-                                                        //effacer le message de session
-                                                        session.setAttribute("loginError", null);
-                                                    }
-                                                %>
-
-                                                <div class="form-group">
-                                                    <div class="col-md-offset-0 col-md-12"><input  class="btn btn-default btn btn-default" type="submit" value="Connexion"/></div>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-
+                            <%
+                                String loginError = (String) session.getAttribute("loginError");
+                                if (loginError != null) {
+                            %>
+                            <div class="alert alert-danger" role="alert" style="margin-left: 0px; margin-right: 0px;" >
+                                <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                                <span class="sr-only">Error:</span>
+                                Le mot de passe est incorrecte. Réessayez.
                             </div>
+                            <%
+                                    //effacer le message de session
+                                    session.setAttribute("loginError", null);
+                                }
+                            %>
+                            <form action="ServletLogin" name="login" role="form" class="form-horizontal" method="post" accept-charset="utf-8">
+                                <div class="form-group">
+                                    <label>Nom d'utilisateur</label>
+                                    <input name="username" placeholder="Nom d'utilisateur" class="form-control" type="text" id="UserUsername" required="required"/>
+                                </div>
+                                <div class="form-group">
+                                    <label>Mot de passe</label>
+                                    <input name="password" placeholder="Mot de passe" class="form-control" type="password" id="UserPassword" required="required"/>
+                                </div>
+                                <div class="checkbox">
+                                    <label>
+                                        <input name="remember" type="checkbox" value="Remember Me">Remember Me
+                                    </label>
+                                </div>
+                                </br>
+                                <center><input  class="btn btn-primary btn-lg"  type="submit" value="Connexion"/></center>
+                            </form>
                         </div>
                     </div>
-                </td>
-            </tr>
-        </table>
+                </div>
+            </div>
+        </div>                
     </body>
 </html>
 <script>

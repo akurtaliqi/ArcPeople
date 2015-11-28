@@ -80,7 +80,7 @@
     <center>
 
         <form method="post" action="modifierPwd.jsp" name="profil" role="form" class="form-horizontal" accept-charset="utf-8" 
-              style="background-color:white; padding-top:20px;padding-right:20px;padding-left:20px;padding-bottom:20px; width:700px;">
+              style="background-color:white; padding-top:20px;padding-right:20px;padding-left:20px;padding-bottom:20px; width:35%;">
             <fieldset>
                 <legend style="text-align: left;">Voir mon profil</legend>
                 <%
@@ -96,11 +96,14 @@
                     session.setAttribute("pwdModifier", null);
                 %>
                 <div style="padding-left: 100px;">
-                    <img  class= "Imagee" src="<%=src%>" alt= "ImageProfil" class= "img-thumbnail" width="100px" height="100px" style="float:left; margin-bottom: 35px;" />
-
                     <br/>
 
-                    <table style="width:90%; border-color:white;float: left; font-size: 16px; line-height: 45px; ">
+                    <table style="border-color:white; font-size: 16px; line-height: 45px; ">
+                        <tr>
+                            <td>
+                                <img  class= "Imagee" src="<%=src%>" alt= "ImageProfil" class= "img-thumbnail" width="100px" height="100px" style="float:left; margin-bottom: 35px;" />
+                            </td>
+                        </tr>
                         <tr>
                             <td>Nom d'utilisateur :</td>
                             <td><%=name%></td> 
