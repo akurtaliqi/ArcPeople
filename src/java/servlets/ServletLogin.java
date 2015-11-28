@@ -5,11 +5,13 @@
 package servlets;
 
 
+import DAO.DBDataSource;
 import DAO.UsersDAO;
 import MemoryUser.Utilisateurs;
 import Model.Users;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -42,6 +44,9 @@ public class ServletLogin extends HttpServlet {
             
             username = request.getParameter("username");
             password= request.getParameter("password");
+            
+            Connection conn = DBDataSource.getJDBCConnection();
+            
             boolean errorlogin=false;
             if (username != null && password != null) {
                 if (!username.equals("") && !password.equals("")) {
@@ -53,7 +58,9 @@ public class ServletLogin extends HttpServlet {
                         //request.getRequestDispatcher("/index.jsp").forward(request, response);
                         HttpSession s= request.getSession(true);
                         s.setAttribute("username", username);
-                        response.sendRedirect("index.jsp");
+                        s.setAttribute("conn", conn);
+                        
+                        response.sendRedirect("indexAccueil.jsp");
                      }else errorlogin=true;
               }else errorlogin=true;
             }else errorlogin=true;

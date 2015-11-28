@@ -1,3 +1,5 @@
+<%@page import="DAO.AjoutDAO"%>
+<%@page import="java.util.ArrayList"%>
 <%@page import="DAO.DBDataSource"%>
 <%@page import="servlets.HtmlHttpUtils"%>
 <%@page import="Model.Users"%>
@@ -74,28 +76,36 @@
                 <div>
                     <div class="x_title" length="300">
                         <h2 >Top 5 des utilisateurs</h2>
+                        
+                        <%
+                            AjoutDAO adao = new AjoutDAO();
+                            ArrayList<Users> users = adao.top5Additions();
+                        %>
+                        
                         <ul class="nav navbar-right panel_toolbox">
                             <li><a href="#"><i class="fa fa-chevron-up"></i></a>
                             </li>
                             <li><a href="#"><i class="fa fa-close"></i></a>
                             </li>
                         </ul>
+
                         <div class="clearfix"></div>
                     </div>
+
                     <ul class="list-unstyled top_profiles scroll-view">
                         <li class="media event">
                             <a class="pull-left border-aero profile_thumb">
-                                 
+
                                 <i>
                                     <img src="bootstrap/img/termine.png" 
                                          height="50px" width="50px" 
-                                        style="border-radius: 50%; margin-left: -13px; margin-top: -10px;">
+                                         style="border-radius: 50%; margin-left: -13px; margin-top: -10px;">
                                 </i>
-                               
-                                
+
+
                             </a>
                             <div class="media-body">
-                                
+
                                 <a class="title" href="#">Terminator</a> 
                                 <p> <small>15 Average Additions</small>
                                 </p>
@@ -106,7 +116,7 @@
                                 <i>
                                     <img src="bootstrap/img/baudet.png" 
                                          height="50px" width="50px" 
-                                        style="border-radius: 50%; margin-left: -13px; margin-top: -10px">
+                                         style="border-radius: 50%; margin-left: -13px; margin-top: -10px">
                                 </i>
                             </a>
                             <div class="media-body">
@@ -120,7 +130,7 @@
                                 <i>
                                     <img src="bootstrap/img/daucourt.png" 
                                          height="50px" width="50px" 
-                                        style="border-radius: 50%; margin-left: -13px; margin-top: -10px;">
+                                         style="border-radius: 50%; margin-left: -13px; margin-top: -10px;">
                                 </i>
                             </a>
                             <div class="media-body">
@@ -134,7 +144,7 @@
                                 <i>
                                     <img src="bootstrap/img/alessio.png" 
                                          height="50px" width="50px" 
-                                        style="border-radius: 50%; margin-left: -13px; margin-top: -10px;">
+                                         style="border-radius: 50%; margin-left: -13px; margin-top: -10px;">
                                 </i>
                             </a>
                             <div class="media-body">
@@ -148,7 +158,7 @@
                                 <i>
                                     <img src="bootstrap/img/julien.jpg" 
                                          height="50px" width="50px" 
-                                        style="border-radius: 50%; margin-left: -13px; margin-top: -10px;">
+                                         style="border-radius: 50%; margin-left: -13px; margin-top: -10px;">
                                 </i>
                             </a>
                             <div class="media-body">

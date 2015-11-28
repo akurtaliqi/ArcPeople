@@ -17,6 +17,7 @@ public class Users {
     private String pwd;
     private String email;
     private Blob photo = null;
+    private int nbPoints = 0;
 
     public Users() {
     }
@@ -68,6 +69,14 @@ public class Users {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public int getNbPoints() {
+        return nbPoints;
+    }
+
+    public void setNbPoints(int nbPoints) {
+        this.nbPoints = nbPoints;
     }
     
     

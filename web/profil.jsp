@@ -37,6 +37,8 @@
 
     AjoutDAO ajoutDao = new AjoutDAO();
     int nbPoint = ajoutDao.countAjout(user.getId());
+    
+    s.setAttribute("nbPoints", nbPoint);
 %> 
 
 
