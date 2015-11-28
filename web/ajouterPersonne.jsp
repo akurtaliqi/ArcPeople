@@ -57,7 +57,7 @@
     <body>
     <center>
         <form action="ServletCreationPersonne" name="ajouterPersonne" role="form" class="form-horizontal" method="get" accept-charset="utf-8" 
-              style="background-color:white; padding-top:20px;padding-right:20px;padding-left:20px;padding-bottom:20px; width:700px;">
+              style="background-color:white; padding-top:20px;padding-right:20px;padding-left:20px;padding-bottom:20px; width:35%;">
             <fieldset>
 
                 <!-- Form Name -->
@@ -107,6 +107,7 @@
 
             </fieldset>
         </form>
+        </br>
     </center>
 </body>
 </html>

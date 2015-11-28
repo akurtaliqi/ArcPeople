@@ -32,8 +32,8 @@
 
 <script src="js/jquery.min.js"></script>
 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"/>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css"/>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 
 
@@ -164,7 +164,7 @@
 
 
             <!-- debut du widget pour le tchat -->
-            <!--<div class="col-md-4 col-sm-6 col-xs-12" style="background-color: white; 
+            <div class="col-md-4 col-sm-6 col-xs-12" style="background-color: white; 
                  border-color: #e5e5e5; border-style: solid; 
                  border-width: 1px; margin-left: 10px">
 
@@ -179,7 +179,7 @@
                     <div class="panel-body" style="border-radius: 0px">
                         <ul class="chat">
 
-                            
+                            <!--
 
                                 UsersDAO udao = new UsersDAO();
                                 
@@ -192,7 +192,7 @@
                                 Vector<Commentaire> vcomm = comms.selectComments(con);
 
                                 for (int i = 0; i < vcomm.size(); i++) {
-                            
+                            -->
                             
 
                             <li class="left clearfix"><span class="chat-img pull-left">
@@ -209,15 +209,15 @@
                                     </div>
                                     <p>
                                         
-                                            out.println(vcomm.get(i).getCommentaire());
+                                           <!-- out.println(vcomm.get(i).getCommentaire());-->
                                         
                                     </p>
                                 </div>
                             </li>
-                            
+                            <!--
                                 }
                                 udao.closeConnection(con);
-                            
+                            -->
                         </ul>
                     </div>
                     <div class="panel-footer" style="background-color: white">

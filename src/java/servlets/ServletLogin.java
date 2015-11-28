@@ -53,7 +53,7 @@ public class ServletLogin extends HttpServlet {
                         //request.getRequestDispatcher("/index.jsp").forward(request, response);
                         HttpSession s= request.getSession(true);
                         s.setAttribute("username", username);
-                        response.sendRedirect("index.jsp");
+                        response.sendRedirect("accueil.jsp");
                      }else errorlogin=true;
               }else errorlogin=true;
             }else errorlogin=true;
