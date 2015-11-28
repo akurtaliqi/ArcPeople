@@ -27,9 +27,7 @@
     <jsp:param name="url" value="<%=request.getServletPath()%>" />
 </jsp:include>
 
-<link href="css/temporairedyhia.css" rel="stylesheet" />
 <link href="bootstrap/css/chat.css" rel="stylesheet" />
-
 <script src='nprogress.js'></script>
 <link rel='stylesheet' href='bootstrap/css/nprogress.css'/>
 <script src="/js/jquery-2.1.1.min.js"></script>
@@ -55,21 +53,18 @@
         NProgress.inc();
     });
 </script>
-
-
 <body style="background-color:white">
-
-
-    <div class="detailBox">
-        <div class="titleBox">
-            <label>Comment Box</label>
-            <button type="button" class="close" aria-hidden="true">&times;</button>
-        </div>
-        <div class="actionBox" style="background-color: white">
-            <ul class="commentList">
-                <li>
-                    <div class="commenterImage">
-                        <img src="http://lorempixel.com/50/50/people/6" />
+    <div class="container" style="float:left">
+        <div class="row">
+            <div class="col-md-5">
+                <div class="panel panel-primary">
+                    <div class="panel-heading" id="accordion">
+                        <span class="glyphicon glyphicon-comment"></span> Commentaires
+                        <!--div class="btn-group pull-right">
+                            <a type="button" class="btn btn-default btn-xs" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                                <span class="glyphicon glyphicon-chevron-down"></span>
+                            </a>
+                        </div-->
                     </div>
                     <div class="panel-body">
                         <ul class="chat">
@@ -77,35 +72,62 @@
                                 CommentaireDAO cdao = new CommentaireDAO();
                                 UsersDAO udao = new UsersDAO();
 
+                                Connection con = udao.newConnection();
+
+                                Users u = new Users();
+                                Vector<Commentaire> vcomm = new Vector();
+                                vcomm = cdao.selectAll();
+
+                                for (int i = 0; i < vcomm.size(); i++) {*/
+                            %>
+                            <li class="left clearfix"><span class="chat-img pull-left">
+                                    <img src="http://placehold.it/50/55C1E7/fff&text=U" alt="User Avatar" class="img-circle" />
+                                </span>
+                                <div class="chat-body clearfix">
+                                    <div class="header">
+                                        <strong class="primary-font" style="color:black">
+                                            <%/*
+                                                u = udao.selectById(con, vcomm.get(i).getUsers_numero());
+                                                out.println(u.getUsername().toUpperCase());*/
+                                            %>
+                                        </strong> <small class="pull-right text-muted">
+
+                                            <span class="glyphicon glyphicon-time"></span>12 mins ago</small>
+                                    </div>
+                                    <p>
+                                        <%
+                                            /*out.println(vcomm.get(i).getCommentaire());*/
+                                        %>
+                                    </p>
+                                </div>
+                            </li>
+                            <%/*
+                                }
+                                udao.closeConnection(con);*/
+                            %>
+                        </ul>
                     </div>
-                </li>
-                <br />
-                
-                
-            </ul>
-            <div class="panel-footer" style="background-color: white">
-                <div class="input-group" style="background-color: white">
 
-                    <input name ="commentaire" id="btn-input" type="text" class="form-control input-sm" placeholder="Type your message here..." />
 
-                    <span class="input-group-btn">
+                    <div class="panel-footer">
+                        <div class="input-group">
+                            <form action="ServletAddCommentaire">
+                                <input name ="commentaire" id="btn-input" type="text" class="form-control input-sm" placeholder="Type your message here..." />
 
-                        <button class="btn btn-primary btn-sm" id="btn-chat">Send</button>
-                    </span>
+                                <span class="input-group-btn">
 
+                                    <button class="btn btn-warning btn-sm" id="btn-chat">Send</button>
+                                </span>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    
-    
-    
+
 </body>
-
-
 </html>
-
-
 <script>
     $("#b-100").click(function () {
         NProgress.done();
