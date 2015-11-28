@@ -71,10 +71,11 @@
                     <div class="commenterImage">
                         <img src="http://lorempixel.com/50/50/people/6" />
                     </div>
-                    <div class="commentText">
-                        <p><b>TERMINE</b></p>
-                        <p class="">Hello this is a test comment.</p> 
-                        <!-- <span class="date sub-text">on March 5th, 2014</span>-->
+                    <div class="panel-body">
+                        <ul class="chat">
+                            <%/*
+                                CommentaireDAO cdao = new CommentaireDAO();
+                                UsersDAO udao = new UsersDAO();
 
                     </div>
                 </li>

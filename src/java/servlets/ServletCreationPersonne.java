@@ -56,10 +56,8 @@ public class ServletCreationPersonne extends HttpServlet {
                 /* syteme des points */
                 HttpSession s = request.getSession(true);
                 String username = (String) s.getAttribute("username");
-
                 UsersDAO usersDAO = new UsersDAO();
                 Users userEnCour = usersDAO.select(username);
-
                 AjoutDAO ajoutDAO = new AjoutDAO();
                 ajoutDAO.create(userEnCour.getId());
             }

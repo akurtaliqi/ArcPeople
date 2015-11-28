@@ -1,3 +1,4 @@
+<%@page import="DAO.DBDataSource"%>
 <%@page import="servlets.HtmlHttpUtils"%>
 <%@page import="Model.Users"%>
 <%@page import="Model.Commentaire"%>
@@ -163,7 +164,7 @@
 
 
             <!-- debut du widget pour le tchat -->
-            <div class="col-md-4 col-sm-6 col-xs-12" style="background-color: white; 
+            <!--<div class="col-md-4 col-sm-6 col-xs-12" style="background-color: white; 
                  border-color: #e5e5e5; border-style: solid; 
                  border-width: 1px; margin-left: 10px">
 
@@ -178,18 +179,21 @@
                     <div class="panel-body" style="border-radius: 0px">
                         <ul class="chat">
 
-                            <%
+                            
 
                                 UsersDAO udao = new UsersDAO();
+                                
+                                HttpSession s = request.getSession();
 
-                                Connection con = udao.newConnection();
+                                Connection con = (Connection) s.getAttribute("conn");
 
                                 Services comms = new Services();
 
                                 Vector<Commentaire> vcomm = comms.selectComments(con);
 
                                 for (int i = 0; i < vcomm.size(); i++) {
-                            %>
+                            
+                            
 
                             <li class="left clearfix"><span class="chat-img pull-left">
                                     <img src="http://placehold.it/50/55C1E7/fff&text=U" alt="User Avatar" class="img-circle" />
@@ -197,23 +201,23 @@
                                 <div class="chat-body clearfix">
                                     <div class="header">
                                         <strong class="primary-font" style="color:black">
-                                            <%
+                                            
                                                 Users u = udao.selectById(con, vcomm.get(i).getUsers_numero());
                                                 out.println(u.getUsername().toUpperCase());
-                                            %>
+                                            
                                         </strong>
                                     </div>
                                     <p>
-                                        <%
+                                        
                                             out.println(vcomm.get(i).getCommentaire());
-                                        %>
+                                        
                                     </p>
                                 </div>
                             </li>
-                            <%
+                            
                                 }
                                 udao.closeConnection(con);
-                            %>
+                            
                         </ul>
                     </div>
                     <div class="panel-footer" style="background-color: white">
@@ -229,8 +233,8 @@
                         </div>
                     </div>
                 </form>
-            </div>
-            <!-- fin du widget -->
+            </div> -->
+            <!-- fin du widget --> 
 
 
 

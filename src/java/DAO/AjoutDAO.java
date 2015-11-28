@@ -5,13 +5,11 @@
  */
 package DAO;
 
-import Model.Personne;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.Vector;
 import oracle.jdbc.OraclePreparedStatement;
 import oracle.jdbc.OracleTypes;
 
@@ -62,7 +60,7 @@ public class AjoutDAO {
 
             pstmt = (OraclePreparedStatement) conn.prepareStatement(query); //create a statement
             pstmt.setLong(1, users_id);
-            pstmt.setLong(2, OracleTypes.NUMBER);
+            pstmt.registerReturnParameter(2, OracleTypes.NUMBER);
 
             int count = pstmt.executeUpdate();
             conn.commit();

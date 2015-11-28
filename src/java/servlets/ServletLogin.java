@@ -5,7 +5,9 @@
 package servlets;
 
 
+import DAO.UsersDAO;
 import MemoryUser.Utilisateurs;
+import Model.Users;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
