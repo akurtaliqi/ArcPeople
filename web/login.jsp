@@ -65,7 +65,7 @@
             });
         </script>
 
-        <div class="container" style="margin-top:250px">
+        <div class="container" style="margin-top:10%;">
             <div class="row">
                 <div class="col-md-4 col-md-offset-4">
                     <div class="login-panel panel panel-default">
