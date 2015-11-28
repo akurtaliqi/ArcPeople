@@ -60,7 +60,7 @@ public class ServletLogin extends HttpServlet {
                         s.setAttribute("username", username);
                         s.setAttribute("conn", conn);
                         
-                        response.sendRedirect("indexAccueil.jsp");
+                        response.sendRedirect("accueil.jsp");
                      }else errorlogin=true;
               }else errorlogin=true;
             }else errorlogin=true;

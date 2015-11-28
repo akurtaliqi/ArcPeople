@@ -130,7 +130,8 @@ public class UsersDAO {
     }
 
     
-    public Users selectById(Connection conn, Long numero) {
+    public Users selectById(Long numero) {
+        Connection conn = DBDataSource.getJDBCConnection();
         PreparedStatement stmt = null;
         ResultSet rs = null;
         Users u = new Users();
@@ -152,6 +153,7 @@ public class UsersDAO {
             try {
                 rs.close();
                 stmt.close();
+                conn.close();
                 return u;
             } catch (SQLException e) {
                 e.printStackTrace();
