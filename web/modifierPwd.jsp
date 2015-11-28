@@ -46,7 +46,7 @@
     <body>
     <center>
         <form method="post" action="ServletEditerProfil" name="modifierPwd" role="form" class="form-horizontal" accept-charset="utf-8"              
-              style="background-color:white; padding-top:20px;padding-right:20px;padding-left:20px;padding-bottom:20px; width:650px;">
+              style="background-color:white; padding-top:20px;padding-right:20px;padding-left:20px;padding-bottom:0px; width:650px;">
             <fieldset>
 
                 <!-- Form Name -->
@@ -107,7 +107,6 @@
                 <div class="form-group">
 
                     <div class="col-md-10">
-                        <!--input  class="btn btn-group" type="submit" value="Annuler" style="float:left; margin-left: 40px;"/></div-->
                         <a href="profil.jsp" > <input type="button" class="btn btn-group" value="Annuler" style="float:left; margin-left: 40px;"/>
                     <input  class="btn btn-primary" type="submit" value="Modifier" style="float:right; margin-right: 0px;"/></div>
                 </div>
