@@ -6,10 +6,12 @@
 package DAO;
 
 
+import Model.Users;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import oracle.jdbc.OraclePreparedStatement;
 import oracle.jdbc.OracleTypes;
 
@@ -19,6 +21,33 @@ import oracle.jdbc.OracleTypes;
  */
 public class AjoutDAO {
     public AjoutDAO(){};
+    
+     public ArrayList<Users> top5Ajout() {
+        UsersDAO usersDAO = new UsersDAO();
+        ArrayList<Users> usersSelect = usersDAO.selectAll();
+        ArrayList<Users> userTrie = new ArrayList<Users>();
+        int value ;
+        int index = 0  ;
+        Users user = null;
+        
+        while (!usersSelect.isEmpty()&& userTrie.size() < 5) {
+            value = -1;
+            for (int i=0 ; i <= usersSelect.size()-1 ;i++) {
+                
+                if (countAjout(usersSelect.get(i).getId()) >= value) {
+                    value = countAjout(usersSelect.get(i).getId());
+                    index = i;
+                    user = usersSelect.get(i);
+                }
+            }
+            if (user != null){
+            userTrie.add(user);
+            usersSelect.remove(index);
+            user = null;
+            }
+        }
+      return userTrie;
+     }
 
     public int countAjout(Long users_id) {
         Connection conn = DBDataSource.getJDBCConnection();

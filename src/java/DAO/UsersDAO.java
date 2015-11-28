@@ -14,6 +14,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import oracle.jdbc.OraclePreparedStatement;
@@ -24,7 +25,45 @@ import oracle.jdbc.OracleTypes;
  * @author Maxime Stierli <maxime.stierli@he-arc.ch>
  */
 public class UsersDAO {
-    public UsersDAO(){};
+    public UsersDAO(){}
+    
+     public ArrayList<Users> selectAll() {
+        Connection conn = DBDataSource.getJDBCConnection();
+        Statement stmt = null;
+        ResultSet rs = null;
+        
+         ArrayList<Users> users = new  ArrayList<Users>();
+        try {
+             stmt = conn.createStatement();
+            String query = "SELECT Numero,Username,email,pwd,Photo FROM Users ";
+            
+           
+            rs = stmt.executeQuery(query);
+           
+            while(rs.next()){
+                Users u = new Users();
+                u.setId(rs.getLong("Numero"));
+                u.setUsername(rs.getString("Username"));
+                u.setEmail(rs.getString("email"));
+                u.setPwd(rs.getString("pwd"));
+                u.setPhoto(rs.getBlob("Photo"));
+                users.add(u);
+            }
+            return users ;
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                rs.close();
+                stmt.close();
+                conn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+                
+            }
+            return users ;
+        } 
+    }
 
      public Image getphotoById (long user_id){
      Connection conn = DBDataSource.getJDBCConnection();
