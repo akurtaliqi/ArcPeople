@@ -27,7 +27,7 @@
 
 <!-- Custom styling plus plugins -->
 <link href="css/custom.css" rel="stylesheet">
-<link href="bootstrap/css/chat.css" rel="stylesheet" />
+<link href="css/chattemp.css" rel="stylesheet" />
 <link rel="stylesheet" type="text/css" href="css/maps/jquery-jvectormap-2.0.1.css" />
 <link href="css/icheck/flat/blue.css" rel="stylesheet" />
 <link href="css/floatexamples.css" rel="stylesheet" type="text/css" />
@@ -115,7 +115,7 @@
                                     %>
                                 </a> 
                                 <p> <small>
-                                        <% out.println(addings.get(0).getNbTotalGroupes());%> Additions
+                                        <% out.println(addings.get(0).getNbTotalGroupes());%> Points
                                     </small>
                                 </p>
                             </div>
@@ -138,7 +138,7 @@
                                         out.println(username2.toUpperCase());
                                     %>
                                 </a>
-                                <p> <small><% out.println(addings.get(1).getNbTotalGroupes()); %> Additions</small>
+                                <p> <small><% out.println(addings.get(1).getNbTotalGroupes()); %> Points</small>
                                 </p>
                             </div>
                         </li>
@@ -160,7 +160,7 @@
                                         out.println(username3.toUpperCase());
                                     %>
                                 </a>
-                                <p> <small><% out.println(addings.get(2).getNbTotalGroupes()); %> Additions</small>
+                                <p> <small><% out.println(addings.get(2).getNbTotalGroupes()); %> Points</small>
                                 </p>
                             </div>
                         </li>
@@ -182,7 +182,7 @@
                                         out.println(username4.toUpperCase());
                                     %>
                                 </a>
-                                <p> <small><% out.println(addings.get(3).getNbTotalGroupes()); %> Additions</small>
+                                <p> <small><% out.println(addings.get(3).getNbTotalGroupes()); %> Points</small>
                                 </p>
                             </div>
                         </li>
@@ -204,7 +204,7 @@
                                         out.println(username5.toUpperCase());
                                     %>
                                 </a>
-                                <p> <small><% out.println(addings.get(4).getNbTotalGroupes());%> Additions</small>
+                                <p> <small><% out.println(addings.get(4).getNbTotalGroupes());%> Points</small>
                                 </p>
                             </div>
                         </li>
@@ -215,6 +215,99 @@
 
 
             <!-- debut du widget pour le tchat -->
+            <!--<div class="container">-->
+            <!--<div class="row">-->
+            <div class="col-md-5" style="background-color: white; border-color: #e5e5e5; border-style: solid; 
+                 border-width: 1px; margin-left: 10px">
+                <!-- <div class="panel panel-primary"> -->
+                <div class="panel-heading">
+                    <span class="glyphicon glyphicon-comment"></span> Chat
+                    <div class="btn-group pull-right">
+                        <!--<button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
+                            <span class="glyphicon glyphicon-chevron-down"></span>
+                        </button>-->
+
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <ul class="chat">
+                        <%
+
+                            HttpSession s = request.getSession();
+
+                            Connection con = (Connection) s.getAttribute("conn");
+
+                            Services comms = new Services();
+
+                            Vector<Commentaire> vcomm = comms.selectComments(con);
+
+                            for (int i = 0; i < vcomm.size(); i++) {
+
+                        %>
+                        <li class="left clearfix"><span class="chat-img pull-left">
+                                <img src="http://placehold.it/50/55C1E7/fff&text=U" alt="User Avatar" class="img-circle" />
+                            </span>
+                            <div class="chat-body clearfix">
+                                <div class="header">
+                                    <strong class="primary-font">
+                                        <%                                        Users u = udao.selectById(vcomm.get(i).getUsers_numero());
+                                            out.println(u.getUsername().toUpperCase());
+                                        %>
+                                    </strong> 
+                                    <small class="pull-right text-muted">
+                                        <span class="glyphicon glyphicon-time"></span>12 mins ago
+                                    </small>
+                                </div>
+                                <p>
+                                    <%
+                                        out.println(vcomm.get(i).getCommentaire());
+                                    %>
+                                </p>
+                            </div>
+                        </li>
+                        <%
+                            }
+
+                        %>
+                    </ul>
+                </div>
+                <div class="panel-footer">
+                    <div class="input-group">
+                        <input id="btn-input" type="text" class="form-control input-sm" placeholder="Type your message here..." />
+                        <span class="input-group-btn">
+                            <button class="btn btn-warning btn-sm" id="btn-chat">
+                                Send</button>
+                        </span>
+                    </div>
+                </div>
+                <!--</div>-->
+            </div>
+            <!--</div>-->
+            <!--</div>-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             <!--<div class="col-md-4 col-sm-6 col-xs-12" style="background-color: white; 
                  border-color: #e5e5e5; border-style: solid; 
                  border-width: 1px; margin-left: 10px">
@@ -230,61 +323,54 @@
                     <div class="panel-body" style="border-radius: 0px">
                         <ul class="chat">
 
-                            
+            <%                                /* HttpSession s = request.getSession();
 
-                                UsersDAO udao = new UsersDAO();
-                                
-                                HttpSession s = request.getSession();
+                 Connection con = (Connection) s.getAttribute("conn");
 
-                                Connection con = (Connection) s.getAttribute("conn");
+                 Services comms = new Services();
 
-                                Services comms = new Services();
+                 Vector<Commentaire> vcomm = comms.selectComments(con);
 
-                                Vector<Commentaire> vcomm = comms.selectComments(con);
+                 for (int i = 0; i < vcomm.size(); i++) {*/
 
-                                for (int i = 0; i < vcomm.size(); i++) {
-                            
-                            
+            %>
+                        
+            <li class="left clearfix"><span class="chat-img pull-left">
+                    <img src="http://placehold.it/50/55C1E7/fff&text=U" alt="User Avatar" class="img-circle" />
+                </span>
+                <div class="chat-body clearfix">
+                    <div class="header">
+                        <strong class="primary-font" style="color:black">
+            <%                                                /* Users u = udao.selectById(vcomm.get(i).getUsers_numero());
+                 out.println(u.getUsername().toUpperCase());*/
+            %>
+        </strong>
+    </div>
+    <p>
+            <%                                            //out.println(vcomm.get(i).getCommentaire());
+            %>
+        </p>
+    </div>
+</li>
+            <%                                //}
+                                //udao.closeConnection(con);
+%>
+        </ul>
+    </div>
+    <div class="panel-footer" style="background-color: white">
+        <div class="input-group" style="background-color: white">
 
-                            <li class="left clearfix"><span class="chat-img pull-left">
-                                    <img src="http://placehold.it/50/55C1E7/fff&text=U" alt="User Avatar" class="img-circle" />
-                                </span>
-                                <div class="chat-body clearfix">
-                                    <div class="header">
-                                        <strong class="primary-font" style="color:black">
-                                            
-                                                Users u = udao.selectById(con, vcomm.get(i).getUsers_numero());
-                                                out.println(u.getUsername().toUpperCase());
-                                            
-                                        </strong>
-                                    </div>
-                                    <p>
-                                        
-                                            out.println(vcomm.get(i).getCommentaire());
-                                        
-                                    </p>
-                                </div>
-                            </li>
-                            
-                                }
-                                udao.closeConnection(con);
-                            
-                        </ul>
-                    </div>
-                    <div class="panel-footer" style="background-color: white">
-                        <div class="input-group" style="background-color: white">
+            <input name ="commentaire" id="btn-input" type="text" class="form-control input-sm" placeholder="Type your message here..." />
 
-                            <input name ="commentaire" id="btn-input" type="text" class="form-control input-sm" placeholder="Type your message here..." />
+            <span class="input-group-btn">
 
-                            <span class="input-group-btn">
+                <button class="btn btn-primary btn-sm" id="btn-chat">Send</button>
+            </span>
 
-                                <button class="btn btn-primary btn-sm" id="btn-chat">Send</button>
-                            </span>
-
-                        </div>
-                    </div>
-                </form>
-            </div> -->
+        </div>
+    </div>
+</form>
+</div> -->
             <!-- fin du widget --> 
 
 
