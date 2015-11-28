@@ -45,19 +45,20 @@ public class ServletLogin extends HttpServlet {
             boolean errorlogin=false;
             if (username != null && password != null) {
                 if (!username.equals("") && !password.equals("")) {
+                         UsersDAO usersDAO = new UsersDAO();
+                         Users utilusateur = usersDAO.select(username);
 
-
-                      if(Utilisateurs.verifyUser(username, password)){
+                      if(utilusateur != null && utilusateur.getPwd().equals(password)  ){
                         //CREATION HTTP SESSION
                         //request.getRequestDispatcher("/index.jsp").forward(request, response);
                         HttpSession s= request.getSession(true);
                         s.setAttribute("username", username);
-                        response.sendRedirect("indexAccueil.jsp");
+                        response.sendRedirect("index.jsp");
                      }else errorlogin=true;
               }else errorlogin=true;
             }else errorlogin=true;
             
-            if(errorlogin){
+           if(errorlogin){
                 session.setAttribute("loginError", "loginfailed");
                 RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
                 dispatcher.forward(request, response);
