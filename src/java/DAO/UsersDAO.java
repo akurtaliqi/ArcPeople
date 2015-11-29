@@ -31,16 +31,15 @@ public class UsersDAO {
         Connection conn = DBDataSource.getJDBCConnection();
         Statement stmt = null;
         ResultSet rs = null;
-        
-         ArrayList<Users> users = new  ArrayList<Users>();
+
+        ArrayList<Users> users = new ArrayList<Users>();
         try {
-             stmt = conn.createStatement();
+            stmt = conn.createStatement();
             String query = "SELECT Numero,Username,email,pwd,Photo FROM Users ";
-            
-           
+
             rs = stmt.executeQuery(query);
-           
-            while(rs.next()){
+
+            while (rs.next()) {
                 Users u = new Users();
                 u.setId(rs.getLong("Numero"));
                 u.setUsername(rs.getString("Username"));
@@ -49,7 +48,7 @@ public class UsersDAO {
                 u.setPhoto(rs.getBlob("Photo"));
                 users.add(u);
             }
-            return users ;
+            return users;
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -59,10 +58,10 @@ public class UsersDAO {
                 conn.close();
             } catch (SQLException e) {
                 e.printStackTrace();
-                
+
             }
-            return users ;
-        } 
+            return users;
+        }
     }
 
      public Image getphotoById (long user_id){

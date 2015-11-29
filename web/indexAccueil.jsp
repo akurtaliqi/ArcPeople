@@ -1,3 +1,5 @@
+<%@page import="DAO.GraphesDAO"%>
+<%@page import="java.util.GregorianCalendar"%>
 <%@page import="DAO.NiveauDAO"%>
 <%@page import="Model.Niveau"%>
 <%@page import="Model.Ajout"%>
@@ -58,8 +60,16 @@
 </jsp:include>
 
 <!-- Fin Menu -->
+<!-- Variable globale -->
+<%
+    GregorianCalendar c = new GregorianCalendar();
+    int max = c.getActualMaximum(GregorianCalendar.DAY_OF_MONTH);
+    
+    GraphesDAO gdao = new GraphesDAO();
+%>
 
 <body class="nav-md" style ="background-color: whitesmoke">
+
     <!-- page content -->
     <div class="right_col" role="main"  style=" margin-left: 100px; margin-right: 10%">
 
@@ -71,7 +81,7 @@
                  border-width: 1px; margin-left: 10px">
                 <div>
                     <div class="x_title" length="300">
-                        <h2 >Top 5 des utilisateurs</h2>
+                        <h4>Top 5 des consultants actifs</h4>
 
                         <%
                             AjoutDAO adao = new AjoutDAO();
@@ -84,12 +94,12 @@
                             out.println("" + "");
                         %>
 
-                        <ul class="nav navbar-right panel_toolbox">
+                        <!--<ul class="nav navbar-right panel_toolbox">
                             <li><a href="#"><i class="fa fa-chevron-up"></i></a>
                             </li>
                             <li><a href="#"><i class="fa fa-close"></i></a>
                             </li>
-                        </ul>
+                        </ul>-->
 
                         <div class="clearfix"></div>
                     </div>
@@ -118,7 +128,7 @@
                                 </a> 
                                 <p> 
                                     <small><b>
-                                        <% out.println(addings.get(0).getNbTotalGroupes());%> Points
+                                            <% out.println(addings.get(0).getNbTotalGroupes());%> Points
                                         </b></small> <br />
                                     <small>
                                         <%
@@ -148,7 +158,7 @@
                                 </a>
                                 <p> 
                                     <small><b>
-                                        <% out.println(addings.get(1).getNbTotalGroupes()); %> Points
+                                            <% out.println(addings.get(1).getNbTotalGroupes()); %> Points
                                         </b></small>
                                     <br />
                                     <small>
@@ -179,11 +189,11 @@
                                 </a>
                                 <p> 
                                     <small><b>
-                                        <% out.println(addings.get(2).getNbTotalGroupes()); %> Points
-                                    </b></small><br />
+                                            <% out.println(addings.get(2).getNbTotalGroupes()); %> Points
+                                        </b></small><br />
                                     <small>
                                         <%
-                                                out.println(niveau);%>
+                                            out.println(niveau);%>
                                     </small>
                                 </p>
                             </div>
@@ -209,8 +219,8 @@
                                 </a>
                                 <p> 
                                     <small><b>
-                                        <% out.println(addings.get(3).getNbTotalGroupes()); %> Points
-                                    </b></small>
+                                            <% out.println(addings.get(3).getNbTotalGroupes()); %> Points
+                                        </b></small>
                                     <br />
                                     <small>
                                         <%
@@ -240,8 +250,8 @@
                                 </a>
                                 <p> 
                                     <small><b>
-                                        <% out.println(addings.get(4).getNbTotalGroupes());%> Points
-                                    </b></small><br />
+                                            <% out.println(addings.get(4).getNbTotalGroupes());%> Points
+                                        </b></small><br />
                                     <small>
                                         <%
                                             out.println(niveau);
@@ -262,16 +272,17 @@
             <div class="col-md-5" style="background-color: white; border-color: #e5e5e5; border-style: solid; 
                  border-width: 1px; margin-left: 10px">
                 <!-- <div class="panel panel-primary"> -->
-                <div class="panel-heading">
-                    <span class="glyphicon glyphicon-comment"></span> Chat
-                    <div class="btn-group pull-right">
-                        <!--<button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
+                <div class="x_title" length="300">
+                    <!-- <span class="glyphicon glyphicon-comment"></span> -->
+                    <h4>Commentaires</h4></span>
+                    <!--<div class="btn-group pull-right">
+                        <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
                             <span class="glyphicon glyphicon-chevron-down"></span>
-                        </button>-->
+                        </button>
 
-                    </div>
+                    </div>-->
                 </div>
-                <div class="panel-body">
+                <div class="panel-body" style=" height: 280px;">
                     <ul class="chat">
                         <%
                             HttpSession s = request.getSession();
@@ -312,12 +323,12 @@
                         %>
                     </ul>
                 </div>
-                <div class="panel-footer">
+                <div class="panel-footer" style="background-color:white;">
                     <div class="input-group">
                         <input id="btn-input" type="text" class="form-control input-sm" placeholder="Type your message here..." />
                         <span class="input-group-btn">
-                            <button class="btn btn-warning btn-sm" id="btn-chat">
-                                Send</button>
+                            <button class="btn btn-primary btn-sm" id="btn-chat">
+                                Envoyer</button>
                         </span>
                     </div>
                 </div>
@@ -374,23 +385,23 @@
 </li>
             <%                                //}
                 //udao.closeConnection(con);
-%>
-                    </ul>
-                </div>
-                <div class="panel-footer" style="background-color: white">
-                    <div class="input-group" style="background-color: white">
-            
-                        <input name ="commentaire" id="btn-input" type="text" class="form-control input-sm" placeholder="Type your message here..." />
-            
-                        <span class="input-group-btn">
-            
-                            <button class="btn btn-primary btn-sm" id="btn-chat">Send</button>
-                        </span>
-            
-                    </div>
-                </div>
-            </form>
-            </div> -->
+            %>
+                                            </ul>
+                                        </div>
+                                        <div class="panel-footer" style="background-color: white">
+                                            <div class="input-group" style="background-color: white">
+                                    
+                                                <input name ="commentaire" id="btn-input" type="text" class="form-control input-sm" placeholder="Type your message here..." />
+                                    
+                                                <span class="input-group-btn">
+                                    
+                                                    <button class="btn btn-primary btn-sm" id="btn-chat">Send</button>
+                                                </span>
+                                    
+                                            </div>
+                                        </div>
+                                    </form>
+                                    </div> -->
             <!-- fin du widget --> 
 
 
@@ -561,8 +572,27 @@
     <script>
         //random data
         var d1 = [
-            [0, 1], [1, 9], [2, 6], [3, 10], [4, 5], [5, 17], [6, 6], [7, 10], [8, 7], [9, 11], [10, 35], [11, 9], [12, 12], [13, 5], [14, 3], [15, 4], [16, 9]
+            [0, 1], [1, 9], [2, 6], [3, 10], [4, 5], [5, 17], [6, 6], [7, 10], [8, 7], 
+            [9, 11], [10, 35], [11, 9], [12, 12], [13, 5], [14, 3], [15, 4], [16, 9], 
+            [17, 9], [18, 9], [19, 9], [20, 9], [21, 9], [22, 9], [23, 9], [24, 9], [25, 9], 
+            [26, 9], [27, 9], [28, 9], [29, 9], [30, 9] 
         ];
+
+        var d2 = [
+            <%
+                for (int index = 1; index <= max; index++) {
+                    int nbAjouts = gdao.selectDayById(index);
+                    if (index == max) {
+            %>
+                    [<%=index%>, 5]
+                     
+            <% 
+                    } else { %>
+                        [<%=index%>, <%=nbAjouts%>],
+                   <% }
+                }
+            %>
+        ]
 
         //flot options
         var options = {
