@@ -58,7 +58,7 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li <% out.println(activeIndex);%> ><a href="indexAccueil.jsp">Accueil <span class="sr-only">(current)</span></a></li>
+                <li <% out.println(activeIndex);%>><a href="indexAccueil.jsp">Accueil <span class="sr-only">(current)</span></a></li>
                 <li <% out.println(activeListePersonnes);%>><a href="listeDesPersonnes.jsp">Liste des personnes</a></li>
                 <li <% out.println(activeAjouterPersonne);%>><a href="ajouterPersonne.jsp">Ajouter des personnes</a></li>
             </ul>

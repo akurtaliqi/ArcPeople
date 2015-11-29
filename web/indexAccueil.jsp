@@ -1,3 +1,5 @@
+<%@page import="DAO.GraphesDAO"%>
+<%@page import="java.util.GregorianCalendar"%>
 <%@page import="DAO.NiveauDAO"%>
 <%@page import="Model.Niveau"%>
 <%@page import="Model.Ajout"%>
@@ -28,7 +30,7 @@
 <link href="css/animate.min.css" rel="stylesheet">
 
 <!-- Custom styling plus plugins -->
-<link href="css/custom.css" rel="stylesheet"/>
+<link href="css/custom.css" rel="stylesheet">
 <link href="css/chattemp.css" rel="stylesheet" />
 <link rel="stylesheet" type="text/css" href="css/maps/jquery-jvectormap-2.0.1.css" />
 <link href="css/icheck/flat/blue.css" rel="stylesheet" />
@@ -36,11 +38,6 @@
 
 
 <script src="js/jquery.min.js"></script>
-
-<!--mise en forme ajtene-->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"/>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css"/>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 
 
 <%
@@ -63,8 +60,16 @@
 </jsp:include>
 
 <!-- Fin Menu -->
+<!-- Variable globale -->
+<%
+    GregorianCalendar c = new GregorianCalendar();
+    int max = c.getActualMaximum(GregorianCalendar.DAY_OF_MONTH);
+    
+    GraphesDAO gdao = new GraphesDAO();
+%>
 
 <body class="nav-md" style ="background-color: whitesmoke">
+
     <!-- page content -->
     <div class="right_col" role="main"  style=" margin-left: 100px; margin-right: 10%">
 
@@ -76,7 +81,7 @@
                  border-width: 1px; margin-left: 10px">
                 <div>
                     <div class="x_title" length="300">
-                        <h2 >Top 5 des utilisateurs</h2>
+                        <h4>Top 5 des consultants actifs</h4>
 
                         <%
                             AjoutDAO adao = new AjoutDAO();
@@ -84,15 +89,17 @@
                             NiveauDAO ndao = new NiveauDAO();
                             ArrayList<Ajout> addings = adao.top5Additions();
 
+                            String niveau;
+
                             out.println("" + "");
                         %>
 
-                        <ul class="nav navbar-right panel_toolbox">
+                        <!--<ul class="nav navbar-right panel_toolbox">
                             <li><a href="#"><i class="fa fa-chevron-up"></i></a>
                             </li>
                             <li><a href="#"><i class="fa fa-close"></i></a>
                             </li>
-                        </ul>
+                        </ul>-->
 
                         <div class="clearfix"></div>
                     </div>
@@ -102,11 +109,12 @@
                         <li class="media event">
                             <%
                                 String username1 = udao.selectById(addings.get(0).getAjout_users()).getUsername();
+                                niveau = ndao.getNiveauById(udao.select(username1).getId()).getLibelle();
                             %>
                             <a class="pull-left border-aero profile_thumb">
 
                                 <i>
-                                    <img src="bootstrap/img/<%=username1%>.png" 
+                                    <img src="bootstrap/img/<%=niveau%>.png" 
                                          height="50px" width="50px" 
                                          style="border-radius: 50%; margin-left: -13px; margin-top: -10px;">
                                 </i>
@@ -119,11 +127,12 @@
                                     %>
                                 </a> 
                                 <p> 
+                                    <small><b>
+                                            <% out.println(addings.get(0).getNbTotalGroupes());%> Points
+                                        </b></small> <br />
                                     <small>
-                                        <% out.println(addings.get(0).getNbTotalGroupes());%> Points
-                                    </small> <br />
-                                    <small>
-                                        <% //Mon niveau ici %> 
+                                        <%
+                                            out.println(niveau); %> 
                                     </small>
                                 </p>
                             </div>
@@ -132,10 +141,11 @@
                         <li class="media event">
                             <%
                                 String username2 = udao.selectById(addings.get(1).getAjout_users()).getUsername();
+                                niveau = ndao.getNiveauById(udao.select(username2).getId()).getLibelle();
                             %>
                             <a class="pull-left border-green profile_thumb">
                                 <i>
-                                    <img src="bootstrap/img/<%=username2%>.png" 
+                                    <img src="bootstrap/img/<%=niveau%>.png" 
                                          height="50px" width="50px" 
                                          style="border-radius: 50%; margin-left: -13px; margin-top: -10px">
                                 </i>
@@ -147,12 +157,13 @@
                                     %>
                                 </a>
                                 <p> 
-                                    <small>
-                                        <% out.println(addings.get(1).getNbTotalGroupes()); %> Points
-                                    </small>
+                                    <small><b>
+                                            <% out.println(addings.get(1).getNbTotalGroupes()); %> Points
+                                        </b></small>
                                     <br />
                                     <small>
-                                        <% //out.println(addings.get(0).getNbTotalGroupes());%> Mon Niveau
+                                        <%
+                                            out.println(niveau);%>
                                     </small>
                                 </p>
                             </div>
@@ -161,10 +172,11 @@
                         <li class="media event">
                             <%
                                 String username3 = udao.selectById(addings.get(2).getAjout_users()).getUsername();
+                                niveau = ndao.getNiveauById(udao.select(username3).getId()).getLibelle();
                             %>
                             <a class="pull-left border-blue profile_thumb">
                                 <i>
-                                    <img src="bootstrap/img/<%=username3%>.png" 
+                                    <img src="bootstrap/img/<%=niveau%>.png" 
                                          height="50px" width="50px" 
                                          style="border-radius: 50%; margin-left: -13px; margin-top: -10px;">
                                 </i>
@@ -176,11 +188,12 @@
                                     %>
                                 </a>
                                 <p> 
+                                    <small><b>
+                                            <% out.println(addings.get(2).getNbTotalGroupes()); %> Points
+                                        </b></small><br />
                                     <small>
-                                        <% out.println(addings.get(2).getNbTotalGroupes()); %> Points
-                                    </small><br />
-                                    <small>
-                                        <% //out.println(addings.get(0).getNbTotalGroupes());%> Mon Niveau
+                                        <%
+                                            out.println(niveau);%>
                                     </small>
                                 </p>
                             </div>
@@ -189,10 +202,11 @@
                         <li class="media event">
                             <%
                                 String username4 = udao.selectById(addings.get(3).getAjout_users()).getUsername();
+                                niveau = ndao.getNiveauById(udao.select(username4).getId()).getLibelle();
                             %>
                             <a class="pull-left border-blue profile_thumb">
                                 <i>
-                                    <img src="bootstrap/img/<%=username4%>.png" 
+                                    <img src="bootstrap/img/<%=niveau%>.png" 
                                          height="50px" width="50px" 
                                          style="border-radius: 50%; margin-left: -13px; margin-top: -10px;">
                                 </i>
@@ -204,12 +218,13 @@
                                     %>
                                 </a>
                                 <p> 
-                                    <small>
-                                        <% out.println(addings.get(3).getNbTotalGroupes()); %> Points
-                                    </small>
+                                    <small><b>
+                                            <% out.println(addings.get(3).getNbTotalGroupes()); %> Points
+                                        </b></small>
                                     <br />
                                     <small>
-                                        <% //out.println(addings.get(0).getNbTotalGroupes());%> Mon Niveau
+                                        <%
+                                            out.println(niveau);%>
                                     </small>
                                 </p>
                             </div>
@@ -218,10 +233,11 @@
                         <li class="media event">
                             <%
                                 String username5 = udao.selectById(addings.get(4).getAjout_users()).getUsername();
+                                niveau = ndao.getNiveauById(udao.select(username5).getId()).getLibelle();
                             %>
                             <a class="pull-left border-blue profile_thumb">
                                 <i>
-                                    <img src="bootstrap/img/<%=username5%>.png" 
+                                    <img src="bootstrap/img/<%=niveau%>.png" 
                                          height="50px" width="50px" 
                                          style="border-radius: 50%; margin-left: -13px; margin-top: -10px;">
                                 </i>
@@ -233,11 +249,13 @@
                                     %>
                                 </a>
                                 <p> 
+                                    <small><b>
+                                            <% out.println(addings.get(4).getNbTotalGroupes());%> Points
+                                        </b></small><br />
                                     <small>
-                                        <% out.println(addings.get(4).getNbTotalGroupes());%> Points
-                                    </small><br />
-                                    <small>
-                                        <% //out.println(addings.get(0).getNbTotalGroupes());%> Mon Niveau
+                                        <%
+                                            out.println(niveau);
+                                        %>
                                     </small>
                                 </p>
                             </div>
@@ -254,19 +272,19 @@
             <div class="col-md-5" style="background-color: white; border-color: #e5e5e5; border-style: solid; 
                  border-width: 1px; margin-left: 10px">
                 <!-- <div class="panel panel-primary"> -->
-                <div class="panel-heading">
-                    <span class="glyphicon glyphicon-comment"></span> Chat
-                    <div class="btn-group pull-right">
-                        <!--<button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
+                <div class="x_title" length="300">
+                    <!-- <span class="glyphicon glyphicon-comment"></span> -->
+                    <h4>Commentaires</h4></span>
+                    <!--<div class="btn-group pull-right">
+                        <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
                             <span class="glyphicon glyphicon-chevron-down"></span>
-                        </button>-->
+                        </button>
 
-                    </div>
+                    </div>-->
                 </div>
-                <div class="panel-body">
+                <div class="panel-body" style=" height: 280px;">
                     <ul class="chat">
                         <%
-
                             HttpSession s = request.getSession();
 
                             Connection con = (Connection) s.getAttribute("conn");
@@ -305,12 +323,12 @@
                         %>
                     </ul>
                 </div>
-                <div class="panel-footer">
+                <div class="panel-footer" style="background-color:white;">
                     <div class="input-group">
                         <input id="btn-input" type="text" class="form-control input-sm" placeholder="Type your message here..." />
                         <span class="input-group-btn">
-                            <button class="btn btn-warning btn-sm" id="btn-chat">
-                                Send</button>
+                            <button class="btn btn-primary btn-sm" id="btn-chat">
+                                Envoyer</button>
                         </span>
                     </div>
                 </div>
@@ -368,22 +386,22 @@
             <%                                //}
                 //udao.closeConnection(con);
             %>
-                    </ul>
-                </div>
-                <div class="panel-footer" style="background-color: white">
-                    <div class="input-group" style="background-color: white">
-            
-                        <input name ="commentaire" id="btn-input" type="text" class="form-control input-sm" placeholder="Type your message here..." />
-            
-                        <span class="input-group-btn">
-            
-                            <button class="btn btn-primary btn-sm" id="btn-chat">Send</button>
-                        </span>
-            
-                    </div>
-                </div>
-            </form>
-            </div> -->
+                                            </ul>
+                                        </div>
+                                        <div class="panel-footer" style="background-color: white">
+                                            <div class="input-group" style="background-color: white">
+                                    
+                                                <input name ="commentaire" id="btn-input" type="text" class="form-control input-sm" placeholder="Type your message here..." />
+                                    
+                                                <span class="input-group-btn">
+                                    
+                                                    <button class="btn btn-primary btn-sm" id="btn-chat">Send</button>
+                                                </span>
+                                    
+                                            </div>
+                                        </div>
+                                    </form>
+                                    </div> -->
             <!-- fin du widget --> 
 
 
@@ -554,8 +572,13 @@
     <script>
         //random data
         var d1 = [
-            [0, 1], [1, 9], [2, 6], [3, 10], [4, 5], [5, 17], [6, 6], [7, 10], [8, 7], [9, 11], [10, 35], [11, 9], [12, 12], [13, 5], [14, 3], [15, 4], [16, 9]
+            [0, 1], [1, 9], [2, 6], [3, 10], [4, 5], [5, 17], [6, 6], [7, 10], [8, 7], 
+            [9, 11], [10, 35], [11, 9], [12, 12], [13, 5], [14, 3], [15, 4], [16, 9], 
+            [17, 9], [18, 9], [19, 9], [20, 9], [21, 9], [22, 9], [23, 9], [24, 9], [25, 9], 
+            [26, 9], [27, 9], [28, 9], [29, 9], [30, 9] 
         ];
+
+       
 
         //flot options
         var options = {
@@ -600,3 +623,4 @@
 </body>
 
 </html>
+
