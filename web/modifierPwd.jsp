@@ -31,9 +31,31 @@
         <link rel="stylesheet" type="text/css" href="bootstrap/css/profil.css" />
         <title>JSP Page</title>
         <!--mise en forme ajtene-->
+        <!-- Bootstrap core CSS -->
+
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+
+        <link href="fonts/css/font-awesome.min.css" rel="stylesheet">
+        <link href="css/animate.min.css" rel="stylesheet">
+
+        <!-- Custom styling plus plugins -->
+        <link href="css/custom.css" rel="stylesheet">
+        <link href="css/chattemp.css" rel="stylesheet" />
+        <link rel="stylesheet" type="text/css" href="css/maps/jquery-jvectormap-2.0.1.css" />
+        <link href="css/icheck/flat/blue.css" rel="stylesheet" />
+        <link href="css/floatexamples.css" rel="stylesheet" type="text/css" />
+
+
+        <script src="js/jquery.min.js"></script>
+        <script src='nprogress.js'></script>
+        <link rel='stylesheet' href='bootstrap/css/nprogress.css'/>
+        <script src="/js/jquery-2.1.1.min.js"></script>
+        <script src="bootstrap/js/nprogress.js"></script>
+        <!--mise en forme ajtene-->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"/>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css"/>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="bootstrap/css/app.css" />
         <script type="text/javascript">
 
             $(document).ready(function () {
@@ -48,77 +70,87 @@
         </script>
     </head>
     <body>
-    <center>
-        <form method="post" action="ServletEditerProfil" name="modifierPwd" role="form" class="form-horizontal" accept-charset="utf-8"              
-              style="background-color:white; padding-top:20px;padding-right:20px;padding-left:20px;padding-bottom:20px; width:35%;">
-            <fieldset>
+        <!-- page content -->
+        <div role="main"  style=" margin-left: 20%;">
 
-                <!-- Form Name -->
-                <legend style="text-align: left;">Modifier mon mot de passe</legend>
+            <div class="row">
+
+                <!-- debut du widget des personnes les plus actives en ajout -->
+                <div class="col-md-8 col-sm-12 col-xs-12" style="background-color: white; 
+                     border-color: #e5e5e5; border-style: solid; 
+                     border-width: 1px; margin-left: 10px">
+                    <div class="x_title" length="300">
+                        <h4 style="text-align: left;">Modifier mon mot de passe</h4>
+                    </div>
+                    <form method="post" action="ServletEditerProfil" name="modifierPwd" role="form" class="form-horizontal" accept-charset="utf-8"  >
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" >Mot de passe actuel</label>
+                            <div class="col-md-6">
+                                <input id="Ancien mots passe" name="Ancien_mots_passe" type="password" placeholder="Mot de passe actuel" class="form-control input-md" required="required">
+
+                            </div>
+                        </div>
+
+                        <%
+                            if (session.getAttribute("editeProfilError1") != null) {
+                        %>
+
+                        <div class="alert alert-danger" role="alert" style="margin-left: 0px; margin-right: 0px;" >
+                            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                            <span class="sr-only">Error:</span>
+                            Le mot de passe est incorrecte. Réessayez.
+                        </div>
+                        <% }
+                            session.setAttribute("editeProfilError1", null);
+                        %>
+                        <!-- Password input-->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" >Nouveau mot de passe</label>
+                            <div class="col-md-6">
+                                <input id="passwordinput" name="pwd" type="password" placeholder="Nouveau mot de passe" class="form-control input-md" required="required">
+
+                            </div>
+                        </div>
+
+                        <!-- Password input-->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" >Confirmer mot de passe </label>
+                            <div class="col-md-6">
+                                <input id="passwordinput" name="pwd2" type="password" placeholder="Confirmer le nouveau mot de passe" class="form-control input-md" required="required">
+
+                            </div>
+                        </div>
+                        <%
+                            if (session.getAttribute("editeProfilError2") != null) {
+                        %>
+
+                        <div class="alert alert-danger" role="alert" style="margin-left: 0px; margin-right: 0px;" >
+                            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                            <span class="sr-only">Error:</span>
+                            Les mots de passe ne sont pas identiques. Réessayez.
+                        </div>
+                        <% }
+                            session.setAttribute("editeProfilError2", null);
+                        %>
+                        <!-- Button -->
+                        <br/>
+                        <br/>
+                        <div class="form-group">
+
+                            <div class="col-md-10">
+                                <a href="profil.jsp" > <input type="button" class="btn btn-default" value="Annuler" style="float:left;margin-left: 30px;"/></a>
+                                <input  class="btn btn-primary" type="submit" value="Modifier" style="float:right; margin-right: 0px;"/></div>
+                        </div>
+
+                        </fieldset>
+                </div>
+                </form>
                 <br/>
-                <!-- Password input-->
-
-                <div class="form-group">
-                    <label class="col-md-4 control-label" >Mot de passe actuel</label>
-                    <div class="col-md-6">
-                        <input id="Ancien mots passe" name="Ancien_mots_passe" type="password" placeholder="Mot de passe actuel" class="form-control input-md" required="required">
-
-                    </div>
-                </div>
-
-                <%
-                    if (session.getAttribute("editeProfilError1") != null) {
-                %>
-
-                <div class="alert alert-danger" role="alert" style="margin-left: 0px; margin-right: 0px;" >
-                    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-                    <span class="sr-only">Error:</span>
-                    Le mot de passe est incorrecte. Réessayez.
-                </div>
-                <% }
-                    session.setAttribute("editeProfilError1", null);
-                %>
-                <!-- Password input-->
-                <div class="form-group">
-                    <label class="col-md-4 control-label" >Nouveau mot de passe</label>
-                    <div class="col-md-6">
-                        <input id="passwordinput" name="pwd" type="password" placeholder="Nouveau mot de passe" class="form-control input-md" required="required">
-
-                    </div>
-                </div>
-
-                <!-- Password input-->
-                <div class="form-group">
-                    <label class="col-md-4 control-label" >Confirmer mot de passe </label>
-                    <div class="col-md-6">
-                        <input id="passwordinput" name="pwd2" type="password" placeholder="Confirmer le nouveau mot de passe" class="form-control input-md" required="required">
-
-                    </div>
-                </div>
-                <%
-                    if (session.getAttribute("editeProfilError2") != null) {
-                %>
-
-                <div class="alert alert-danger" role="alert" style="margin-left: 0px; margin-right: 0px;" >
-                    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-                    <span class="sr-only">Error:</span>
-                    Les mots de passe ne sont pas identiques. Réessayez.
-                </div>
-                <% }
-                    session.setAttribute("editeProfilError2", null);
-                %>
-                <!-- Button -->
                 <br/>
-                <div class="form-group">
-
-                    <div class="col-md-10">
-                        <a href="profil.jsp" > <input type="button" class="btn btn-default" value="Annuler" style="float:left;margin-left: 30px;"/></a>
-                        <input  class="btn btn-primary" type="submit" value="Modifier" style="float:right; margin-right: 0px;"/></div>
-                </div>
-
-            </fieldset>
             </div>
-        </form>
-    </center>
+        </div>
+    </div>
+</div>
+</div>
 </body>
 </html>
