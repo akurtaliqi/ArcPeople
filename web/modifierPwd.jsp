@@ -30,7 +30,6 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" type="text/css" href="bootstrap/css/profil.css" />
         <title>JSP Page</title>
-        <!--mise en forme ajtene-->
         <!-- Bootstrap core CSS -->
 
         <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -54,7 +53,11 @@
         <!--mise en forme ajtene-->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"/>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css"/>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="bootstrap/css/app.css" />
+
+        <!--mise en forme ajtene-->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css"/>
         <link rel="stylesheet" type="text/css" href="bootstrap/css/app.css" />
         <script type="text/javascript">
 

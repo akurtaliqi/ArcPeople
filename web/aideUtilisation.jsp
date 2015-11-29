@@ -4,6 +4,7 @@
     Author     : ajtene.kurtaliq
 --%>
 
+<%@page import="servlets.HtmlHttpUtils"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%
@@ -26,11 +27,6 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
-        <script src='nprogress.js'></script>
-        <link rel='stylesheet' href='bootstrap/css/nprogress.css'/>
-        <script src="/js/jquery-2.1.1.min.js"></script>
-        <script src="bootstrap/js/nprogress.js"></script>
-
         <!-- Bootstrap core CSS -->
 
         <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -54,9 +50,7 @@
         <!--mise en forme ajtene-->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"/>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css"/>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
         <link rel="stylesheet" type="text/css" href="bootstrap/css/app.css" />
-        <script type="text/javascript"></script>
     </head>
     <body>
         <h1>Hello World!</h1>
