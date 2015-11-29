@@ -578,7 +578,21 @@
             [26, 9], [27, 9], [28, 9], [29, 9], [30, 9] 
         ];
 
-       
+        var d2 = [
+            <%
+                for (int index = 1; index <= max; index++) {
+                    int nbAjouts = gdao.selectDayById(index);
+                    if (index == max) {
+            %>
+                    [<%=index%>, 5]
+                     
+            <% 
+                    } else { %>
+                        [<%=index%>, <%=nbAjouts%>],
+                   <% }
+                }
+            %>
+        ]
 
         //flot options
         var options = {
@@ -623,4 +637,3 @@
 </body>
 
 </html>
-
