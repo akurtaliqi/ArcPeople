@@ -121,9 +121,9 @@
                                     %>
                                 </a> 
                                 <p> 
-                                    <small>
+                                    <small><b>
                                         <% out.println(addings.get(0).getNbTotalGroupes());%> Points
-                                    </small> <br />
+                                        </b></small> <br />
                                     <small>
                                         <%
                                             out.println(niveau); %> 
@@ -151,9 +151,9 @@
                                     %>
                                 </a>
                                 <p> 
-                                    <small>
+                                    <small><b>
                                         <% out.println(addings.get(1).getNbTotalGroupes()); %> Points
-                                    </small>
+                                        </b></small>
                                     <br />
                                     <small>
                                         <%
@@ -182,9 +182,9 @@
                                     %>
                                 </a>
                                 <p> 
-                                    <small>
+                                    <small><b>
                                         <% out.println(addings.get(2).getNbTotalGroupes()); %> Points
-                                    </small><br />
+                                    </b></small><br />
                                     <small>
                                         <%
                                                 out.println(niveau);%>
@@ -212,9 +212,9 @@
                                     %>
                                 </a>
                                 <p> 
-                                    <small>
+                                    <small><b>
                                         <% out.println(addings.get(3).getNbTotalGroupes()); %> Points
-                                    </small>
+                                    </b></small>
                                     <br />
                                     <small>
                                         <%
@@ -243,9 +243,9 @@
                                     %>
                                 </a>
                                 <p> 
-                                    <small>
+                                    <small><b>
                                         <% out.println(addings.get(4).getNbTotalGroupes());%> Points
-                                    </small><br />
+                                    </b></small><br />
                                     <small>
                                         <%
                                             out.println(niveau);
