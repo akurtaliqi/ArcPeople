@@ -28,7 +28,7 @@
 <link href="css/animate.min.css" rel="stylesheet">
 
 <!-- Custom styling plus plugins -->
-<link href="css/custom.css" rel="stylesheet">
+<link href="css/custom.css" rel="stylesheet"/>
 <link href="css/chattemp.css" rel="stylesheet" />
 <link rel="stylesheet" type="text/css" href="css/maps/jquery-jvectormap-2.0.1.css" />
 <link href="css/icheck/flat/blue.css" rel="stylesheet" />
@@ -36,6 +36,11 @@
 
 
 <script src="js/jquery.min.js"></script>
+
+<!--mise en forme ajtene-->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"/>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css"/>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 
 
 <%
@@ -361,24 +366,24 @@
     </div>
 </li>
             <%                                //}
-                                //udao.closeConnection(con);
-%>
-        </ul>
-    </div>
-    <div class="panel-footer" style="background-color: white">
-        <div class="input-group" style="background-color: white">
-
-            <input name ="commentaire" id="btn-input" type="text" class="form-control input-sm" placeholder="Type your message here..." />
-
-            <span class="input-group-btn">
-
-                <button class="btn btn-primary btn-sm" id="btn-chat">Send</button>
-            </span>
-
-        </div>
-    </div>
-</form>
-</div> -->
+                //udao.closeConnection(con);
+            %>
+                    </ul>
+                </div>
+                <div class="panel-footer" style="background-color: white">
+                    <div class="input-group" style="background-color: white">
+            
+                        <input name ="commentaire" id="btn-input" type="text" class="form-control input-sm" placeholder="Type your message here..." />
+            
+                        <span class="input-group-btn">
+            
+                            <button class="btn btn-primary btn-sm" id="btn-chat">Send</button>
+                        </span>
+            
+                    </div>
+                </div>
+            </form>
+            </div> -->
             <!-- fin du widget --> 
 
 
@@ -389,7 +394,7 @@
         <br /><br />
 
         <div class="" style="background-color: white; border-color: #e5e5e5; border-style: solid; 
-                 border-width: 1px; margin-left: -2px">
+             border-width: 1px; margin-left: -2px">
 
             <div class="row top_tiles" style="margin: 10px 0;">
                 <div class="col-md-3 col-sm-3 col-xs-6 tile">
@@ -511,7 +516,7 @@
     <script type="text/javascript" src="js/flot/curvedLines.js"></script>
     <script type="text/javascript" src="js/flot/jquery.flot.resize.js"></script>
 
-    
+
     <!-- Petits charts au dessus du grand grand graphe ci-dessous -->
     <!-- C'est vraiment la galère ces charts !!!!!! -->
     <script>
@@ -538,12 +543,12 @@
                 minSpotColor: '#336699'
             });
 
-            
+
 
 
         })
     </script>
-    
+
 
     <!-- flot Grand Chart du bas de page d'accueil -->
     <script>
@@ -587,11 +592,11 @@
             }], options);
     </script>
     <!-- /flot -->
-    
-    
-   
-    
-    
+
+
+
+
+
 </body>
 
 </html>

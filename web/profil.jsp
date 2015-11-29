@@ -25,16 +25,16 @@
 <%
     HttpSession s = request.getSession(true);
     String username = (String) s.getAttribute("username");
-    
+
     UsersDAO userDao = new UsersDAO();
     Users user = userDao.select(username);
-    
+
     String name = user.getUsername();
     String mail = user.getEmail();
     String niveau;
-    
+
     NiveauDAO nivDao = new NiveauDAO();
-    
+
     niveau = nivDao.getNiveauById(user.getId()).getLibelle();
     String src = "bootstrap\\img\\" + niveau + ".png";
     AjoutDAO ajoutDao = new AjoutDAO();
@@ -54,12 +54,15 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" type="text/css" href="bootstrap/css/profil.css" />
         <title>JSP Page</title>
         <script src='nprogress.js'></script>
         <link rel='stylesheet' href='bootstrap/css/nprogress.css'/>
         <script src="/js/jquery-2.1.1.min.js"></script>
         <script src="bootstrap/js/nprogress.js"></script>
+        <!--mise en forme ajtene-->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css"/>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 
         <script type="text/javascript">
 
@@ -79,14 +82,14 @@
     <center>
 
         <form method="post" action="modifierPwd.jsp" name="profil" role="form" class="form-horizontal" accept-charset="utf-8" 
-              style="background-color:white; padding-top:20px;padding-right:20px;padding-left:20px;padding-bottom:20px; width:35%;">
+              style="background-color:white; width:35%;">
             <fieldset>
-                <legend style="text-align: left;">Voir mon profil</legend>
+                <legend style="text-align: left;margin-left:20px;padding-top:20px;">Voir mon profil</legend>
                 <%
                     if (session.getAttribute("pwdModifier") != null) {
                 %>
 
-                <div  class="alert alert-success" role="alert" style="margin-left: 0px; margin-right: 20px; " >
+                <div  class="alert alert-success" role="alert" style="margin-left: 20px; margin-right: 20px; " >
                     <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
                     <span class="sr-only">Error:</span>
                     Votre mot de passe a été modifié avec succès  !
@@ -94,39 +97,40 @@
                 <% }
                     session.setAttribute("pwdModifier", null);
                 %>
-                <div style="padding-left: 100px;">
+                <div>
                     <br/>
-
-                    <table style="border-color:white; font-size: 16px; line-height: 45px; ">
-                        <tr>
-                            <td>
-                                <img  class= "Imagee" src="<%=src%>" alt= "ImageProfil" class= "img-thumbnail" width="100px" height="100px" style="float:left; margin-bottom: 35px;" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Nom d'utilisateur :</td>
-                            <td><%=name%></td> 
-                        </tr>
-                        <tr>
-                            <td>Adresse e-mail :</td>
-                            <td><%=mail%></td> 
-                        </tr>
-                        <tr>
-                            <td>Mot de passe :</td>
-                            <td>********</td> 
-                            <td>
-                                <input type="submit" value="Modifier le mot de passe" class="btn btn-primary btn-group"></input>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Nombre de points :</td>
-                            <td><%=nbPoint%></td> 
-                        </tr>
-                        <tr>
-                            <td>Niveau</td>
-                            <td><%=niveau%></td> 
-                        </tr>
-                    </table> 
+                    <center>
+                        <table style="border-color:white; font-size: 16px; line-height: 45px; ">
+                            <tr>
+                                <td>
+                                    <img  class= "Imagee" src="<%=src%>" alt= "ImageProfil" class= "img-thumbnail" width="100px" height="100px" style="float:left; margin-bottom: 35px;" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Nom d'utilisateur :</td>
+                                <td><%=name%></td> 
+                            </tr>
+                            <tr>
+                                <td>Adresse e-mail :</td>
+                                <td><%=mail%></td> 
+                            </tr>
+                            <tr>
+                                <td>Mot de passe :</td>
+                                <td>********</td> 
+                                <td>
+                                    <input type="submit" value="Modifier le mot de passe" class="btn btn-primary btn-group"></input>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Nombre de points :</td>
+                                <td><%=nbPoint%></td> 
+                            </tr>
+                            <tr>
+                                <td>Niveau :</td>
+                                <td><%=niveau%></td> 
+                            </tr>
+                        </table> 
+                    </center>
                 </div>
         </form>
     </center>

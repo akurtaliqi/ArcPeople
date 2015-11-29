@@ -14,14 +14,14 @@
 <script type="text/javascript" src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
 <!--mise en forme ajtene-->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"/>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css"/>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 
 <!--dropdown menu-->
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-<link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"/>
 
 <%
     String active = request.getParameter("url");
@@ -29,7 +29,7 @@
 
     String activeIndex = "", activeListePersonnes = "", activeAjouterPersonne = "", activeProfil = "";
 
-    if (active.equals("/accueil.jsp")) {
+    if (active.equals("/indexAccueil.jsp")) {
         activeIndex = "class=\"active\"";
     } else if (active.equals("/listeDesPersonnes.jsp")) {
         activeListePersonnes = "class=\"active\"";
@@ -51,13 +51,14 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-
+            
+            <!--a class="navbar-brand">Arc'People</a-->
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li <% out.println(activeIndex);%> ><a href="indexAccueil.jsp">Accueil</a></li>
+                <li <% out.println(activeIndex);%> ><a href="indexAccueil.jsp">Accueil <span class="sr-only">(current)</span></a></li>
                 <li <% out.println(activeListePersonnes);%>><a href="listeDesPersonnes.jsp">Liste des personnes</a></li>
                 <li <% out.println(activeAjouterPersonne);%>><a href="ajouterPersonne.jsp">Ajouter des personnes</a></li>
             </ul>

@@ -78,10 +78,10 @@
                                 String loginError = (String) session.getAttribute("loginError");
                                 if (loginError != null) {
                             %>
-                            <div class="alert alert-danger" role="alert" style="margin-left: 0px; margin-right: 0px;" >
+                            <div class="alert alert-danger" role="alert" style="margin-left: 20px; margin-right: 20px;" >
                                 <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
                                 <span class="sr-only">Error:</span>
-                                Le mot de passe est incorrecte. Réessayez.
+                                Mot de passe ou nom d'utilisateur incorrect. Réessayez.
                             </div>
                             <%
                                     //effacer le message de session

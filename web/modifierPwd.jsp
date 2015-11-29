@@ -30,8 +30,11 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" type="text/css" href="bootstrap/css/profil.css" />
         <title>JSP Page</title>
-        
-         <script type="text/javascript">
+        <!--mise en forme ajtene-->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css"/>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+        <script type="text/javascript">
 
             $(document).ready(function () {
 
@@ -110,7 +113,7 @@
 
                     <div class="col-md-10">
                         <a href="profil.jsp" > <input type="button" class="btn btn-default" value="Annuler" style="float:left;margin-left: 30px;"/></a>
-                    <input  class="btn btn-primary" type="submit" value="Modifier" style="float:right; margin-right: 0px;"/></div>
+                        <input  class="btn btn-primary" type="submit" value="Modifier" style="float:right; margin-right: 0px;"/></div>
                 </div>
 
             </fieldset>

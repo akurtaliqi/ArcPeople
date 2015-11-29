@@ -2501,6 +2501,7 @@ legend {
   width: 100%;
   padding: 0;
   margin-bottom: 20px;
+  padding-top:20px;
   font-size: 21px;
   line-height: inherit;
   color: #333;

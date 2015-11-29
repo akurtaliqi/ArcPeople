@@ -22,6 +22,8 @@
         <link rel='stylesheet' href='bootstrap/css/nprogress.css'/>
         <script src="/js/jquery-2.1.1.min.js"></script>
         <script src="bootstrap/js/nprogress.js"></script>
+        <!--sinon menu dropdown ne fonctionne pas-->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
     </head>
     <script>
         $('body').show();
