@@ -81,9 +81,12 @@
                             AjoutDAO adao = new AjoutDAO();
                             UsersDAO udao = new UsersDAO();
                             NiveauDAO ndao = new NiveauDAO();
-                            ArrayList<Ajout> addings = adao.top5Additions();
 
                             String niveau;
+
+                            //String src = "bootstrap\\img\\" + niveau + ".png";
+                            
+                            ArrayList<Ajout> addings = adao.top5Additions();
 
                             out.println("" + "");
                         %>
@@ -103,12 +106,11 @@
                         <li class="media event">
                             <%
                                 String username1 = udao.selectById(addings.get(0).getAjout_users()).getUsername();
-                                niveau = ndao.getNiveauById(udao.select(username1).getId()).getLibelle();
                             %>
                             <a class="pull-left border-aero profile_thumb">
 
                                 <i>
-                                    <img src="bootstrap/img/<%=niveau%>.png" 
+                                    <img src="bootstrap/img/<%=username1%>.png" 
                                          height="50px" width="50px" 
                                          style="border-radius: 50%; margin-left: -13px; margin-top: -10px;">
                                 </i>
@@ -125,8 +127,11 @@
                                         <% out.println(addings.get(0).getNbTotalGroupes());%> Points
                                     </small> <br />
                                     <small>
-                                        <%
-                                            out.println(niveau); %> 
+                                        <% 
+                                            Users user = udao.select(username1);
+                                            niveau = ndao.getNiveauById(user.getId()).getLibelle();
+                                            out.println(niveau);
+                                        %> 
                                     </small>
                                 </p>
                             </div>
@@ -135,11 +140,10 @@
                         <li class="media event">
                             <%
                                 String username2 = udao.selectById(addings.get(1).getAjout_users()).getUsername();
-                                niveau = ndao.getNiveauById(udao.select(username2).getId()).getLibelle();
                             %>
                             <a class="pull-left border-green profile_thumb">
                                 <i>
-                                    <img src="bootstrap/img/<%=niveau%>.png" 
+                                    <img src="bootstrap/img/<%=username2%>.png" 
                                          height="50px" width="50px" 
                                          style="border-radius: 50%; margin-left: -13px; margin-top: -10px">
                                 </i>
@@ -156,8 +160,7 @@
                                     </small>
                                     <br />
                                     <small>
-                                        <%
-                                            out.println(niveau);%>
+                                        <% //out.println(addings.get(0).getNbTotalGroupes());%> Mon Niveau
                                     </small>
                                 </p>
                             </div>
@@ -166,11 +169,10 @@
                         <li class="media event">
                             <%
                                 String username3 = udao.selectById(addings.get(2).getAjout_users()).getUsername();
-                                niveau = ndao.getNiveauById(udao.select(username3).getId()).getLibelle();
                             %>
                             <a class="pull-left border-blue profile_thumb">
                                 <i>
-                                    <img src="bootstrap/img/<%=niveau%>.png" 
+                                    <img src="bootstrap/img/<%=username3%>.png" 
                                          height="50px" width="50px" 
                                          style="border-radius: 50%; margin-left: -13px; margin-top: -10px;">
                                 </i>
@@ -186,8 +188,7 @@
                                         <% out.println(addings.get(2).getNbTotalGroupes()); %> Points
                                     </small><br />
                                     <small>
-                                        <%
-                                                out.println(niveau);%>
+                                        <% //out.println(addings.get(0).getNbTotalGroupes());%> Mon Niveau
                                     </small>
                                 </p>
                             </div>
@@ -196,11 +197,10 @@
                         <li class="media event">
                             <%
                                 String username4 = udao.selectById(addings.get(3).getAjout_users()).getUsername();
-                                niveau = ndao.getNiveauById(udao.select(username4).getId()).getLibelle();
                             %>
                             <a class="pull-left border-blue profile_thumb">
                                 <i>
-                                    <img src="bootstrap/img/<%=niveau%>.png" 
+                                    <img src="bootstrap/img/<%=username4%>.png" 
                                          height="50px" width="50px" 
                                          style="border-radius: 50%; margin-left: -13px; margin-top: -10px;">
                                 </i>
@@ -217,8 +217,7 @@
                                     </small>
                                     <br />
                                     <small>
-                                        <%
-                                            out.println(niveau);%>
+                                        <% //out.println(addings.get(0).getNbTotalGroupes());%> Mon Niveau
                                     </small>
                                 </p>
                             </div>
@@ -227,11 +226,10 @@
                         <li class="media event">
                             <%
                                 String username5 = udao.selectById(addings.get(4).getAjout_users()).getUsername();
-                                niveau = ndao.getNiveauById(udao.select(username5).getId()).getLibelle();
                             %>
                             <a class="pull-left border-blue profile_thumb">
                                 <i>
-                                    <img src="bootstrap/img/<%=niveau%>.png" 
+                                    <img src="bootstrap/img/<%=username5%>.png" 
                                          height="50px" width="50px" 
                                          style="border-radius: 50%; margin-left: -13px; margin-top: -10px;">
                                 </i>
@@ -247,9 +245,7 @@
                                         <% out.println(addings.get(4).getNbTotalGroupes());%> Points
                                     </small><br />
                                     <small>
-                                        <%
-                                            out.println(niveau);
-                                        %>
+                                        <% //out.println(addings.get(0).getNbTotalGroupes());%> Mon Niveau
                                     </small>
                                 </p>
                             </div>
@@ -278,6 +274,7 @@
                 <div class="panel-body">
                     <ul class="chat">
                         <%
+
                             HttpSession s = request.getSession();
 
                             Connection con = (Connection) s.getAttribute("conn");
@@ -408,6 +405,9 @@
              border-width: 1px; margin-left: -2px">
 
             <div class="row top_tiles" style="margin: 10px 0;">
+                <div class="row x_title" style="margin-left: 8px; margin-right:8px;">
+                    <h3>Weekly stats <small></small></h3>
+                </div>
                 <div class="col-md-3 col-sm-3 col-xs-6 tile">
                     <div class="left"></div>
                     <div class="right">
@@ -439,6 +439,13 @@
                         <canvas width="200" height="60" style="display: inline-block; vertical-align: top; width: 94px; height: 30px;"></canvas>
                     </span>
                 </div>
+                <div class="col-md-3 col-sm-3 col-xs-6 tile">
+                    <span>Total Sessions</span>
+                    <h2>231,809</h2>
+                    <span class="sparkline_three" style="height: 160px;">
+                        <canvas width="200" height="60" style="display: inline-block; vertical-align: top; width: 94px; height: 30px;"></canvas>
+                    </span>
+                </div>
             </div>
             <br />
 
@@ -450,16 +457,11 @@
         <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="dashboard_graph x_panel">
-                    <div class="row x_title">
-                        <div class="col-md-6">
-                            <h3>Network Activities <small>Graph title sub-title</small></h3>
-                        </div>
-                        <div class="col-md-6">
-                            <div id="reportrange" class="pull-right" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc">
-                                <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
-                                <span>December 30, 2014 - January 28, 2015</span> <b class="caret"></b>
-                            </div>
-                        </div>
+                    <div class="row x_title" style="margin-left: 1px; margin-right:1px;">
+
+                        <h3>Network Activities <small>Graph title sub-title</small></h3>
+                        <br />
+
                     </div>
                     <div class="x_content">
                         <div class="demo-container" style="height:250px">
@@ -532,10 +534,10 @@
     <!-- C'est vraiment la galère ces charts !!!!!! -->
     <script>
         $('document').ready(function () {
-            $(".sparkline_one").sparkline([2, 4, 3, 4, 5, 4, 5, 4, 3, 4, 5, 6, 7, 5, 4, 3, 5, 6], {
+            $(".sparkline_one").sparkline([1, 2, 3, 4, 5, 6, 3], {
                 type: 'bar',
                 height: '40',
-                barWidth: 9,
+                barWidth: 29,
                 colorMap: {
                     '7': '#a1a1a1'
                 },
@@ -543,7 +545,18 @@
                 barColor: '#336699'
             });
 
-            $(".sparkline_two").sparkline([2, 4, 3, 4, 5, 4, 5, 4, 3, 4, 5, 6, 7, 5, 4, 3, 5, 6], {
+            $(".sparkline_two").sparkline([2, 4, 3, 9, 0, 7, 8], {
+                type: 'line',
+                width: '200',
+                height: '40',
+                lineColor: '#336699',
+                fillColor: 'rgba(223, 223, 223, 0.57)',
+                lineWidth: 2,
+                spotColor: '#336699',
+                minSpotColor: '#336699'
+            });
+
+            $(".sparkline_three").sparkline([1, 1, 1, 1, 0, 6, 3], {
                 type: 'line',
                 width: '200',
                 height: '40',

@@ -19,8 +19,8 @@ public class NiveauDAO {
         Niveau n = new Niveau();
         try {
             String query = "SELECT N.NUMERO, N.LIBELLE, N.CODE FROM USERS U "
-                    + "INNER JOIN NIVEAU N ON U.FK_NUM_NIVEAU = N.NUMERO "
-                    + "WHERE U.NUMERO = ?";
+                    + " INNER JOIN NIVEAU N ON U.FK_NUM_NIVEAU = N.NUMERO "
+                    + " WHERE U.NUMERO = ?";
             
             stmt = conn.prepareStatement(query);        
             stmt.setLong(1, p_id);
@@ -28,9 +28,11 @@ public class NiveauDAO {
            
             while(rs.next()){
                 n.setId(rs.getLong("NUMERO"));
-                n.setLibelle(rs.getString("LIBELLEe"));
+                n.setLibelle(rs.getString("LIBELLE"));
                 n.setCode(rs.getString("CODE"));
             }
+            
+            return n;
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
