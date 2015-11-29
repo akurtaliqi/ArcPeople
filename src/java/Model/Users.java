@@ -30,7 +30,7 @@ public class Users {
         this.username = username;
         this.email = adress ;
     }
-
+        
     public Long getId() {
         return id;
     }

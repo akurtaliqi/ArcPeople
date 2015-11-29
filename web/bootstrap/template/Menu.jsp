@@ -13,13 +13,23 @@
 <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <script type="text/javascript" src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
+<!--mise en forme ajtene-->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
+<!--dropdown menu-->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+
 <%
     String active = request.getParameter("url");
     //int nbEnregistrement = PersonneDAO.nbEnregistrements();
 
-    String activeIndex = "", activeListePersonnes = "", activeAjouterPersonne = "", activeProfil = "", actSrc = "", actHlp = "", actProf = "";
+    String activeIndex = "", activeListePersonnes = "", activeAjouterPersonne = "", activeProfil = "";
 
-    if (active.equals("/indexAccueil.jsp")) {
+    if (active.equals("/accueil.jsp")) {
         activeIndex = "class=\"active\"";
     } else if (active.equals("/listeDesPersonnes.jsp")) {
         activeListePersonnes = "class=\"active\"";
@@ -27,13 +37,7 @@
         activeAjouterPersonne = "class=\"active\"";
     } else if (active.equals("/profil.jsp")) {
         activeProfil = "class=\"active\"";
-    } /*else if (active.equals("/rechercherPersonne.jsp")) {
-     actSrc = "class=\"active\"";
-     } else if (active.equals("/aide.jsp")) {
-     actHlp = "class=\"active\"";
-     } else if (active.equals("/profil.jsp")) {
-     actProf = "class=\"active\"";
-     }*/
+    } 
 %>
 
 
@@ -53,13 +57,20 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li <% out.println(activeIndex);%> ><a href="indexAccueil.jsp">Accueil <span class="sr-only">(current)</span></a></li>
+                <li <% out.println(activeIndex);%> ><a href="indexAccueil.jsp">Accueil</a></li>
                 <li <% out.println(activeListePersonnes);%>><a href="listeDesPersonnes.jsp">Liste des personnes</a></li>
                 <li <% out.println(activeAjouterPersonne);%>><a href="ajouterPersonne.jsp">Ajouter des personnes</a></li>
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
                 <li <% out.println(activeProfil);%>><a href="profil.jsp">Profil</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Aide <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="aideUtilisation.html">Utilisation</a></li>
+                        <li><a href="aideFAQ.html">FAQ</a></li>
+                    </ul>
+                </li>
                 <li><a href="ServletLogout">Déconnexion</a></li>
             </ul>
 
