@@ -40,9 +40,6 @@ public class ServletEnvoiBon extends HttpServlet {
                     HttpServletResponse response)
             throws ServletException, IOException
   {
-      System.out.println("dans la servelet envoi bon");
-      System.out.println("dans la servelet envoi bon");
-      System.out.println("dans la servelet envoi bon");
       // Recipient's email ID needs to be mentioned.
       HttpSession s = request.getSession(true); 
       

@@ -9,7 +9,6 @@ import DAO.PersonneDAO;
 import DAO.UsersDAO;
 import Model.Personne;
 import Model.Users;
-import static com.sun.media.jfxmediaimpl.MediaUtils.error;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
