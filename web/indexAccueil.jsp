@@ -1,6 +1,5 @@
 <%@page import="DAO.GraphesDAO"%>
 <%@page import="java.util.GregorianCalendar"%>
-<%@page import="DAO.NiveauDAO"%>
 <%@page import="Model.Niveau"%>
 <%@page import="Model.Ajout"%>
 <%@page import="DAO.AjoutDAO"%>
@@ -48,9 +47,18 @@
         response.sendRedirect("ServletLogout");
     }
 
-    Connection con = DBDataSource.getJDBCConnection();
-%>
+Connection con = DBDataSource.getJDBCConnection();
 
+    AjoutDAO adao = new AjoutDAO();
+    UsersDAO udao = new UsersDAO();
+    ArrayList<Ajout> addings = adao.top5Additions();
+    ArrayList<Users> users = udao.selectAll();
+
+    String niveau;
+    Long pk;
+    int points;
+
+%>
 <!-- Menu -->
 
 <jsp:include page="bootstrap/template/headerApp.jsp">
@@ -72,191 +80,72 @@
         <div class="row">
 
             <!-- debut du widget des personnes les plus actives en ajout -->
-            <div class="col-md-3 col-sm-12 col-xs-12" style="background-color: white; 
+                 <div class="col-md-4 col-sm-12 col-xs-12" style="background-color: white; 
                  border-color: #e5e5e5; border-style: solid; 
                  border-width: 1px; margin-left: 12px">
-                <div>
-                    <div class="x_title" length="300">
-                        <h4><img src="images/win.PNG" height="30px" width="30px"> Top 5 des consultants</h4>
+                    <div>
+                        <div class="x_title" length="300">
+                            <h4><img src="images/win.PNG" height="30px" width="30px"> Top 5 des consultants</h4>
 
-                        <%
-                            AjoutDAO adao = new AjoutDAO();
-                            UsersDAO udao = new UsersDAO();
-                            NiveauDAO ndao = new NiveauDAO();
-                            ArrayList<Ajout> addings = adao.top5Additions();
+                            <%  out.println("" + ""); %>
 
-                            String niveau;
+                            <div class="clearfix"></div>
+                        </div>
 
-                            out.println("" + "");
-                        %>
-
-                        <div class="clearfix"></div>
-                    </div>
-
-                    <ul class="list-unstyled top_profiles scroll-view">
-
-                        <li class="media event">
+                        <ul class="list-unstyled top_profiles scroll-view">
+                            <!-- Affiche le top 5 des utilisateurs -->    
                             <%
-                                String username1 = udao.selectById(addings.get(0).getAjout_users()).getUsername();
-                                niveau = ndao.getNiveauById(udao.select(username1).getId()).getLibelle();
-                            %>
-                            <a class="pull-left border-aero profile_thumb">
-
-                                <i>
-                                    <img src="bootstrap/img/<%=niveau%>.png" 
-                                         height="50px" width="50px" 
-                                         style="border-radius: 50%; margin-left: -13px; margin-top: -10px;">
-                                </i>
-                            </a>
-                            <div class="media-body">
-
-                                <a class="title" href="#">
-                                    <%
-                                        out.println(username1.toUpperCase());
-                                    %>
-                                </a> 
-                                <p> 
-                                    <small><b>
-                                            <% out.println(addings.get(0).getNbTotalGroupes());%> Points
-                                        </b></small> <br />
-                                    <small>
-                                        <%
-                                            out.println(niveau); %> 
-                                    </small>
-                                </p>
-                            </div>
-                        </li>
-
-                        <li class="media event">
-                            <%
-                                String username2 = udao.selectById(addings.get(1).getAjout_users()).getUsername();
-                                niveau = ndao.getNiveauById(udao.select(username2).getId()).getLibelle();
-                            %>
-                            <a class="pull-left border-green profile_thumb">
-                                <i>
-                                    <img src="bootstrap/img/<%=niveau%>.png" 
-                                         height="50px" width="50px" 
-                                         style="border-radius: 50%; margin-left: -13px; margin-top: -10px">
-                                </i>
-                            </a>
-                            <div class="media-body">
-                                <a class="title" href="#">
-                                    <%
-                                        out.println(username2.toUpperCase());
-                                    %>
+                                Users user = new Users();
+                                for (int i = 0; i < 5; i++) {
+                                    pk = addings.get(i).getAjout_users();
+                                    points = addings.get(i).getNbTotalGroupes();
+                                    
+                                    int j = 0;
+                                    while (j <= users.size()) {
+                                        if (pk == users.get(j).getId()) {
+                                            user = users.get(j);
+                                            j = users.size() + 1;
+                                        }
+                                        j++;
+                                    }
+                                %>
+                            <li class="media event">
+                                <a class="pull-left border-aero profile_thumb">
+                                    <i>
+                                        <img src="bootstrap/img/<%=user.getNiveau()%>.png" 
+                                             height="50px" width="50px" 
+                                             style="border-radius: 50%; margin-left: -13px; margin-top: -10px;">
+                                    </i>
                                 </a>
-                                <p> 
-                                    <small><b>
-                                            <% out.println(addings.get(1).getNbTotalGroupes()); %> Points
-                                        </b></small>
-                                    <br />
-                                    <small>
+                                <div class="media-body">
+                                    <a class="title" href="#">
                                         <%
-                                            out.println(niveau);%>
-                                    </small>
-                                </p>
-                            </div>
-                        </li>
-
-                        <li class="media event">
-                            <%
-                                String username3 = udao.selectById(addings.get(2).getAjout_users()).getUsername();
-                                niveau = ndao.getNiveauById(udao.select(username3).getId()).getLibelle();
-                            %>
-                            <a class="pull-left border-blue profile_thumb">
-                                <i>
-                                    <img src="bootstrap/img/<%=niveau%>.png" 
-                                         height="50px" width="50px" 
-                                         style="border-radius: 50%; margin-left: -13px; margin-top: -10px;">
-                                </i>
-                            </a>
-                            <div class="media-body">
-                                <a class="title" href="#">
-                                    <%
-                                        out.println(username3.toUpperCase());
-                                    %>
-                                </a>
-                                <p> 
-                                    <small><b>
-                                            <% out.println(addings.get(2).getNbTotalGroupes()); %> Points
-                                        </b></small><br />
-                                    <small>
-                                        <%
-                                            out.println(niveau);%>
-                                    </small>
-                                </p>
-                            </div>
-                        </li>
-
-                        <li class="media event">
-                            <%
-                                String username4 = udao.selectById(addings.get(3).getAjout_users()).getUsername();
-                                niveau = ndao.getNiveauById(udao.select(username4).getId()).getLibelle();
-                            %>
-                            <a class="pull-left border-blue profile_thumb">
-                                <i>
-                                    <img src="bootstrap/img/<%=niveau%>.png" 
-                                         height="50px" width="50px" 
-                                         style="border-radius: 50%; margin-left: -13px; margin-top: -10px;">
-                                </i>
-                            </a>
-                            <div class="media-body">
-                                <a class="title" href="#">
-                                    <%
-                                        out.println(username4.toUpperCase());
-                                    %>
-                                </a>
-                                <p> 
-                                    <small><b>
-                                            <% out.println(addings.get(3).getNbTotalGroupes()); %> Points
-                                        </b></small>
-                                    <br />
-                                    <small>
-                                        <%
-                                            out.println(niveau);%>
-                                    </small>
-                                </p>
-                            </div>
-                        </li>
-
-                        <li class="media event">
-                            <%
-                                String username5 = udao.selectById(addings.get(4).getAjout_users()).getUsername();
-                                niveau = ndao.getNiveauById(udao.select(username5).getId()).getLibelle();
-                            %>
-                            <a class="pull-left border-blue profile_thumb">
-                                <i>
-                                    <img src="bootstrap/img/<%=niveau%>.png" 
-                                         height="50px" width="50px" 
-                                         style="border-radius: 50%; margin-left: -13px; margin-top: -10px;">
-                                </i>
-                            </a>
-                            <div class="media-body">
-                                <a class="title" href="#">
-                                    <%
-                                        out.println(username5.toUpperCase());
-                                    %>
-                                </a>
-                                <p> 
-                                    <small><b>
-                                            <% out.println(addings.get(4).getNbTotalGroupes());%> Points
-                                        </b></small><br />
-                                    <small>
-                                        <%
-                                            out.println(niveau);
+                                            out.println(user.getUsername().toUpperCase());
                                         %>
-                                    </small>
-                                </p>
-                            </div>
-                        </li>
-                    </ul>
+                                    </a> 
+                                    <p> 
+                                        <small><b>
+                                                <% out.println(addings.get(i).getNbTotalGroupes());%> Points
+                                            </b></small> <br />
+                                        <small>
+                                            <%
+                                            out.println(user.getNiveau()); %> 
+                                        </small>
+                                    </p>
+                                </div>
+                            </li>
+                            <%
+                                }
+                            %>
+                        </ul>
+                    </div>
                 </div>
-            </div>
-            <!-- fin du widget -->
+                <!-- fin du widget -->
 
 
             <!-- debut du widget pour le tchat -->
-            <div class="col-md-5" style="background-color: white; border-color: #e5e5e5; border-style: solid; 
+            <div class="col-md-7" 
+                 style="background-color: white; border-color: #e5e5e5; border-style: solid; 
                  border-width: 1px; margin-left: 10px">
 
                 <div class="x_title" length="300">
@@ -302,14 +191,11 @@
                     </ul>
                 </div>
 
-                <form action="ServletAddCommentaire" style="width:93%; margin-left:-1%; border-top:0px; border-top-style: none;">
-                    
-                    <div class="panel-footer" 
-                         style="background-color: white; border-top:0px; 
-                         border-top-style: none; margin-top: -12%; 
-                         padding-bottom: 1px; margin-bottom: -15px;" >
-                        
-                        
+                <form action="ServletAddCommentaire">
+
+                    <div class="panel-footer" >
+
+
                         <div class="input-group">
                             <span class="input-group-btn">
                                 <input name="commentaire" id="btn-input" type="text" class="form-control input-sm" placeholder="Type your message here..." />
