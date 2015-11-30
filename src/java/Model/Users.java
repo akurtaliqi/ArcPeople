@@ -6,6 +6,8 @@
 package Model;
 
 import java.sql.Blob;
+import java.sql.Date;
+import java.util.Calendar;
 
 /**
  *
@@ -16,8 +18,7 @@ public class Users {
     private String username;
     private String pwd;
     private String email;
-    private Blob photo = null;
-    private int nbPoints = 0;
+    private Date dateReceptionBon;
 
     public Users() {
     }
@@ -30,7 +31,7 @@ public class Users {
         this.username = username;
         this.email = adress ;
     }
-        
+
     public Long getId() {
         return id;
     }
@@ -55,14 +56,6 @@ public class Users {
         this.pwd = pwd;
     }
 
-    public Blob getPhoto() {
-        return photo;
-    }
-
-    public void setPhoto(Blob photo) {
-        this.photo = photo;
-    }
-
     public String getEmail() {
         return email;
     }
@@ -71,15 +64,25 @@ public class Users {
         this.email = email;
     }
 
-    public int getNbPoints() {
-        return nbPoints;
+    public Date getDateReceptionBon() {
+        return dateReceptionBon;
     }
 
-    public void setNbPoints(int nbPoints) {
-        this.nbPoints = nbPoints;
+    public void setDateReceptionBon(Date ReceptionBon) {
+        this.dateReceptionBon = ReceptionBon;
     }
     
-    
-    
-    
+    public boolean isReceiveThisMonth(){
+        if(this.dateReceptionBon == null){
+            return false;
+        }else{
+            //Initialisation du calendrier qui contient la date "dateReceptionBon"
+        Calendar calReceive = Calendar.getInstance();
+        calReceive.setTime(dateReceptionBon);
+        //Initialisation du calendrier qui contient la date actuelle.
+        Calendar calCurrentDate = Calendar.getInstance();
+        //Si les mois sont identiques, on retourne true.
+        return calCurrentDate.get(Calendar.MONTH) == calReceive.get(Calendar.MONTH);
+        }    
+    }    
 }
