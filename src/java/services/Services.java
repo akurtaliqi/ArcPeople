@@ -18,7 +18,6 @@ public class Services {
         
         CommentaireDAO cdao = new CommentaireDAO();
         
-        Users u = new Users();
         Vector<Commentaire> vcomm = new Vector();
         vcomm = cdao.selectAll();
         

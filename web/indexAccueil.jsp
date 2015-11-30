@@ -47,14 +47,13 @@
         response.sendRedirect("ServletLogout");
     }
 
-Connection con = DBDataSource.getJDBCConnection();
+    Connection con = DBDataSource.getJDBCConnection();
 
     AjoutDAO adao = new AjoutDAO();
     UsersDAO udao = new UsersDAO();
     ArrayList<Ajout> addings = adao.top5Additions();
     ArrayList<Users> users = udao.selectAll();
 
-    String niveau;
     Long pk;
     int points;
 
@@ -80,67 +79,67 @@ Connection con = DBDataSource.getJDBCConnection();
         <div class="row">
 
             <!-- debut du widget des personnes les plus actives en ajout -->
-                 <div class="col-md-4 col-sm-12 col-xs-12" style="background-color: white; 
+            <div class="col-md-4 col-sm-12 col-xs-12" style="background-color: white; 
                  border-color: #e5e5e5; border-style: solid; 
                  border-width: 1px; margin-left: 12px">
-                    <div>
-                        <div class="x_title" length="300">
-                            <h4><img src="images/win.PNG" height="30px" width="30px"> Top 5 des consultants</h4>
+                <div>
+                    <div class="x_title" length="300">
+                        <h4><img src="images/win.PNG" height="30px" width="30px"> Top 5 des consultants</h4>
 
-                            <%  out.println("" + ""); %>
+                        <%  out.println("" + ""); %>
 
-                            <div class="clearfix"></div>
-                        </div>
-
-                        <ul class="list-unstyled top_profiles scroll-view">
-                            <!-- Affiche le top 5 des utilisateurs -->    
-                            <%
-                                Users user = new Users();
-                                for (int i = 0; i < 5; i++) {
-                                    pk = addings.get(i).getAjout_users();
-                                    points = addings.get(i).getNbTotalGroupes();
-                                    
-                                    int j = 0;
-                                    while (j <= users.size()) {
-                                        if (pk == users.get(j).getId()) {
-                                            user = users.get(j);
-                                            j = users.size() + 1;
-                                        }
-                                        j++;
-                                    }
-                                %>
-                            <li class="media event">
-                                <a class="pull-left border-aero profile_thumb">
-                                    <i>
-                                        <img src="bootstrap/img/<%=user.getNiveau()%>.png" 
-                                             height="50px" width="50px" 
-                                             style="border-radius: 50%; margin-left: -13px; margin-top: -10px;">
-                                    </i>
-                                </a>
-                                <div class="media-body">
-                                    <a class="title" href="#">
-                                        <%
-                                            out.println(user.getUsername().toUpperCase());
-                                        %>
-                                    </a> 
-                                    <p> 
-                                        <small><b>
-                                                <% out.println(addings.get(i).getNbTotalGroupes());%> Points
-                                            </b></small> <br />
-                                        <small>
-                                            <%
-                                            out.println(user.getNiveau()); %> 
-                                        </small>
-                                    </p>
-                                </div>
-                            </li>
-                            <%
-                                }
-                            %>
-                        </ul>
+                        <div class="clearfix"></div>
                     </div>
+
+                    <ul class="list-unstyled top_profiles scroll-view">
+                        <!-- Affiche le top 5 des utilisateurs -->    
+                        <%
+                            Users user = new Users();
+                            for (int i = 0; i < 5; i++) {
+                                pk = addings.get(i).getAjout_users();
+                                points = addings.get(i).getNbTotalGroupes();
+
+                                int j = 0;
+                                while (j <= users.size()) {
+                                    if (pk == users.get(j).getId()) {
+                                        user = users.get(j);
+                                        j = users.size() + 1;
+                                    }
+                                    j++;
+                                }
+                        %>
+                        <li class="media event">
+                            <a class="pull-left border-aero profile_thumb">
+                                <i>
+                                    <img src="bootstrap/img/<%=user.getNiveau()%>.png" 
+                                         height="50px" width="50px" 
+                                         style="border-radius: 50%; margin-left: -13px; margin-top: -10px;">
+                                </i>
+                            </a>
+                            <div class="media-body">
+                                <a class="title" href="#">
+                                    <%
+                                        out.println(user.getUsername().toUpperCase());
+                                    %>
+                                </a> 
+                                <p> 
+                                    <small><b>
+                                            <% out.println(addings.get(i).getNbTotalGroupes());%> Points
+                                        </b></small> <br />
+                                    <small>
+                                        <%
+                                            out.println(user.getNiveau()); %> 
+                                    </small>
+                                </p>
+                            </div>
+                        </li>
+                        <%
+                            }
+                        %>
+                    </ul>
                 </div>
-                <!-- fin du widget -->
+            </div>
+            <!-- fin du widget -->
 
 
             <!-- debut du widget pour le tchat -->
@@ -153,7 +152,7 @@ Connection con = DBDataSource.getJDBCConnection();
                     <h4><img src="images/comm.png" height="30px" width="30px"> Commentaires</h4></span>
 
                 </div>
-                <div class="panel-body" style=" height: 280px;">
+                <div class="panel-body" style=" height: 235px;">
                     <ul class="chat">
                         <%
                             Services comms = new Services();
@@ -169,8 +168,18 @@ Connection con = DBDataSource.getJDBCConnection();
                             <div class="chat-body clearfix">
                                 <div class="header">
                                     <strong class="primary-font"> 
-                                        <% Users u = udao.selectById(vcomm.get(i).getUsers_numero());
-                                            out.println(u.getUsername().toUpperCase());
+                                        <% 
+                                            pk = vcomm.get(i).getUsers_numero();
+                                            int j = 0;
+                                            while (j <= users.size()) {
+                                                if (pk == users.get(j).getId()) {
+                                                    user = users.get(j);
+                                                    j = users.size() + 1;
+                                                }
+                                                j++;
+                                            }
+
+                                            out.println(user.getUsername().toUpperCase());
                                         %>
                                     </strong> 
                                     <small class="pull-right text-muted">
@@ -191,9 +200,9 @@ Connection con = DBDataSource.getJDBCConnection();
                     </ul>
                 </div>
 
-                <form action="ServletAddCommentaire">
+               <form action="ServletAddCommentaire" method="POST">
 
-                    <div class="panel-footer" >
+                    <div class="panel-footer" style="background-color: white; margin-top: -30px;">
 
 
                         <div class="input-group">
@@ -205,93 +214,14 @@ Connection con = DBDataSource.getJDBCConnection();
                         </div> 
                     </div>
                 </form>
-
-                <!--</div>-->
             </div>
 
+            <!-- Fin du widget de chat -->
 
-            <!-- début stats -->
-            <!-- Fin stats -->
 
-            <!-- Debut du rond  datas enlevees a remettre-->
-
-            <!--<div class="col-md-3 col-sm-4 col-xs-12">
-                <div class="x_panel tile fixed_height_320 overflow_hidden">
-                    <div class="x_title">
-                        <h2>Device Usage</h2>
-                        <ul class="nav navbar-right panel_toolbox">
-                            <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                            </li>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li><a href="#">Settings 1</a>
-                                    </li>
-                                    <li><a href="#">Settings 2</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li><a class="close-link"><i class="fa fa-close"></i></a>
-                            </li>
-                        </ul>
-                        <div class="clearfix"></div>
-                    </div>
-                    <div class="x_content">
-
-                        <table class="" style="width:100%">
-                            <tr>
-                                <th style="width:37%;">
-                            <p>Top 5</p>
-                            </th>
-                            <th>
-                            <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">
-                                <p class="">Device</p>
-                            </div>
-                           
-                            </th>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <canvas id="canvas1" height="140" width="140" style="margin: 15px 10px 10px 0"></canvas>
-                                </td>
-                                <td>
-                                    <table class="tile_info">
-                                        <tr>
-                                            <td>
-                                                <p><i class="fa fa-square blue"></i>IOS </p>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <p><i class="fa fa-square green"></i>Android </p>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <p><i class="fa fa-square purple"></i>Blackberry </p>
-                                            </td>
-                                        <tr>
-                                            <td>
-                                                <p><i class="fa fa-square aero"></i>Symbian </p>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <p><i class="fa fa-square red"></i>Others </p>
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
-            </div>-->
-
-            <!-- Fin du rond -->
-
-            <!-- Fin du row -->
         </div>
+
+
         <br /><br />
 
 
