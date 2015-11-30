@@ -37,7 +37,7 @@ public class UsersDAO {
         ArrayList<Users> users = new ArrayList<Users>();
         try {
             stmt = conn.createStatement();
-            String query = "SELECT Numero,Username,email,pwd, Niveau dateReceptionBon FROM Users ";
+            String query = "SELECT Numero,Username,email,pwd, dateReceptionBon, Niveau  FROM Users ";
 
             rs = stmt.executeQuery(query);
 
