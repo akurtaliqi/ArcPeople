@@ -47,7 +47,6 @@ public class ServletEnvoiBon extends HttpServlet {
       UsersDAO userDao = new UsersDAO();
       Users user = userDao.select(username);
       //mettre a jour date base de donnée
-      userDao.updateDate(user);
       
       String to = user.getEmail();
  
@@ -87,7 +86,7 @@ public class ServletEnvoiBon extends HttpServlet {
          
          //partie message
          BodyPart messageBodyPart = new MimeBodyPart();
-         messageBodyPart.setText("Bravo ! Tu as gagné notre bon Arc'People ! Félicitations !");
+         messageBodyPart.setText("Bravo ! Vous avez gagné notre bon Arc'People ! Félicitations !");
         
         Multipart multipart = new MimeMultipart();
         multipart.addBodyPart(messageBodyPart);

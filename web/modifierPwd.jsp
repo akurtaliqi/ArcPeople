@@ -79,7 +79,7 @@
             <div class="row">
 
                 <!-- debut du widget des personnes les plus actives en ajout -->
-                <div class="col-md-8 col-sm-12 col-xs-12" style="background-color: white; 
+                <div class="col-md-8" style="background-color: white; 
                      border-color: #e5e5e5; border-style: solid; 
                      border-width: 1px; margin-left: 10px">
                     <div class="x_title" length="300">

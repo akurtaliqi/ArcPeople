@@ -5,7 +5,6 @@
  */
 package Model;
 
-import java.sql.Blob;
 import java.sql.Date;
 import java.util.Calendar;
 
@@ -14,29 +13,32 @@ import java.util.Calendar;
  * @author Maxime Stierli <maxime.stierli@he-arc.ch>
  */
 public class Users {
-    private Long id=null;
+
+    private Long id = null;
     private String username;
     private String pwd;
     private String email;
     private Date dateReceptionBon;
+    private String niveau;
 
     public Users() {
     }
-    
-     public Users(String username) {
+
+    public Users(String username) {
         this.username = username;
     }
-     public Users(Long id,String username,String adress) {
+
+    public Users(Long id, String username, String adress) {
         this.id = id;
         this.username = username;
-        this.email = adress ;
+        this.email = adress;
     }
 
     public Long getId() {
         return id;
     }
-    
-    public void setId(Long id){
+
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -71,18 +73,28 @@ public class Users {
     public void setDateReceptionBon(Date ReceptionBon) {
         this.dateReceptionBon = ReceptionBon;
     }
+
+    public String getNiveau() {
+        return niveau;
+    }
+
+    public void setNiveau(String niveau) {
+        this.niveau = niveau;
+    }
     
-    public boolean isReceiveThisMonth(){
-        if(this.dateReceptionBon == null){
+    
+
+    public boolean isReceiveThisMonth() {
+        if (this.dateReceptionBon == null) {
             return false;
-        }else{
+        } else {
             //Initialisation du calendrier qui contient la date "dateReceptionBon"
-        Calendar calReceive = Calendar.getInstance();
-        calReceive.setTime(dateReceptionBon);
-        //Initialisation du calendrier qui contient la date actuelle.
-        Calendar calCurrentDate = Calendar.getInstance();
-        //Si les mois sont identiques, on retourne true.
-        return calCurrentDate.get(Calendar.MONTH) == calReceive.get(Calendar.MONTH);
-        }    
-    }    
+            Calendar calReceive = Calendar.getInstance();
+            calReceive.setTime(dateReceptionBon);
+            //Initialisation du calendrier qui contient la date actuelle.
+            Calendar calCurrentDate = Calendar.getInstance();
+            //Si les mois sont identiques, on retourne true.
+            return calCurrentDate.get(Calendar.MONTH) == calReceive.get(Calendar.MONTH);
+        }
+    }
 }

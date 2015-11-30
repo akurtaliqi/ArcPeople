@@ -80,7 +80,7 @@
             <div class="row">
 
                 <!-- debut du widget des personnes les plus actives en ajout -->
-                <div class="col-md-8 col-sm-12 col-xs-12" style="background-color: white; 
+                <div class="col-md-8" style="background-color: white; 
                      border-color: #e5e5e5; border-style: solid; 
                      border-width: 1px; margin-left: 10px">
                     <div class="x_title" length="300">
@@ -96,8 +96,16 @@
                         <span class="sr-only">Error:</span>
                         La personne a été ajoutée avec succès !
                     </div>
-                    <% }
+                    <% } else if (session.getAttribute("persAjoutee") != null) {%>
+                    <div class="alert alert-danger" role="alert" style="margin-left: 0px; margin-right: 0px;" >
+                        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                        <span class="sr-only">Error:</span>
+                        Cette personne est déjà présente dans la liste des personnes !
+                    </div>
+
+                    <%}
                         session.setAttribute("persAjoutee", null);
+                        session.setAttribute("persNonAjoutee", null);
                     %>
 
                     <form action="ServletCreationPersonne" name="ajouterPersonne" role="form" class="form-horizontal" method="get" accept-charset="utf-8">

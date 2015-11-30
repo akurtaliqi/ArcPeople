@@ -38,7 +38,7 @@
 %> 
 
 <jsp:include page="bootstrap/template/headerApp.jsp">
-<jsp:param name="typePage" value="standard" />
+    <jsp:param name="typePage" value="standard" />
 </jsp:include>
 
 <jsp:include page="bootstrap/template/Menu.jsp">
@@ -110,7 +110,20 @@
 
                 });
             });
+
+
         </script>
+        <style>
+            .cModal {
+                
+                visibility: hidden;
+            }
+
+            .cModal:target {
+                
+                visibility: visible;
+            }
+        </style>
 
 
     </head>
@@ -141,8 +154,16 @@
                             <td class=" dt-body-center"><a class="btn btn-default btn-sm glyphicon glyphicon-pencil" title="Modifier" href="modifierPersonne.jsp?id=<%= pers.getId()%>&nom=<%= pers.getNom()%>&prenom=<%= pers.getPrenom()%>&adresse=<%= pers.getAdresse()%>&ville=<%= pers.getVille()%>"></a>
                                 <a class="btn btn-default btn-sm glyphicon glyphicon-remove" data-toggle="modal" data-taget="myModal" title="Supprimer" href="ServletFaireEffacementPersonne?id=<%= pers.getId()%>" onclick="return(confirm('Etes-vous sûr de vouloir supprimer cette personne ?'))"></a>
                             </td>
-                        </tr>
-                        <% }%>
+                    <!--div class="cModal" id="modal1">
+                        <header>
+                            <a href="#">FERMER</a>
+                            <h2>TEST 1</h2>
+                        </header>
+                    </div>
+
+                    <a href="#modal1">Ouvrir l’exemple</a-->
+                    </tr>
+                    <% }%>
                     </tbody>
                 </table>
             </div>

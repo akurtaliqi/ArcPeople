@@ -37,7 +37,7 @@ public class UsersDAO {
         ArrayList<Users> users = new ArrayList<Users>();
         try {
             stmt = conn.createStatement();
-            String query = "SELECT Numero,Username,email,pwd, dateReceptionBon FROM Users ";
+            String query = "SELECT Numero,Username,email,pwd, Niveau dateReceptionBon FROM Users ";
 
             rs = stmt.executeQuery(query);
 
@@ -48,6 +48,7 @@ public class UsersDAO {
                 u.setEmail(rs.getString("email"));
                 u.setPwd(rs.getString("pwd"));
                 u.setDateReceptionBon(rs.getDate("dateReceptionBon"));
+                u.setNiveau(rs.getString("Niveau"));
                 users.add(u);
             }
             return users;
@@ -113,6 +114,7 @@ public class UsersDAO {
                 u.setUsername(rs.getString("Username"));
                 u.setEmail(rs.getString("email"));
                 u.setPwd(rs.getString("pwd"));
+                u.setNiveau(rs.getString("Niveau"));
             }
         } catch (Exception e) {
             e.printStackTrace();

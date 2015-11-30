@@ -60,18 +60,22 @@ public class ServletCreationPersonne extends HttpServlet {
                 Users userEnCour = usersDAO.select(username);
                 AjoutDAO ajoutDAO = new AjoutDAO();
                 Long codeReturn = ajoutDAO.create(userEnCour.getId());
-                s.setAttribute("persAjoutee", "oui");
+                
                 if (codeReturn > 0) {
-                    long nb = ajoutDAO.countAjout(userEnCour.getId());
-                    boolean bon = userEnCour.isReceiveThisMonth();
-                    System.out.println("recived this month" + bon);
-                    System.out.println("nombre d'ajout " + nb);
-                    if (nb >= 10 && !bon) {
+                    s.setAttribute("persAjoutee", "oui");
+                    int nbPoints = ajoutDAO.countAjout(userEnCour.getId());
+                    System.out.println("nombre d'ajout " + nbPoints);
+                    if (nbPoints % 10 == 0 ) {
                         request.getRequestDispatcher("ServletEnvoiBon").forward(request, response);
                     } else {
                         request.getRequestDispatcher("/ajouterPersonne.jsp").forward(request, response);
                     }
+                } else{
+                    s.setAttribute("persNonAjoutee", "oui");
+                    request.getRequestDispatcher("/ajouterPersonne.jsp").forward(request, response);
+                    
                 }
+                    
             }
         } finally {
             out.close();

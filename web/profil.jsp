@@ -5,7 +5,6 @@
 --%>
  
 <%@page import="Model.Niveau"%>
-<%@page import="DAO.NiveauDAO"%>
 <%@page import="DAO.AjoutDAO"%>
 <%@page import="servlets.HtmlHttpUtils"%>
 <%@page import="java.awt.Image"%>
@@ -31,11 +30,8 @@
  
     String name = user.getUsername();
     String mail = user.getEmail();
-    String niveau;
+    String niveau = user.getNiveau();
  
-    NiveauDAO nivDao = new NiveauDAO();
- 
-    niveau = nivDao.getNiveauById(user.getId()).getLibelle();
     String src = "bootstrap\\img\\" + niveau + ".png";
     AjoutDAO ajoutDao = new AjoutDAO();
     int nbPoint = ajoutDao.countAjout(user.getId());
@@ -97,6 +93,7 @@
  
     <body>
         <!-- page content -->
+    <center>
        <div role="main"  style=" margin-left: 20%;">
  
             <div class="row">
@@ -123,7 +120,7 @@
                             session.setAttribute("pwdModifier", null);
                         %>
                         <div>
-                            <table  >
+                            <table>
                                 <tr >
                                     <td>
                                         <img  class= "Imagee" src="<%=src%>" alt= "ImageProfil" class= "img-thumbnail" width="100px" height="100px" style="float:left; margin-bottom: 35px;" />
@@ -142,7 +139,7 @@
                                     <td>********</td>
                                     <td>
                                         <!--<input type="submit" value="Modifier le mot de passe" class="btn btn-primary btn-group"></input>-->
-                                        <a class="btn btn-sm btn-primary" href="ServletMAJPersonne?id=1">Envoyer</a>
+                                        <a class="btn btn-sm btn-primary" href="modifierPwd.jsp">Modifier mon mot de passe</a>
                                     </td>
                                 </tr>
                                 <tr>
@@ -162,6 +159,7 @@
             </div>
         </div>
     </div>
+</center>
 </body>
  
 </html>
