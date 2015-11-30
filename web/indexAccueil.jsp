@@ -47,6 +47,8 @@
     if (!HtmlHttpUtils.isAuthenticate(request)) {
         response.sendRedirect("ServletLogout");
     }
+
+    Connection con = DBDataSource.getJDBCConnection();
 %>
 
 <!-- Menu -->
@@ -61,12 +63,6 @@
 
 <!-- Fin Menu -->
 <!-- Variable globale -->
-<%
-    GregorianCalendar c = new GregorianCalendar();
-    int max = c.getActualMaximum(GregorianCalendar.DAY_OF_MONTH);
-    
-    GraphesDAO gdao = new GraphesDAO();
-%>
 
 <body class="nav-md" style ="background-color: whitesmoke">
 
@@ -78,10 +74,10 @@
             <!-- debut du widget des personnes les plus actives en ajout -->
             <div class="col-md-3 col-sm-12 col-xs-12" style="background-color: white; 
                  border-color: #e5e5e5; border-style: solid; 
-                 border-width: 1px; margin-left: 10px">
+                 border-width: 1px; margin-left: 12px">
                 <div>
                     <div class="x_title" length="300">
-                        <h4>Top 5 des consultants actifs</h4>
+                        <h4><img src="images/win.PNG" height="30px" width="30px"> Top 5 des consultants</h4>
 
                         <%
                             AjoutDAO adao = new AjoutDAO();
@@ -93,13 +89,6 @@
 
                             out.println("" + "");
                         %>
-
-                        <!--<ul class="nav navbar-right panel_toolbox">
-                            <li><a href="#"><i class="fa fa-chevron-up"></i></a>
-                            </li>
-                            <li><a href="#"><i class="fa fa-close"></i></a>
-                            </li>
-                        </ul>-->
 
                         <div class="clearfix"></div>
                     </div>
@@ -267,28 +256,17 @@
 
 
             <!-- debut du widget pour le tchat -->
-            <!--<div class="container">-->
-            <!--<div class="row">-->
             <div class="col-md-5" style="background-color: white; border-color: #e5e5e5; border-style: solid; 
                  border-width: 1px; margin-left: 10px">
-                <!-- <div class="panel panel-primary"> -->
-                <div class="x_title" length="300">
-                    <!-- <span class="glyphicon glyphicon-comment"></span> -->
-                    <h4>Commentaires</h4></span>
-                    <!--<div class="btn-group pull-right">
-                        <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
-                            <span class="glyphicon glyphicon-chevron-down"></span>
-                        </button>
 
-                    </div>-->
+                <div class="x_title" length="300">
+
+                    <h4><img src="images/comm.png" height="30px" width="30px"> Commentaires</h4></span>
+
                 </div>
                 <div class="panel-body" style=" height: 280px;">
                     <ul class="chat">
                         <%
-                            HttpSession s = request.getSession();
-
-                            Connection con = (Connection) s.getAttribute("conn");
-
                             Services comms = new Services();
 
                             Vector<Commentaire> vcomm = comms.selectComments(con);
@@ -296,13 +274,13 @@
                             for (int i = 0; i < vcomm.size(); i++) {
 
                         %>
-                        <li class="left clearfix"><span class="chat-img pull-left">
-                                <img src="http://placehold.it/50/55C1E7/fff&text=U" alt="User Avatar" class="img-circle" />
+                        <li ><span class="chat-img pull-left">
+                                <img src="http://placehold.it/50/55C1E7/fff&text=U" alt="User Avatar" class="img-circle" style="margin-right:10px;"/>
                             </span>
                             <div class="chat-body clearfix">
                                 <div class="header">
-                                    <strong class="primary-font">
-                                        <%                                        Users u = udao.selectById(vcomm.get(i).getUsers_numero());
+                                    <strong class="primary-font"> 
+                                        <% Users u = udao.selectById(vcomm.get(i).getUsers_numero());
                                             out.println(u.getUsername().toUpperCase());
                                         %>
                                     </strong> 
@@ -310,7 +288,7 @@
                                         <span class="glyphicon glyphicon-time"></span>12 mins ago
                                     </small>
                                 </div>
-                                <p>
+                                <p> 
                                     <%
                                         out.println(vcomm.get(i).getCommentaire());
                                     %>
@@ -334,137 +312,107 @@
                 </div>
                 <!--</div>-->
             </div>
-            <!--</div>-->
-            <!--</div>-->
 
 
+            <!-- début stats -->
+            <!-- Fin stats -->
 
-            <!--<div class="col-md-4 col-sm-6 col-xs-12" style="background-color: white; 
-                 border-color: #e5e5e5; border-style: solid; 
-                 border-width: 1px; margin-left: 10px">
+            <!-- Debut du rond  datas enlevees a remettre-->
 
-                <div class="x_title">
-                    <h2>Remarques </h2>
+            <!--<div class="col-md-3 col-sm-4 col-xs-12">
+                <div class="x_panel tile fixed_height_320 overflow_hidden">
+                    <div class="x_title">
+                        <h2>Device Usage</h2>
+                        <ul class="nav navbar-right panel_toolbox">
+                            <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="#">Settings 1</a>
+                                    </li>
+                                    <li><a href="#">Settings 2</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li><a class="close-link"><i class="fa fa-close"></i></a>
+                            </li>
+                        </ul>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
 
-                    <div class="clearfix"></div>
-                </div>
-                <form action="ServletAddCommentaire">
-
-
-                    <div class="panel-body" style="border-radius: 0px">
-                        <ul class="chat">
-
-            <%                                /* HttpSession s = request.getSession();
-
-                 Connection con = (Connection) s.getAttribute("conn");
-
-                 Services comms = new Services();
-
-                 Vector<Commentaire> vcomm = comms.selectComments(con);
-
-                 for (int i = 0; i < vcomm.size(); i++) {*/
-
-            %>
-                        
-            <li class="left clearfix"><span class="chat-img pull-left">
-                    <img src="http://placehold.it/50/55C1E7/fff&text=U" alt="User Avatar" class="img-circle" />
-                </span>
-                <div class="chat-body clearfix">
-                    <div class="header">
-                        <strong class="primary-font" style="color:black">
-            <%                                                /* Users u = udao.selectById(vcomm.get(i).getUsers_numero());
-                 out.println(u.getUsername().toUpperCase());*/
-            %>
-        </strong>
-    </div>
-    <p>
-            <%                                            //out.println(vcomm.get(i).getCommentaire());
-            %>
-        </p>
-    </div>
-</li>
-            <%                                //}
-                //udao.closeConnection(con);
-            %>
-                                            </ul>
-                                        </div>
-                                        <div class="panel-footer" style="background-color: white">
-                                            <div class="input-group" style="background-color: white">
-                                    
-                                                <input name ="commentaire" id="btn-input" type="text" class="form-control input-sm" placeholder="Type your message here..." />
-                                    
-                                                <span class="input-group-btn">
-                                    
-                                                    <button class="btn btn-primary btn-sm" id="btn-chat">Send</button>
-                                                </span>
-                                    
-                                            </div>
-                                        </div>
-                                    </form>
-                                    </div> -->
-            <!-- fin du widget --> 
-
-
-
-
-
-        </div>
-        <br /><br />
-
-        <div class="" style="background-color: white; border-color: #e5e5e5; border-style: solid; 
-             border-width: 1px; margin-left: -2px">
-
-            <div class="row top_tiles" style="margin: 10px 0;">
-                <div class="col-md-3 col-sm-3 col-xs-6 tile">
-                    <div class="left"></div>
-                    <div class="right">
-                        <span>Nombre d'utilisateurs</span>
-                        <h2>231,809</h2>
-                        <span class="sparkline_one" style="height: 160px;">
-                            <canvas width="200" height="60" style="display: inline-block; vertical-align: top; width: 94px; height: 30px;"></canvas>
-                        </span>
+                        <table class="" style="width:100%">
+                            <tr>
+                                <th style="width:37%;">
+                            <p>Top 5</p>
+                            </th>
+                            <th>
+                            <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">
+                                <p class="">Device</p>
+                            </div>
+                           
+                            </th>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <canvas id="canvas1" height="140" width="140" style="margin: 15px 10px 10px 0"></canvas>
+                                </td>
+                                <td>
+                                    <table class="tile_info">
+                                        <tr>
+                                            <td>
+                                                <p><i class="fa fa-square blue"></i>IOS </p>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <p><i class="fa fa-square green"></i>Android </p>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <p><i class="fa fa-square purple"></i>Blackberry </p>
+                                            </td>
+                                        <tr>
+                                            <td>
+                                                <p><i class="fa fa-square aero"></i>Symbian </p>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <p><i class="fa fa-square red"></i>Others </p>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
                     </div>
                 </div>
-                <div class="col-md-3 col-sm-3 col-xs-6 tile">
-                    <span>Total Commentaires</span>
-                    <h2>$ 231,809</h2>
-                    <span class="sparkline_one" style="height: 160px;">
-                        <canvas width="200" height="60" style="display: inline-block; vertical-align: top; width: 94px; height: 30px;"></canvas>
-                    </span>
-                </div>
-                <div class="col-md-3 col-sm-3 col-xs-6 tile">
-                    <span>Total Ajouts</span>
-                    <h2>231,809</h2>
-                    <span class="sparkline_two" style="height: 160px;">
-                        <canvas width="200" height="60" style="display: inline-block; vertical-align: top; width: 94px; height: 30px;"></canvas>
-                    </span>
-                </div>
-                <div class="col-md-3 col-sm-3 col-xs-6 tile">
-                    <span>Total Sessions</span>
-                    <h2>231,809</h2>
-                    <span class="sparkline_one" style="height: 160px;">
-                        <canvas width="200" height="60" style="display: inline-block; vertical-align: top; width: 94px; height: 30px;"></canvas>
-                    </span>
-                </div>
-            </div>
-            <br />
+            </div>-->
 
+            <!-- Fin du rond -->
 
+            <!-- Fin du row -->
         </div>
-
         <br /><br />
+
+
+
+
 
         <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="dashboard_graph x_panel">
-                    <div class="row x_title">
+                    <div class="row x_title" style="margin-left: 5px; margin-right: 5px;">
                         <div class="col-md-6">
-                            <h3>Network Activities <small>Graph title sub-title</small></h3>
+                            <h3>Evolution globale de l'activité</h3>
                         </div>
                         <div class="col-md-6">
                             <div id="reportrange" class="pull-right" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc">
                                 <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
-                                <span>December 30, 2014 - January 28, 2015</span> <b class="caret"></b>
+                                <span>December 2015</span> <b class="caret"></b>
                             </div>
                         </div>
                     </div>
@@ -572,27 +520,12 @@
     <script>
         //random data
         var d1 = [
-            [0, 1], [1, 9], [2, 6], [3, 10], [4, 5], [5, 17], [6, 6], [7, 10], [8, 7], 
-            [9, 11], [10, 35], [11, 9], [12, 12], [13, 5], [14, 3], [15, 4], [16, 9], 
-            [17, 9], [18, 9], [19, 9], [20, 9], [21, 9], [22, 9], [23, 9], [24, 9], [25, 9], 
-            [26, 9], [27, 9], [28, 9], [29, 9], [30, 9] 
+            [0, 1], [1, 9], [2, 6], [3, 10], [4, 5], [5, 17], [6, 6], [7, 10], [8, 7],
+            [9, 11], [10, 35], [11, 9], [12, 12], [13, 5], [14, 3], [15, 4], [16, 9],
+            [17, 9], [18, 9], [19, 9], [20, 9], [21, 9], [22, 9], [23, 9], [24, 9], [25, 9],
+            [26, 9], [27, 9], [28, 9], [29, 9], [30, 9]
         ];
 
-        var d2 = [
-            <%
-                for (int index = 1; index <= max; index++) {
-                    int nbAjouts = gdao.selectDayById(index);
-                    if (index == max) {
-            %>
-                    [<%=index%>, 5]
-                     
-            <% 
-                    } else { %>
-                        [<%=index%>, <%=nbAjouts%>],
-                   <% }
-                }
-            %>
-        ]
 
         //flot options
         var options = {
