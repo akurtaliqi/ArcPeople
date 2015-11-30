@@ -123,8 +123,8 @@
                             session.setAttribute("pwdModifier", null);
                         %>
                         <div>
-                            <table style="border-color:white;color:black; line-height: 45px; ">
-                                <tr>
+                            <table  >
+                                <tr >
                                     <td>
                                         <img  class= "Imagee" src="<%=src%>" alt= "ImageProfil" class= "img-thumbnail" width="100px" height="100px" style="float:left; margin-bottom: 35px;" />
                                     </td>
@@ -141,7 +141,8 @@
                                     <td>Mot de passe :</td>
                                     <td>********</td>
                                     <td>
-                                        <input type="submit" value="Modifier le mot de passe" class="btn btn-primary btn-group"></input>
+                                        <!--<input type="submit" value="Modifier le mot de passe" class="btn btn-primary btn-group"></input>-->
+                                        <a class="btn btn-sm btn-primary" href="ServletMAJPersonne?id=1">Envoyer</a>
                                     </td>
                                 </tr>
                                 <tr>
