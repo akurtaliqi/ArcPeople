@@ -52,6 +52,7 @@ public class ServletLogin extends HttpServlet {
                 if (!username.equals("") && !password.equals("")) {
                          UsersDAO usersDAO = new UsersDAO();
                          Users utilusateur = usersDAO.select(username);
+                         Long id_user = utilusateur.getId();
 
                       if(utilusateur != null && utilusateur.getPwd().equals(password)  ){
                         //CREATION HTTP SESSION
@@ -59,6 +60,7 @@ public class ServletLogin extends HttpServlet {
                         HttpSession s= request.getSession(true);
                         s.setAttribute("username", username);
                         s.setAttribute("conn", conn);
+                        s.setAttribute("id_user", id_user);
                         
                         response.sendRedirect("indexAccueil.jsp");
                      }else errorlogin=true;

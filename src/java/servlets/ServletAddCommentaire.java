@@ -46,8 +46,8 @@ public class ServletAddCommentaire extends HttpServlet {
             CommentaireDAO commentaireDAO = new CommentaireDAO();
             commentaireDAO.create(utilusateur.getId(),request.getParameter("commentaire"));
             
-            request.getRequestDispatcher("/indexAccueil.jsp").forward(request, response);
-            
+            //request.getRequestDispatcher("/indexAccueil.jsp").forward(request., response);
+            response.sendRedirect("indexAccueil.jsp");
         } finally {
             out.close();
         }
