@@ -73,7 +73,7 @@
                 <li <% out.println(activeAide);%> class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Aide <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="aideUtilisation.jsp">Utilisation</a></li>
+                        <li><a href="GuideUtilisation.pdf" target="_blank">Utilisation</a></li>
                         <li><a href="aideFAQ.jsp">FAQ</a></li>
                     </ul>
                 </li>

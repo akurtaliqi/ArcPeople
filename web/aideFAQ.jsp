@@ -53,6 +53,90 @@
         <link rel="stylesheet" type="text/css" href="bootstrap/css/app.css" />
     </head>
     <body>
-        <h1>Hello World!</h1>
-    </body>
+        <div role="main"  style=" margin-left: 20%;">
+
+            <div class="row">
+
+
+                <div class="col-md-8" style="background-color: white;
+                     border-color: #e5e5e5; border-style: solid;
+                     border-width: 1px; margin-left: 10px">
+                    <div class="x_title" length="300">
+                        <h4 style="text-align: left;">FAQ</h4>
+                    </div>
+
+                    <!--<form method="post" action="modifierPwd.jsp" name="profil" role="form" class="form-horizontal" accept-charset="utf-8" >-->
+
+                    <div>
+                        <table style="line-height: 45px; color:black;font-family:Helvetica; margin-left:30px;">
+                            <tr>
+                                <td style="font-weight: bold;">Qu’est-ce qu’un point ?<td>
+                            </tr>
+                            <tr>
+                                <td style="padding-left: 60px;">Un point est une valeur que vous récoltez lorsque vous ajoutez un nouvel utilisateur. Une fois un certain nombre de points récoltés au cours du mois, vous gagnerez une récompense.</td>
+                            </tr>
+                            </tr>
+                            
+                             <tr>
+                                <td style="font-weight: bold;">Comment gagner des points ?</td>
+                            </tr>
+                            <tr>
+                                <td style="padding-left: 60px;">Il suffit d’ajouter un utilisateur. Chaque utilisateur ajouté vous rapportera 1 point.</td>
+                            </tr>
+                            <tr>
+                                <td style="font-weight: bold;">Modifier ou supprimer un utilisateur m’apporte-t-il des points ?</td>
+                            </tr>
+                            <tr>
+                                <td style="padding-left: 60px;">Seul l’ajout d’un utilisateur apportera des points.</td>
+                            </tr>
+                            <tr>
+                                <td style="font-weight: bold;">Combien de points dois-je atteindre pour obtenir une récompense ?</td>
+                            </tr>
+                            <tr>
+                                <td style="padding-left: 60px;">Tous les 10 points, vous recevrez une récompense par mail.</td>
+                            </tr>
+                            <tr>
+                                <td style="font-weight: bold;">Pourquoi ai-je perdu des points ?</td>
+                            </tr>
+                            <tr>
+                                <td style="padding-left: 60px;">Chaque mois, le nombre de points que vous possédez se réinitialise.</td>
+                            </tr>
+                            <tr>
+                                <td style="font-weight: bold;">Qu’est-ce qu’un niveau ?</td>
+                            </tr>
+                            <tr>
+                                <td style="padding-left: 60px;">Un niveau atteste du fait que vous avez ajouté un certain nombre d’utilisateurs tout au long de l'utilisation de l'application.</td>
+                            </tr>
+                            <tr>
+                                <td style="padding-left: 60px;">Vous débloquerez vos niveaux dans l’ordre suivant :</td>
+                            </tr>
+                            <tr>
+                                <td style="padding-left: 60px;"><img src="bootstrap\\img\\Starter.png" alt="Starter Icon" style="width:100px;height:100px; margin-right: 15px;"/> Starter : Niveau débutant, vous possédez de 0 à 9 points.</td>
+                            </tr>
+                            <tr>
+                                <td style="padding-left: 60px;"><img src="bootstrap\\img\\Trooper.png" alt="Starter Icon" style="width:100px;height:100px; margin-right: 15px;"/> Trooper : Niveau intermédiaire, vous possédez de 10 à 29 points.</td>
+                            </tr>
+                            <tr>
+                                <td style="padding-left: 60px;"><img src="bootstrap\\img\\Sith.png" alt="Starter Icon" style="width:100px;height:100px; margin-right: 15px;"/> Sith : Niveau intermédiaire avancé, vous possédez de 30 à 99 points.</td>
+                            </tr>
+                            <tr>
+                                <td style="padding-left: 60px;"><img src="bootstrap\\img\\Darth Vader.png" alt="Starter Icon" style="width:100px;height:100px; margin-right: 15px;"/> Darth Vader : Niveau avancé, vous possédez de 100 à 149 points.</td>
+                            </tr>
+                            <tr>
+                                <td style="padding-left: 60px;"><img src="bootstrap\\img\\Darth Sidious.png" alt="Starter Icon" style="width:100px;height:100px; margin-right: 15px;"/> Niveau expert: Le rang suprême !  Vous possédez plus de 150 points.</td>
+                            </tr>
+                            <tr>
+                                <td style="font-weight: bold;">Mon niveau se réinitialise-t-il en même temps que mes points ?</td>
+                            </tr>
+                            <tr>
+                                <td style="padding-left: 60px;">Mon niveau se réinitialise-t-il en même temps que mes points ?</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </br>
+</body>
 </html>
