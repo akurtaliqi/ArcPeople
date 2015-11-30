@@ -120,7 +120,7 @@
                             session.setAttribute("pwdModifier", null);
                         %>
                         <div>
-                            <table>
+                            <table style="line-height: 45px; color:black;font-family:Helvetica;">
                                 <tr >
                                     <td>
                                         <img  class= "Imagee" src="<%=src%>" alt= "ImageProfil" class= "img-thumbnail" width="100px" height="100px" style="float:left; margin-bottom: 35px;" />
