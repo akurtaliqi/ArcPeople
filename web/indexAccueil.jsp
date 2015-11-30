@@ -301,15 +301,25 @@
                         %>
                     </ul>
                 </div>
-                <div class="panel-footer" style="background-color:white;">
-                    <div class="input-group">
-                        <input id="btn-input" type="text" class="form-control input-sm" placeholder="Type your message here..." />
-                        <span class="input-group-btn">
-                            <button class="btn btn-primary btn-sm" id="btn-chat">
-                                Envoyer</button>
-                        </span>
+
+                <form action="ServletAddCommentaire" style="width:93%; margin-left:-1%; border-top:0px; border-top-style: none;">
+                    
+                    <div class="panel-footer" 
+                         style="background-color: white; border-top:0px; 
+                         border-top-style: none; margin-top: -12%; 
+                         padding-bottom: 1px; margin-bottom: -15px;" >
+                        
+                        
+                        <div class="input-group">
+                            <span class="input-group-btn">
+                                <input name="commentaire" id="btn-input" type="text" class="form-control input-sm" placeholder="Type your message here..." />
+                                <button class="btn btn-warning btn-sm" id="btn-chat">
+                                    Send</button>
+                            </span>
+                        </div> 
                     </div>
-                </div>
+                </form>
+
                 <!--</div>-->
             </div>
 

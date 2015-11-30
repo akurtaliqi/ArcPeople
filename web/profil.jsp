@@ -101,15 +101,15 @@
  
             <div class="row">
  
-                <!-- debut du widget des personnes les plus actives en ajout -->
-                <div class="col-md-8 col-sm-12 col-xs-12" style="background-color: white;
+                
+                <div class="col-md-8" style="background-color: white;
                      border-color: #e5e5e5; border-style: solid;
                      border-width: 1px; margin-left: 10px">
                     <div class="x_title" length="300">
                         <h4 style="text-align: left;">Voir mon profil</h4>
                     </div>
  
-                    <form method="post" action="modifierPwd.jsp" name="profil" role="form" class="form-horizontal" accept-charset="utf-8" >
+                    <!--<form method="post" action="modifierPwd.jsp" name="profil" role="form" class="form-horizontal" accept-charset="utf-8" >-->
                         <%
                             if (session.getAttribute("pwdModifier") != null) {
                         %>
@@ -123,8 +123,8 @@
                             session.setAttribute("pwdModifier", null);
                         %>
                         <div>
-                            <table style="border-color:white;width:90%;color:black; line-height: 45px; ">
-                                <tr>
+                            <table  >
+                                <tr >
                                     <td>
                                         <img  class= "Imagee" src="<%=src%>" alt= "ImageProfil" class= "img-thumbnail" width="100px" height="100px" style="float:left; margin-bottom: 35px;" />
                                     </td>
@@ -141,7 +141,8 @@
                                     <td>Mot de passe :</td>
                                     <td>********</td>
                                     <td>
-                                        <input type="submit" value="Modifier le mot de passe" class="btn btn-primary btn-group"></input>
+                                        <!--<input type="submit" value="Modifier le mot de passe" class="btn btn-primary btn-group"></input>-->
+                                        <a class="btn btn-sm btn-primary" href="ServletMAJPersonne?id=1">Envoyer</a>
                                     </td>
                                 </tr>
                                 <tr>
@@ -154,7 +155,7 @@
                                 </tr>
                             </table>
                         </div>
-                    </form>
+                    <!-- </form> -->
                     <br/>
  
                 </div>
