@@ -152,7 +152,7 @@
                     <h4><img src="images/comm.png" height="30px" width="30px"> Commentaires</h4></span>
 
                 </div>
-                <div class="panel-body" style=" height: 280px;">
+                <div class="panel-body" style=" height: 235px;">
                     <ul class="chat">
                         <%
                             Services comms = new Services();
@@ -202,7 +202,7 @@
 
                <form action="ServletAddCommentaire" method="POST">
 
-                    <div class="panel-footer" >
+                    <div class="panel-footer" style="background-color: white; margin-top: -30px;">
 
 
                         <div class="input-group">
