@@ -60,21 +60,26 @@ public class ServletCreationPersonne extends HttpServlet {
                 UsersDAO usersDAO = new UsersDAO();
                 Users userEnCour = usersDAO.select(username);
                 AjoutDAO ajoutDAO = new AjoutDAO();
-                Long error = ajoutDAO.create(userEnCour.getId());
+                Long codeReturn = ajoutDAO.create(userEnCour.getId());
 
-                if (error > 0) {
+                if (codeReturn > 0) {
                     s.setAttribute("persAjoutee", "oui");
+                    long nb = ajoutDAO.countAjout(userEnCour.getId());
+                    boolean bon = userEnCour.isReceiveThisMonth();
+                    System.out.println("recived this month" + bon);
+                    System.out.println("nombre d'ajout " + nb);
+                    if (nb >= 10 && !bon) {
+                        request.getRequestDispatcher("ServletEnvoiBon").forward(request, response);
+                    }
                     request.getRequestDispatcher("/ajouterPersonne.jsp").forward(request, response);
                 }
             }
-            request.getRequestDispatcher("/listeDesPersonnes.jsp").forward(request, response);
-
         } finally {
             out.close();
         }
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+// <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *

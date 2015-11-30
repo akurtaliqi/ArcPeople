@@ -25,9 +25,11 @@ import oracle.jdbc.OracleTypes;
  * @author Maxime Stierli <maxime.stierli@he-arc.ch>
  */
 public class UsersDAO {
-    public UsersDAO(){}
-    
-     public ArrayList<Users> selectAll() {
+
+    public UsersDAO() {
+    }
+
+    public ArrayList<Users> selectAll() {
         Connection conn = DBDataSource.getJDBCConnection();
         Statement stmt = null;
         ResultSet rs = null;
@@ -35,7 +37,7 @@ public class UsersDAO {
         ArrayList<Users> users = new ArrayList<Users>();
         try {
             stmt = conn.createStatement();
-            String query = "SELECT Numero,Username,email,pwd,Photo FROM Users ";
+            String query = "SELECT Numero,Username,email,pwd, dateReceptionBon FROM Users ";
 
             rs = stmt.executeQuery(query);
 
@@ -45,7 +47,7 @@ public class UsersDAO {
                 u.setUsername(rs.getString("Username"));
                 u.setEmail(rs.getString("email"));
                 u.setPwd(rs.getString("pwd"));
-                u.setPhoto(rs.getBlob("Photo"));
+                u.setDateReceptionBon(rs.getDate("dateReceptionBon"));
                 users.add(u);
             }
             return users;
@@ -64,15 +66,15 @@ public class UsersDAO {
         }
     }
 
-     public Image getphotoById (long user_id){
-     Connection conn = DBDataSource.getJDBCConnection();
-         System.out.println("connexion base donnée sucsse");
+    public Image getphotoById(long user_id) {
+        Connection conn = DBDataSource.getJDBCConnection();
+        System.out.println("connexion base donnée sucsse");
         PreparedStatement stmt = null;
         ResultSet rs = null;
         try {
             String query = "SELECT BLOBTOIMAGE(?) as image FROM DUAL";
-            
-            stmt = conn.prepareStatement(query);        
+
+            stmt = conn.prepareStatement(query);
             stmt.setLong(1, user_id);
             rs = stmt.executeQuery();
             System.out.println("image avant finally");
@@ -86,13 +88,13 @@ public class UsersDAO {
                 System.out.println("image finally");
                 System.out.println(((Image) rs.getObject("image")).toString());
                 return (Image) rs.getObject("image");
-                
+
             } catch (SQLException e) {
                 e.printStackTrace();
                 return null;
             }
-        } 
-   }
+        }
+    }
 
     public Users select(String username) {
         Connection conn = DBDataSource.getJDBCConnection();
@@ -101,17 +103,16 @@ public class UsersDAO {
         Users u = new Users();
         try {
             String query = "SELECT * FROM Users WHERE Username = ?";
-            
-            stmt = conn.prepareStatement(query);        
+
+            stmt = conn.prepareStatement(query);
             stmt.setString(1, username);
             rs = stmt.executeQuery();
-           
-            while(rs.next()){
+
+            while (rs.next()) {
                 u.setId(rs.getLong("Numero"));
                 u.setUsername(rs.getString("Username"));
                 u.setEmail(rs.getString("email"));
                 u.setPwd(rs.getString("pwd"));
-                u.setPhoto(rs.getBlob("Photo"));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -120,15 +121,14 @@ public class UsersDAO {
                 rs.close();
                 stmt.close();
                 conn.close();
-                 return u;
+                return u;
             } catch (SQLException e) {
                 e.printStackTrace();
                 return null;
             }
-        } 
+        }
     }
 
-    
     public Users selectById(Long numero) {
         Connection conn = DBDataSource.getJDBCConnection();
         PreparedStatement stmt = null;
@@ -136,12 +136,12 @@ public class UsersDAO {
         Users u = new Users();
         try {
             String query = "SELECT NUMERO, USERNAME, EMAIL FROM Users WHERE numero = ?";
-            
-            stmt = conn.prepareStatement(query);        
+
+            stmt = conn.prepareStatement(query);
             stmt.setLong(1, numero);
             rs = stmt.executeQuery();
-           
-            while(rs.next()){
+
+            while (rs.next()) {
                 u.setId(rs.getLong("Numero"));
                 u.setUsername(rs.getString("Username"));
                 u.setEmail(rs.getString("email"));
@@ -158,10 +158,10 @@ public class UsersDAO {
                 e.printStackTrace();
                 return null;
             }
-        } 
+        }
     }
 
-    public Long create(Long id, String username, String pwd, String email,Blob photo) {
+    public Long create(Long id, String username, String pwd, String email, Blob photo) {
         Connection conn = DBDataSource.getJDBCConnection();
         OraclePreparedStatement pstmt = null;
         ResultSet rs = null;
@@ -173,16 +173,16 @@ public class UsersDAO {
 
             pstmt = (OraclePreparedStatement) conn.prepareStatement(query); //create a statement
             pstmt.setString(1, username);
-            pstmt.setString(2,pwd);
-            pstmt.setString(3,email);
-            pstmt.setBlob(4,photo);
+            pstmt.setString(2, pwd);
+            pstmt.setString(3, email);
+            pstmt.setBlob(4, photo);
             pstmt.setLong(5, OracleTypes.NUMBER);
 
             int count = pstmt.executeUpdate();
             conn.commit();
 
             if (count > 0) {
-               rs = pstmt.getReturnResultSet(); //rest is not null and not empty
+                rs = pstmt.getReturnResultSet(); //rest is not null and not empty
                 while (rs.next()) {
                     returnNumero = rs.getLong(1);
                     System.out.println(returnNumero);
@@ -203,111 +203,130 @@ public class UsersDAO {
             }
         }
     }
-    
-    public Long updateProfil(Long id, String username, String pwd, String email, Blob photo){
+
+    public Long updateProfil(Long id, String username, String pwd, String email, Blob photo) {
         int executeUpdate = 0;
-            String query = null, endquery = null,susername = null, spwd = null, semail = null, sphoto = null;
-            Connection conn = DBDataSource.getJDBCConnection();
-            Statement stmt = null;
-            try {
-                               
-                boolean onedone = false;
-                query = "update USERS SET ";
-                System.out.println("init query " + query);
-                endquery = " WHERE numero=" + id;
+        String query = null, endquery = null, susername = null, spwd = null, semail = null, sphoto = null;
+        Connection conn = DBDataSource.getJDBCConnection();
+        Statement stmt = null;
+        try {
 
-                if (username != null) {
-                    susername = " USERNAME='" + username + "'";
-                }
-                System.out.println("spwd " + spwd);
-                if (pwd != null) {
-             
-                    spwd = " PWD='" + pwd + "'";
-                }
-                System.out.println("spwd " + spwd);
-                if (email != null) {
-                    
-                    semail = " EMAIL='" + email + "'";
-                }
-                if (photo != null) {
-                 
-                    sphoto = " PHOTO='" + photo + "'";
-                }
-                
-                 if (susername != null) {
-                    query = query.concat(susername);
-                    onedone = true;
-                }
-           System.out.println("avant pwd query " + query);
-                 if (spwd != null) {
-                    if (onedone) {
-                        query = query.concat(",");
-                    }
-                    query = query.concat(spwd);
-                    onedone = true;
-                }
-                 System.out.println("apres pwd query " + query);
-                 if (semail != null) {
-                    if (onedone) {
-                        query = query.concat(",");
-                    }
-                    query = query.concat(semail);
-                    onedone = true;
-                }
-                 
-                 if (sphoto != null) {
-                    if (onedone) {
-                        query = query.concat(",");
-                    }
-                    query = query.concat(sphoto);
-                    onedone = true;
-                }
-                
-                
-                
-           
-                query = query.concat(endquery);
+            boolean onedone = false;
+            query = "update USERS SET ";
+            System.out.println("init query " + query);
+            endquery = " WHERE numero=" + id;
 
-                System.out.println("updatequery ->" + query);
-
-                //create a statement
-                stmt = conn.createStatement();
-                executeUpdate = stmt.executeUpdate(query);
-                conn.commit();
-                System.out.println(executeUpdate + " Rows modified");
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            } finally {
-                try {
-                    stmt.close();
-                    conn.close();
-                    return new Long(executeUpdate);
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                    return new Long(executeUpdate);
-                }
+            if (username != null) {
+                susername = " USERNAME='" + username + "'";
             }
+            System.out.println("spwd " + spwd);
+            if (pwd != null) {
+
+                spwd = " PWD='" + pwd + "'";
+            }
+            System.out.println("spwd " + spwd);
+            if (email != null) {
+
+                semail = " EMAIL='" + email + "'";
+            }
+            if (photo != null) {
+
+                sphoto = " PHOTO='" + photo + "'";
+            }
+
+            if (susername != null) {
+                query = query.concat(susername);
+                onedone = true;
+            }
+            System.out.println("avant pwd query " + query);
+            if (spwd != null) {
+                if (onedone) {
+                    query = query.concat(",");
+                }
+                query = query.concat(spwd);
+                onedone = true;
+            }
+            System.out.println("apres pwd query " + query);
+            if (semail != null) {
+                if (onedone) {
+                    query = query.concat(",");
+                }
+                query = query.concat(semail);
+                onedone = true;
+            }
+
+            if (sphoto != null) {
+                if (onedone) {
+                    query = query.concat(",");
+                }
+                query = query.concat(sphoto);
+                onedone = true;
+            }
+
+            query = query.concat(endquery);
+
+            System.out.println("updatequery ->" + query);
+
+            //create a statement
+            stmt = conn.createStatement();
+            executeUpdate = stmt.executeUpdate(query);
+            conn.commit();
+            System.out.println(executeUpdate + " Rows modified");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                stmt.close();
+                conn.close();
+                return new Long(executeUpdate);
+            } catch (SQLException e) {
+                e.printStackTrace();
+                return new Long(executeUpdate);
+            }
+        }
+    }
+
+    public void updateDate(Users user) {
+        Connection conn = DBDataSource.getJDBCConnection();
+        PreparedStatement pstmt = null;
+        try {
+
+            String query = "update USERS SET  DATERECEPTIONBON = SYSDATE WHERE numero = ?";
+            pstmt = (OraclePreparedStatement) conn.prepareStatement(query); //create a statement
+            pstmt.setLong(1, user.getId());
+            pstmt.executeUpdate();
+            conn.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                pstmt.close();
+                conn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
     }
 
     public Long delete(Long id) {
-        int executeUpdate=0;
+        int executeUpdate = 0;
 
         Connection conn = DBDataSource.getJDBCConnection();
         PreparedStatement pstmt = null;
 
         try {
-            String q="delete from Users where numero=?";
-     
+            String q = "delete from Users where numero=?";
+
             System.out.println("deletequery ->" + q);
 
             pstmt = conn.prepareStatement(q); //create a statement
-                //create a statement
-            pstmt.setLong(1,id);
+            //create a statement
+            pstmt.setLong(1, id);
             executeUpdate = pstmt.executeUpdate();
             conn.commit();
-            System.out.println( executeUpdate + " Rows modified" ) ;
-
+            System.out.println(executeUpdate + " Rows modified");
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -318,11 +337,11 @@ public class UsersDAO {
                 return new Long(executeUpdate);
             } catch (SQLException e) {
                 e.printStackTrace();
-                return new Long (executeUpdate);
+                return new Long(executeUpdate);
             }
         }
     }
-    
+
     public void closeConnection(Connection con) {
         try {
             con.close();

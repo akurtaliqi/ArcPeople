@@ -27,7 +27,7 @@
     String active = request.getParameter("url");
     //int nbEnregistrement = PersonneDAO.nbEnregistrements();
 
-    String activeIndex = "", activeListePersonnes = "", activeAjouterPersonne = "", activeProfil = "";
+    String activeIndex = "", activeListePersonnes = "", activeAjouterPersonne = "", activeProfil = "", activeAide = "";
 
     if (active.equals("/indexAccueil.jsp")) {
         activeIndex = "class=\"active\"";
@@ -37,7 +37,12 @@
         activeAjouterPersonne = "class=\"active\"";
     } else if (active.equals("/profil.jsp")) {
         activeProfil = "class=\"active\"";
+    } else if (active.equals("/aideUtilisation.jsp")) {
+        activeAide = "class=\"active\"";
+    } else if (active.equals("/aideFAQ.jsp")) {
+        activeAide = "class=\"active\"";
     } 
+    
 %>
 
 
@@ -65,7 +70,7 @@
 
             <ul class="nav navbar-nav navbar-right">
                 <li <% out.println(activeProfil);%>><a href="profil.jsp">Profil</a></li>
-                <li class="dropdown">
+                <li <% out.println(activeAide);%> class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Aide <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="aideUtilisation.jsp">Utilisation</a></li>

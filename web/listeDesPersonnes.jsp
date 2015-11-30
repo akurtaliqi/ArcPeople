@@ -38,7 +38,7 @@
 %> 
 
 <jsp:include page="bootstrap/template/headerApp.jsp">
-    <jsp:param name="typePage" value="standard" />
+<jsp:param name="typePage" value="standard" />
 </jsp:include>
 
 <jsp:include page="bootstrap/template/Menu.jsp">
@@ -49,17 +49,16 @@
     <head>
         <meta charset="utf-8">
         <title>Liste des personnes</title>
+        <link rel="stylesheet" type="text/css" href="bootstrap/css/app.css" />
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
         <!-- DATATABLE-->
         <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.6/css/jquery.dataTables.css">
         <script type="text/javascript" charset="utf8" src="//code.jquery.com/jquery-1.10.2.min.js"></script>
         <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.6/js/jquery.dataTables.js"></script>
         <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/plug-ins/1.10.10/i18n/French.json"></script>
         <!-- DATATABLE-->
-
-        <script src='nprogress.js'></script>
-        <link rel='stylesheet' href='bootstrap/css/nprogress.css'/>
-        <script src="/js/jquery-2.1.1.min.js"></script>
-        <script src="bootstrap/js/nprogress.js"></script>
 
         <script>
             $('body').show();
@@ -141,35 +140,16 @@
                             <td>  <% out.print(pers.getVille());%> </td>
                             <td class=" dt-body-center"><a class="btn btn-default btn-sm glyphicon glyphicon-pencil" title="Modifier" href="modifierPersonne.jsp?id=<%= pers.getId()%>&nom=<%= pers.getNom()%>&prenom=<%= pers.getPrenom()%>&adresse=<%= pers.getAdresse()%>&ville=<%= pers.getVille()%>"></a>
                                 <a class="btn btn-default btn-sm glyphicon glyphicon-remove" data-toggle="modal" data-taget="myModal" title="Supprimer" href="ServletFaireEffacementPersonne?id=<%= pers.getId()%>" onclick="return(confirm('Etes-vous sûr de vouloir supprimer cette personne ?'))"></a>
-                                <!--a href="#myModal" data-toggle="modal" class="btn btn-info" role="button">Launch Modal</a-->
                             </td>
-
-                            <!-- Modal
-                    <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                            <h3 id="myModalLabel">Modal header</h3>
-                        </div>
-                        <div class="modal-body">
-                            <p>One fine body…</p>
-                        </div>
-                        <div class="modal-footer">
-                            <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-                            <button class="btn btn-primary">Save changes</button>
-                        </div>
-                    </div>
-            </div> <!-- /container -->
-            <!-- /.modal -->
-
-        </tr>
-        <% }%>
-    </tbody>
-</table>
-</div>
-</div>
+                        </tr>
+                        <% }%>
+                    </tbody>
+                </table>
+            </div>
+        </div>
 
 
-</body>
+    </body>
 </html>
 <script>
     $("#b-100").click(function () {
