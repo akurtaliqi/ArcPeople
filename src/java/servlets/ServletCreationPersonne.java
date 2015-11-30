@@ -9,6 +9,7 @@ import DAO.PersonneDAO;
 import DAO.UsersDAO;
 import Model.Personne;
 import Model.Users;
+import static com.sun.media.jfxmediaimpl.MediaUtils.error;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -43,7 +44,7 @@ public class ServletCreationPersonne extends HttpServlet {
                 prenom = request.getParameter("prenom");
                 adresse = request.getParameter("adresse");
                 ville = request.getParameter("ville");
-                
+
                 if (nom != null && prenom != null) {
                     if (!nom.equals("") && !prenom.equals("")) {
                         PersonneDAO p = new PersonneDAO();
@@ -59,7 +60,12 @@ public class ServletCreationPersonne extends HttpServlet {
                 UsersDAO usersDAO = new UsersDAO();
                 Users userEnCour = usersDAO.select(username);
                 AjoutDAO ajoutDAO = new AjoutDAO();
-                ajoutDAO.create(userEnCour.getId());
+                Long error = ajoutDAO.create(userEnCour.getId());
+
+                if (error > 0) {
+                    s.setAttribute("persAjoutee", "oui");
+                    request.getRequestDispatcher("/ajouterPersonne.jsp").forward(request, response);
+                }
             }
             request.getRequestDispatcher("/listeDesPersonnes.jsp").forward(request, response);
 

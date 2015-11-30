@@ -58,6 +58,19 @@
         });
     </script>
 
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            window.setTimeout(function () {
+                $(".alert").fadeTo(500, 0).slideUp(500, function () {
+                    $(this).remove();
+                });
+            }, 5000);
+
+        });
+    </script>
+
 
 
     <body>
@@ -73,6 +86,19 @@
                     <div class="x_title" length="300">
                         <h4 style="text-align: left;">Ajouter une personne</h4>
                     </div>
+
+                    <%
+                        if (session.getAttribute("persAjoutee") != null) {
+                    %>
+
+                    <div  class="alert alert-success" role="alert" style="margin-left: 20px; margin-right: 20px; " >
+                        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                        <span class="sr-only">Error:</span>
+                        La personne a été ajoutée avec succès !
+                    </div>
+                    <% }
+                        session.setAttribute("persAjoutee", null);
+                    %>
 
                     <form action="ServletCreationPersonne" name="ajouterPersonne" role="form" class="form-horizontal" method="get" accept-charset="utf-8">
                         <fieldset>
