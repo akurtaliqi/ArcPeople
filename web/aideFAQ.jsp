@@ -129,7 +129,7 @@
                                 <td style="font-weight: bold;">Mon niveau se réinitialise-t-il en même temps que mes points ?</td>
                             </tr>
                             <tr>
-                                <td style="padding-left: 60px;">Mon niveau se réinitialise-t-il en même temps que mes points ?</td>
+                                <td style="padding-left: 60px;">Votre niveau prend en compte l’ensemble de vos points. Vous ne le perdrez pas chaque mois.</td>
                             </tr>
                         </table>
                     </div>
