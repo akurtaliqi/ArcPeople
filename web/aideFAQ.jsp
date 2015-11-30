@@ -123,7 +123,7 @@
                                 <td style="padding-left: 60px;"><img src="bootstrap\\img\\Darth Vader.png" alt="Starter Icon" style="width:100px;height:100px; margin-right: 15px;"/> Darth Vader : Niveau avancé, vous possédez de 100 à 149 points.</td>
                             </tr>
                             <tr>
-                                <td style="padding-left: 60px;"><img src="bootstrap\\img\\Darth Sidious.png" alt="Starter Icon" style="width:100px;height:100px; margin-right: 15px;"/> Niveau expert: Le rang suprême !  Vous possédez plus de 150 points.</td>
+                                <td style="padding-left: 60px;"><img src="bootstrap\\img\\Darth Sidious.png" alt="Starter Icon" style="width:100px;height:100px; margin-right: 15px;"/> Darth Sidious : Niveau expert, le rang suprême !  Vous possédez plus de 150 points.</td>
                             </tr>
                             <tr>
                                 <td style="font-weight: bold;">Mon niveau se réinitialise-t-il en même temps que mes points ?</td>
