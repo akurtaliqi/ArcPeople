@@ -97,11 +97,6 @@
                                     <label>Mot de passe</label>
                                     <input name="password" placeholder="Mot de passe" class="form-control" type="password" id="UserPassword" required="required"/>
                                 </div>
-                                <div class="checkbox">
-                                    <label>
-                                        <input name="remember" type="checkbox" value="Remember Me">Remember Me
-                                    </label>
-                                </div>
                                 </br>
                                 <center><input  class="btn btn-primary btn-lg"  type="submit" value="Connexion"/></center>
                             </form>
