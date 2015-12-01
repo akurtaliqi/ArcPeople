@@ -96,16 +96,15 @@
                         <span class="sr-only">Error:</span>
                         La personne a été ajoutée avec succès !
                     </div>
-                    <% } else if (session.getAttribute("persNonAjoutee") != null) {%>
-                    <div class="alert alert-danger" role="alert" style="margin-left: 0px; margin-right: 0px;" >
+                    <%/* } else if (session.getAttribute("persAjoutee") != null) {*/%>
+                    <!--div class="alert alert-danger" role="alert" style="margin-left: 0px; margin-right: 0px;" >
                         <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
                         <span class="sr-only">Error:</span>
                         Cette personne est déjà présente dans la liste des personnes !
-                    </div>
+                    </div-->
 
                     <%}
                         session.setAttribute("persAjoutee", null);
-                        session.setAttribute("persNonAjoutee", null);
                     %>
 
                     <form action="ServletCreationPersonne" name="ajouterPersonne" role="form" class="form-horizontal" method="get" accept-charset="utf-8">

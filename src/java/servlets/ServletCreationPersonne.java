@@ -44,36 +44,33 @@ public class ServletCreationPersonne extends HttpServlet {
                 prenom = request.getParameter("prenom");
                 adresse = request.getParameter("adresse");
                 ville = request.getParameter("ville");
+
                 if (nom != null && prenom != null) {
                     if (!nom.equals("") && !prenom.equals("")) {
                         PersonneDAO p = new PersonneDAO();
                         Long id = p.create(new Personne(nom, prenom, adresse, ville));
                         out.println("<p>" + id + "/" + nom + "/" + prenom + "/" + adresse + "/" + ville + "</p>");
-                    } else {
-                    
-                        s.setAttribute("persNonAjoutee", "oui");
-                        request.getRequestDispatcher("/ajouterPersonne.jsp").forward(request, response);
-                    }
+                    } 
                 }
                 /* syteme des points */
-
+                
                 String username = (String) s.getAttribute("username");
                 UsersDAO usersDAO = new UsersDAO();
                 Users userEnCour = usersDAO.select(username);
                 AjoutDAO ajoutDAO = new AjoutDAO();
                 Long codeReturn = ajoutDAO.create(userEnCour.getId());
-
+                
                 if (codeReturn > 0) {
                     s.setAttribute("persAjoutee", "oui");
                     int nbPoints = ajoutDAO.countAjout(userEnCour.getId());
                     System.out.println("nombre d'ajout " + nbPoints);
-                    if (nbPoints % 10 == 0) {
+                    if (nbPoints % 10 == 0 ) {
                         request.getRequestDispatcher("ServletEnvoiBon").forward(request, response);
                     } else {
                         request.getRequestDispatcher("/ajouterPersonne.jsp").forward(request, response);
                     }
                 }
-
+                    
             }
         } finally {
             out.close();
