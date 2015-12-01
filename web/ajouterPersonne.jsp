@@ -113,7 +113,7 @@
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="nom">Nom</label>  
                                 <div class="col-md-6">
-                                    <input id="nom" name="nom" type="text" placeholder="Ex : Smith, Obama, etc." class="form-control input-md" required="">
+                                    <input id="nom" name="nom" type="text" placeholder="Ex : Smith, Obama, etc." class="form-control input-md" required="required">
 
                                 </div>
                             </div>
@@ -122,7 +122,7 @@
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="prenom">Prénom</label>  
                                 <div class="col-md-6">
-                                    <input id="prenom" name="prenom" type="text" placeholder="Ex : Marie, John, etc." class="form-control input-md" required="">
+                                    <input id="prenom" name="prenom" type="text" placeholder="Ex : Marie, John, etc." class="form-control input-md" required="required">
 
                                 </div>
                             </div>
@@ -131,7 +131,7 @@
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="adresse">Adresse</label>  
                                 <div class="col-md-6">
-                                    <input id="adresse" name="adresse" type="text" placeholder="Ex : Rue de la Promenade 4" class="form-control input-md" required="">
+                                    <input id="adresse" name="adresse" type="text" placeholder="Ex : Rue de la Promenade 4" class="form-control input-md" required="required">
 
                                 </div>
                             </div>
@@ -140,7 +140,7 @@
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="ville">Ville</label>  
                                 <div class="col-md-6">
-                                    <input id="ville" name="ville" type="text" placeholder="Ex : 7500 Paris" class="form-control input-md" required="">
+                                    <input id="ville" name="ville" type="text" placeholder="Ex : 7500 Paris" class="form-control input-md" required="required">
 
                                 </div>
                             </div>
