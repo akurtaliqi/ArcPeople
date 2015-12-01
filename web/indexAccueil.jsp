@@ -145,14 +145,14 @@
             <!-- debut du widget pour le tchat -->
             <div class="col-md-7" 
                  style="background-color: white; border-color: #e5e5e5; border-style: solid; 
-                 border-width: 1px; margin-left: 10px">
+                 border-width: 1px; margin-left: 10px; width:63%">
 
                 <div class="x_title" length="300">
 
                     <h4><img src="images/comm.png" height="30px" width="30px"> Commentaires</h4></span>
 
                 </div>
-                <div class="panel-body" style=" height: 235px;">
+                <div class="panel-body" style=" height: 281px; ">
                     <ul class="chat">
                         <%
                             Services comms = new Services();
@@ -200,15 +200,15 @@
                     </ul>
                 </div>
 
-               <form action="ServletAddCommentaire" method="POST">
+               <form action="ServletAddCommentaire" method="POST"  style = "margin-top: 2%">
 
                     <div class="panel-footer" style="background-color: white; margin-top: -30px;">
 
 
-                        <div class="input-group">
+                        <div class="input-group" style="border-top:0px; border-top-style:none;">
                             <span class="input-group-btn">
                                 <input name="commentaire" id="btn-input" type="text" class="form-control input-sm" placeholder="Type your message here..." />
-                                <button class="btn btn-warning btn-sm" id="btn-chat">
+                                <button class="btn btn-primary btn-sm" id="btn-chat">
                                     Send</button>
                             </span>
                         </div> 
