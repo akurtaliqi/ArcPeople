@@ -92,11 +92,10 @@ public class AjoutDAO {
      }
      return usersTop;
      }*/
-    public ArrayList<Ajout> top5Additions() {
+    public ArrayList<Ajout> top5Additions(Connection con) {
         Statement stmt = null;
         ResultSet rs = null;
         ArrayList<Ajout> ajoutsTop = new ArrayList();
-        Connection con = DBDataSource.getJDBCConnection();
         try {
             stmt = con.createStatement();
 
@@ -116,7 +115,6 @@ public class AjoutDAO {
             try {
                 rs.close();
                 stmt.close();
-                con.close();
             } catch (SQLException ex) {
                 Logger.getLogger(AjoutDAO.class.getName()).log(Level.SEVERE, null, ex);
             }

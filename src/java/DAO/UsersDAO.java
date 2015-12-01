@@ -66,6 +66,42 @@ public class UsersDAO {
             return users;
         }
     }
+    
+    public ArrayList<Users> selectAll(Connection conn) {
+        Statement stmt = null;
+        ResultSet rs = null;
+
+        ArrayList<Users> users = new ArrayList<Users>();
+        try {
+            stmt = conn.createStatement();
+            String query = "SELECT Numero,Username,email,pwd, dateReceptionBon, Niveau  FROM Users ";
+
+            rs = stmt.executeQuery(query);
+
+            while (rs.next()) {
+                Users u = new Users();
+                u.setId(rs.getLong("Numero"));
+                u.setUsername(rs.getString("Username"));
+                u.setEmail(rs.getString("email"));
+                u.setPwd(rs.getString("pwd"));
+                u.setDateReceptionBon(rs.getDate("dateReceptionBon"));
+                u.setNiveau(rs.getString("Niveau"));
+                users.add(u);
+            }
+            return users;
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                rs.close();
+                stmt.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+
+            }
+            return users;
+        }
+    }
 
     public Image getphotoById(long user_id) {
         Connection conn = DBDataSource.getJDBCConnection();

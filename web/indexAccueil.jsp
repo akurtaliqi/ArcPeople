@@ -1,3 +1,4 @@
+<%@page import="Model.Graphe"%>
 <%@page import="DAO.GraphesDAO"%>
 <%@page import="java.util.GregorianCalendar"%>
 <%@page import="Model.Niveau"%>
@@ -51,11 +52,16 @@
 
     AjoutDAO adao = new AjoutDAO();
     UsersDAO udao = new UsersDAO();
-    ArrayList<Ajout> addings = adao.top5Additions();
-    ArrayList<Users> users = udao.selectAll();
+    ArrayList<Ajout> addings = adao.top5Additions(con);
+    ArrayList<Users> users = udao.selectAll(con);
+
+    GregorianCalendar gcal = new GregorianCalendar();
+    int daysInMonth = gcal.getActualMaximum(GregorianCalendar.DAY_OF_MONTH);
 
     Long pk;
     int points;
+
+    
 
 %>
 <!-- Menu -->
@@ -168,8 +174,7 @@
                             <div class="chat-body clearfix">
                                 <div class="header">
                                     <strong class="primary-font"> 
-                                        <% 
-                                            pk = vcomm.get(i).getUsers_numero();
+                                        <%                                            pk = vcomm.get(i).getUsers_numero();
                                             int j = 0;
                                             while (j <= users.size()) {
                                                 if (pk == users.get(j).getId()) {
@@ -183,7 +188,7 @@
                                         %>
                                     </strong> 
                                     <small class="pull-right text-muted">
-                                        <span class="glyphicon glyphicon-time"></span>12 mins ago
+                                        <span class="glyphicon glyphicon-time"></span><% out.println(vcomm.get(i).getDateAjout()); %>
                                     </small>
                                 </div>
                                 <p> 
@@ -200,7 +205,7 @@
                     </ul>
                 </div>
 
-               <form action="ServletAddCommentaire" method="POST"  style = "margin-top: 2%">
+                <form action="ServletAddCommentaire" method="POST"  style = "margin-top: 2%">
 
                     <div class="panel-footer" style="background-color: white; margin-top: -30px;">
 
@@ -351,6 +356,20 @@
             [17, 9], [18, 9], [19, 9], [20, 9], [21, 9], [22, 9], [23, 9], [24, 9], [25, 9],
             [26, 9], [27, 9], [28, 9], [29, 9], [30, 9]
         ];
+        
+        <%            
+            Services datas = new Services();
+            ArrayList<Graphe> bigChartDatas = datas.getDatas(con, daysInMonth);
+        %>
+
+        var d2 = [
+            <%
+                for (int i = 0; i < bigChartDatas.size(); i++) {
+                    int nbAjouts = bigChartDatas.get(i).getNbAjouts();%> 
+                    [<%=i%>, <%=nbAjouts%>],
+                <%}
+            %>
+        ];
 
 
         //flot options
@@ -378,7 +397,7 @@
         };
         var plot = $.plot($("#placeholder3xx3"), [{
                 label: "Registrations",
-                data: d1,
+                data: d2,
                 lines: {
                     fillColor: "rgba(150, 202, 89, 0.12)"
                 }, //#96CA59 rgba(150, 202, 89, 0.42)
@@ -395,4 +414,6 @@
 
 </body>
 
-</html>
+<% con.close();%>
+
+< /html>
