@@ -8,8 +8,7 @@ import java.sql.SQLException;
 
 public class GraphesDAO {
 
-    public int selectDayById(int current_day) {
-        Connection conn = DBDataSource.getJDBCConnection();
+    public int selectDayById(Connection conn, int current_day) {
         PreparedStatement stmt = null;
         ResultSet rs = null;
         int day = 0;
@@ -31,7 +30,6 @@ public class GraphesDAO {
             try {
                 rs.close();
                 stmt.close();
-                conn.close();
                 return day;
             } catch (SQLException e) {
                 e.printStackTrace();

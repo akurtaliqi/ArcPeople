@@ -1,3 +1,4 @@
+<%@page import="Model.Graphe"%>
 <%@page import="DAO.GraphesDAO"%>
 <%@page import="java.util.GregorianCalendar"%>
 <%@page import="Model.Niveau"%>
@@ -51,11 +52,16 @@
 
     AjoutDAO adao = new AjoutDAO();
     UsersDAO udao = new UsersDAO();
-    ArrayList<Ajout> addings = adao.top5Additions();
-    ArrayList<Users> users = udao.selectAll();
+    ArrayList<Ajout> addings = adao.top5Additions(con);
+    ArrayList<Users> users = udao.selectAll(con);
+
+    GregorianCalendar gcal = new GregorianCalendar();
+    int daysInMonth = gcal.getActualMaximum(GregorianCalendar.DAY_OF_MONTH);
 
     Long pk;
     int points;
+
+    
 
 %>
 <!-- Menu -->
@@ -145,14 +151,14 @@
             <!-- debut du widget pour le tchat -->
             <div class="col-md-7" 
                  style="background-color: white; border-color: #e5e5e5; border-style: solid; 
-                 border-width: 1px; margin-left: 10px">
+                 border-width: 1px; margin-left: 10px; width:63%">
 
                 <div class="x_title" length="300">
 
                     <h4><img src="images/comm.png" height="30px" width="30px"> Commentaires</h4></span>
 
                 </div>
-                <div class="panel-body" style=" height: 235px;">
+                <div class="panel-body" style=" height: 281px; ">
                     <ul class="chat">
                         <%
                             Services comms = new Services();
@@ -168,8 +174,7 @@
                             <div class="chat-body clearfix">
                                 <div class="header">
                                     <strong class="primary-font"> 
-                                        <% 
-                                            pk = vcomm.get(i).getUsers_numero();
+                                        <%                                            pk = vcomm.get(i).getUsers_numero();
                                             int j = 0;
                                             while (j <= users.size()) {
                                                 if (pk == users.get(j).getId()) {
@@ -183,7 +188,7 @@
                                         %>
                                     </strong> 
                                     <small class="pull-right text-muted">
-                                        <span class="glyphicon glyphicon-time"></span>12 mins ago
+                                        <span class="glyphicon glyphicon-time"></span><% out.println(vcomm.get(i).getDateAjout()); %>
                                     </small>
                                 </div>
                                 <p> 
@@ -200,15 +205,15 @@
                     </ul>
                 </div>
 
-               <form action="ServletAddCommentaire" method="POST">
+                <form action="ServletAddCommentaire" method="POST"  style = "margin-top: 2%">
 
                     <div class="panel-footer" style="background-color: white; margin-top: -30px;">
 
 
-                        <div class="input-group">
+                        <div class="input-group" style="border-top:0px; border-top-style:none;">
                             <span class="input-group-btn">
                                 <input name="commentaire" id="btn-input" type="text" class="form-control input-sm" placeholder="Type your message here..." />
-                                <button class="btn btn-warning btn-sm" id="btn-chat">
+                                <button class="btn btn-primary btn-sm" id="btn-chat">
                                     Send</button>
                             </span>
                         </div> 
@@ -351,6 +356,20 @@
             [17, 9], [18, 9], [19, 9], [20, 9], [21, 9], [22, 9], [23, 9], [24, 9], [25, 9],
             [26, 9], [27, 9], [28, 9], [29, 9], [30, 9]
         ];
+        
+        <%            
+            Services datas = new Services();
+            ArrayList<Graphe> bigChartDatas = datas.getDatas(con, daysInMonth);
+        %>
+
+        var d2 = [
+            <%
+                for (int i = 0; i < bigChartDatas.size(); i++) {
+                    int nbAjouts = bigChartDatas.get(i).getNbAjouts();%> 
+                    [<%=i%>, <%=nbAjouts%>],
+                <%}
+            %>
+        ];
 
 
         //flot options
@@ -378,7 +397,7 @@
         };
         var plot = $.plot($("#placeholder3xx3"), [{
                 label: "Registrations",
-                data: d1,
+                data: d2,
                 lines: {
                     fillColor: "rgba(150, 202, 89, 0.12)"
                 }, //#96CA59 rgba(150, 202, 89, 0.42)
@@ -395,4 +414,6 @@
 
 </body>
 
-</html>
+<% con.close();%>
+
+< /html>
