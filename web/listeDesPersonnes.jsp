@@ -9,7 +9,7 @@
 <%@page import="Model.Personne"%>
 <%@page import="java.util.Vector"%>
 <%@page import="servlets.HtmlHttpUtils"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%> 
 <!DOCTYPE html>
 
 <%
@@ -47,7 +47,6 @@
 
 <html>
     <head>
-        <meta charset="utf-8">
         <title>Liste des personnes</title>
         <link rel="stylesheet" type="text/css" href="bootstrap/css/app.css" />
 
@@ -134,8 +133,8 @@
                         <% for (Personne pers : listePers) { %> 
 
                         <tr class="lignePersonne" id="<% out.print(pers.getId()); %>">
-                            <td>  <% out.print(pers.getNom()); %> </td>
-                            <td>  <% out.print(pers.getPrenom()); %> </td>  
+                            <td>  <%= pers.getNom()%> </td>
+                            <td>  <%= pers.getPrenom()%> </td>  
                             <td>  <% out.print(pers.getAdresse()); %> </td>
                             <td>  <% out.print(pers.getVille());%> </td>
                             <td class=" dt-body-center"><a class="btn btn-default btn-sm glyphicon glyphicon-pencil" title="Modifier" href="modifierPersonne.jsp?id=<%= pers.getId()%>&nom=<%= pers.getNom()%>&prenom=<%= pers.getPrenom()%>&adresse=<%= pers.getAdresse()%>&ville=<%= pers.getVille()%>"></a>
