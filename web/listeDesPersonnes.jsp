@@ -37,16 +37,21 @@
 
 %> 
 
-<jsp:include page="bootstrap/template/headerApp.jsp">
-    <jsp:param name="typePage" value="standard" />
-</jsp:include>
-
 <jsp:include page="bootstrap/template/Menu.jsp">
     <jsp:param name="url" value="<%=request.getServletPath()%>" />
 </jsp:include>
 
 <html>
     <head>
+        <!--mise en forme ajtene-->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css"/>
+
+        <!--dropdown menu-->
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"/>
+
         <title>Liste des personnes</title>
         <link rel="stylesheet" type="text/css" href="bootstrap/css/app.css" />
 
@@ -132,7 +137,7 @@
                     <tbody>
                         <% for (Personne pers : listePers) { %> 
 
-                        <tr class="lignePersonne" id="<% out.print(pers.getId()); %>">
+                        <tr class="lignePersonne" id="<% out.print(pers.getId());%>">
                             <td>  <%= pers.getNom()%> </td>
                             <td>  <%= pers.getPrenom()%> </td>  
                             <td>  <% out.print(pers.getAdresse()); %> </td>
@@ -140,8 +145,8 @@
                             <td class=" dt-body-center"><a class="btn btn-default btn-sm glyphicon glyphicon-pencil" title="Modifier" href="modifierPersonne.jsp?id=<%= pers.getId()%>&nom=<%= pers.getNom()%>&prenom=<%= pers.getPrenom()%>&adresse=<%= pers.getAdresse()%>&ville=<%= pers.getVille()%>"></a>
                                 <a class="btn btn-default btn-sm glyphicon glyphicon-remove" data-toggle="modal" data-taget="myModal" title="Supprimer" href="ServletFaireEffacementPersonne?id=<%= pers.getId()%>" onclick="return(confirm('Etes-vous sûr de vouloir supprimer cette personne ?'))"></a>
                             </td>
-                    </tr>
-                    <% }%>
+                        </tr>
+                        <% }%>
                     </tbody>
                 </table>
             </div>

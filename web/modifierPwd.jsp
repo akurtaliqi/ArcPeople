@@ -18,16 +18,14 @@
         response.sendRedirect("ServletLogout");
     }
 %>
-<jsp:include page="bootstrap/template/headerApp.jsp">
-    <jsp:param name="typePage" value="standard" />
-</jsp:include>
 
 <jsp:include page="bootstrap/template/Menu.jsp">
     <jsp:param name="url" value="<%=request.getServletPath()%>" />
 </jsp:include>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
         <link rel="stylesheet" type="text/css" href="bootstrap/css/profil.css" />
         <title>JSP Page</title>
         <!-- Bootstrap core CSS -->
@@ -50,15 +48,16 @@
         <link rel='stylesheet' href='bootstrap/css/nprogress.css'/>
         <script src="/js/jquery-2.1.1.min.js"></script>
         <script src="bootstrap/js/nprogress.js"></script>
-        <!--mise en forme ajtene-->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"/>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css"/>
-        <link rel="stylesheet" type="text/css" href="bootstrap/css/app.css" />
 
         <!--mise en forme ajtene-->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"/>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css"/>
         <link rel="stylesheet" type="text/css" href="bootstrap/css/app.css" />
+        <!--dropdown menu-->
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"/>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <script type="text/javascript">
 
             $(document).ready(function () {

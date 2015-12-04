@@ -38,6 +38,10 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"/>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css"/>
         <link rel="stylesheet" type="text/css" href="bootstrap/css/app.css" />
+        <!--dropdown menu-->
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"/>
     </head>
     <script>
         $('body').show();
@@ -96,12 +100,12 @@
                         <span class="sr-only">Error:</span>
                         La personne a été ajoutée avec succès !
                     </div>
-                    <%/* } else if (session.getAttribute("persAjoutee") != null) {*/%>
-                    <!--div class="alert alert-danger" role="alert" style="margin-left: 0px; margin-right: 0px;" >
+                    <% } else if (session.getAttribute("persAjoutee") != null) {%>
+                    <div class="alert alert-danger" role="alert" style="margin-left: 0px; margin-right: 0px;" >
                         <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
                         <span class="sr-only">Error:</span>
                         Cette personne est déjà présente dans la liste des personnes !
-                    </div-->
+                    </div>
 
                     <%}
                         session.setAttribute("persAjoutee", null);

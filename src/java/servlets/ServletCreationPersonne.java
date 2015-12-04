@@ -44,14 +44,14 @@ public class ServletCreationPersonne extends HttpServlet {
                 prenom = request.getParameter("prenom");
                 adresse = request.getParameter("adresse");
                 ville = request.getParameter("ville");
-
+                Long id = null;
                 if (nom != null && prenom != null) {
                     if (!nom.equals("") && !prenom.equals("")) {
                         PersonneDAO p = new PersonneDAO();
-                        Long id = p.create(new Personne(nom, prenom, adresse, ville));
+                        id = p.create(new Personne(nom, prenom, adresse, ville));
                         out.println("<p>" + id + "/" + nom + "/" + prenom + "/" + adresse + "/" + ville + "</p>");
-                    } 
-                }
+                    }
+                } 
                 /* syteme des points */
                 
                 String username = (String) s.getAttribute("username");
